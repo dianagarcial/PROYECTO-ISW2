@@ -1,0 +1,109 @@
+nav {
+  width: 100%;
+  background-color: #000000;
+  color: #FFFFFF;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+  padding: 1em;
+  padding-right: 2em;
+  }
+
+  
+  .bar{
+    height: 40px;
+    width: 40px;
+  }
+
+  p.hola {
+    align-items: center;
+    margin-top: 1em;
+    font-family: 'ROBOTO';
+    font-style: normal;
+    font-size: 1em;
+}
+
+
+  
+  nav .nav-bar {
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 2em;
+    margin-right: 3em
+    
+  }
+
+  nav .nav-nom {
+    
+    /* margin: auto; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+  }
+  
+  nav .nav-bar a{
+    text-decoration: none;
+    color:#FFFFFF;
+    -webkit-text-stroke: 0.2px #000814;
+    width: auto;
+    margin-right: 8px;
+    margin-left: 8px;
+    display: inline-block;
+    text-align: center;
+    font-size: 2.5vh;
+  
+  }
+  
+  
+  nav .nav-bar a:hover {
+    color: black;
+  }
+  
+  nav .nav-bar form{
+     text-decoration: none;
+    width: 10vh;
+    display: inline-block;
+    text-align: center;
+    
+    
+  }
+  .logout-button{
+    background: #FFDE31;
+    border-radius: 15px;
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 0.5em;
+    color: #000000;
+    margin: auto;
+    width: 6em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  
+  }
+  
+  img.logos {
+    width: 10em;
+    
+}
+.imgr {
+  justify-content: space-between;
+  width: 12%;
+  display: flex;
+  align-items: center;
+}

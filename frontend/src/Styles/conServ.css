@@ -1,0 +1,89 @@
+.contServ {
+    padding-top: 5rem;
+}
+body {
+    margin: 0;
+}
+.contServ h1{
+    font-family: 'Outfit';
+font-style: normal;
+font-weight: 600;
+font-size: 60px;
+line-height: 76px;
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+.imgaseg{
+    width: 60%;
+    margin: auto;
+    height: 20%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+}
+.contServ h2{
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin-left: 1.5em;
+    text-align: left;
+}
+
+h1{
+    font-size: 4vh;
+    color: #000814;
+    margin: 1em;
+    text-align: center;
+    font-weight: bold;
+    font-family: Open Sans;
+    font-style: normal;
+}
+.verm {
+    font-family: 'Outfit';
+font-style: normal;
+font-weight: 300;
+font-size: 24px;
+line-height: 30px;
+display: flex;
+align-items: center;
+text-decoration-line: underline;
+
+color: #7E7E7E;
+}
+
+.ver {
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-items: center;
+    margin-right: 2em;
+}
+
+.contSer h1 {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 76px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+.contSer h2 {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin-left: 1.5em;
+}

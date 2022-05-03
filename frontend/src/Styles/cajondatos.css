@@ -1,0 +1,476 @@
+.cajCab h1 {
+    color: whitesmoke;
+    margin: 0.5em;
+    text-align: center;
+    font-size: 3vh;
+}
+.cajDat{
+    width: 92%;
+    position: relative;
+    border: 3px;
+    background: #E5E5E5;
+    border: 3px solid #B1A7A6;
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    border-radius: 20px;
+    font-family: Open Sans;
+    font-style: normal;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    margin: 2em;
+    border-top: transparent;
+    margin-top: 0rem
+    
+    
+}
+
+.cajDat h1{
+    color: black;
+    margin-left: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: left;
+    font-size: 3vh;
+
+}
+
+th.nom {
+    width: 16em;
+}
+
+.cajCab{
+    width: 92%;
+    height: 200%;
+    position: relative;
+    border: 3px;
+    background: #FFFFFF;
+    border: 3px solid #B1A7A6;
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    border-radius: 20px;
+    font-family: Open Sans;
+    font-style: normal;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin: 2em;
+    background: #BE3E3E;
+    color: #FFFFFF;
+    margin-bottom: 0cm;
+}
+tr.cabecera {
+    background: #BE3E3E;
+    border-radius: 110px;
+    border: 30px solid;
+    box-sizing: border-box;
+    color: #ffff;
+    margin: 2em;
+}
+
+.cabecera{
+    background:#BE3E3E
+
+}
+
+.division{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.vertical{
+    padding-left: 1em;
+    padding-right: 1em;   
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    
+}
+
+.cajonform{
+    background: #FFFFFF;
+border: 1px solid #CACACA;
+box-sizing: border-box;
+border-radius: 15px;
+    TEXT-ALIGN: LEFT;
+    padding: 0.5em;
+    width: 90%;
+    font-size: 1rem;
+
+}
+
+label {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500px;
+    font-size: 40px;
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    
+    color: #000000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+    /* border-radius: 15px; */
+
+}
+
+.cajDat td{
+    font-size: 30px;
+}
+
+
+/********************/
+
+.cajCab1 h1 {
+    font-style: normal;
+font-weight: 600;
+font-size: 40px;
+line-height: 50px;
+display: flex;
+align-items: center;
+text-align: center;
+margin: 0.5em;
+color: #000000;
+}
+.cajDat1{
+    width: 96%;
+    position: relative;
+    border: 3px;
+    background: #E5E5E5;
+    border: 3px solid #B1A7A6;
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    border-radius: 20px;
+    font-family: Open Sans;
+    font-style: normal;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    margin: 2em;
+    margin-right: 0em;
+    border-top: transparent;
+    margin-top: 0rem
+    
+    
+}
+
+.cajDat1 h1{
+    color: black;
+    margin-left: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: left;
+    font-size: 3vh;
+
+}
+
+.cajCab1{
+    width: 92%;
+    height: 200%;
+    position: relative;
+    padding: 0.2em;
+    background: #FFFFFF;
+    
+    box-sizing: border-box;
+    margin-bottom: 0%;
+  
+    font-family: Open Sans;
+    font-style: normal;
+    
+    margin: 4em;
+    background: #FFDE31;
+    border-radius: 15px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    color: #FFFFFF;
+    margin-bottom: 0cm;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cajCabTot{
+    width: 92%;
+    height: 200%;
+    position: relative;
+    padding: 0.2em;
+    background: #FFFFFF;
+    
+    box-sizing: border-box;
+    margin-bottom: 0%;
+  
+    font-family: Open Sans;
+    font-style: normal;
+    
+    margin: 4em;
+    background: #FFDE31;
+    border-radius: 15px;
+    
+    color: #FFFFFF;
+    margin-bottom: 0cm;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cajCabTot h4{
+    font-family: 'Outfit';
+font-style: normal;
+font-weight: 500;
+font-size: 40px;
+line-height: 50px;
+display: flex;
+align-items: center;
+text-align: center;
+margin-left: 1em;
+color: #000000;
+}
+
+h2{
+    font-size: 4vh;
+    color: #000814;
+    margin: 1em;
+    text-align: center;
+    font-weight: bold;
+    font-family: Open Sans;
+    font-style: normal;
+}
+
+.cabeBusq{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.bus{
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    TEXT-ALIGN: LEFT;
+    padding: 0.3em;
+    margin: 0.5em;
+    width: 20%;
+    font-size: 0.8em;
+
+}
+
+.cuadro4{
+    width: 92%;
+    position: relative;
+    border: 3px;
+    background: #E5E5E5;
+    
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    border-radius: 20px;
+    font-family: Open Sans;
+    font-style: normal;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    margin: 4em;
+    margin-bottom: 2em;
+    border-top: transparent;
+    margin-top: 0rem;
+    padding: 0.5em;
+}
+
+td.enu {
+    width: 40%;
+}
+
+
+.cuadroTotalMensual{
+    width: 96%;
+    position: relative;
+    border: 3px;
+    background: #E5E5E5;
+    border: 3px solid #B1A7A6;
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    border-radius: 20px;
+    font-family: Open Sans;
+    font-style: normal;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    margin: 2em;
+    /*border-top: transparent;*/
+    margin-top: 0rem
+}
+
+.enviar{
+    background: #BE3E3E;
+border-radius: 39px;
+color: #FFFFFF;
+padding: 0.5em;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 10em;
+font-style: bold;
+font-size: 20px;
+line-height: 42px;
+width: 10em;
+margin: 1em;
+left: 20%;
+
+
+}
+
+.cajCab2 {
+    width: 100%;
+    height: 200%;
+    position: relative;
+    border: 3px;
+    background: #FFFFFF;
+    /* border: 3px solid #B1A7A6; */
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    border-radius: 20px;
+    font-family: Open Sans;
+    font-style: normal;
+    margin-top: 2em;
+    padding: 1em;
+    background: #FFDE31;
+    color: #FFFFFF;
+    /* margin-bottom: 0cm; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.contecaj {
+    align-items: center;
+    margin-left: 3em;
+    margin-right: 3em;
+}
+
+.busRep{
+    background: #FFFFFF;
+    border-radius: 60px;
+    width: 50%;
+    padding: 1em;
+    border: #FFFFFF;
+    margin-left: 2em;
+    background: #FFFFFF;
+    border: 1px solid #CACACA;
+    box-sizing: border-box;
+    border-radius: 15px;
+    justify-content: flex-end;
+
+}
+label.replabel {
+    font-family: 'Outfit';
+font-style: normal;
+font-weight: 500;
+font-size: 40px;
+line-height: 50px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+    
+}
+
+.btn-desc {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1em;
+}
+
+button.desRep{
+    
+    background:#FFDE31;
+    border-radius: 15px;
+    color: #000000;
+    padding: 0.5em;
+    font-family: 'Outfit';
+font-style: normal;
+font-weight: 600;
+font-size: 32px;
+line-height: 40px;
+
+align-items: center;
+text-align: center;
+    width: 10em;
+    margin: 1em;
+    left: 20%;
+    
+}
+
+.cajCab3{
+    width: 96%;
+    height: 200%;
+    position: relative;
+    border: 3px;
+    background: #FFFFFF;
+    border: 3px solid #B1A7A6;
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    border-radius: 20px;
+    font-family: Open Sans;
+    font-style: normal;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    margin: 2em;
+       background: #BE3E3E;
+    color: #FFFFFF;
+    margin-top: 0cm;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.valor{
+    justify-content: flex-end;
+}
+
+.cajCab3 h1 {
+    color: whitesmoke;
+    margin: 1em;
+    text-align: center;
+    font-size: 3vh;
+}
+.check {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 5em;
+}
+
+input[type="checkbox"] {
+    width: 2.3em;
+    height: 2.3em;
+    background-color: white;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.cajCabTot1 {
+    width: 90%;
+    
+    position: relative;
+    padding: 0.2em;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    font-family: Open Sans;
+    font-style: normal;
+    margin: auto;
+    background: #FFDE31;
+    border-radius: 15px;
+    color: #FFFFFF;
+    /* margin-bottom: 0cm; */
+    display: flex;
+    justify-content: space-between;
+}

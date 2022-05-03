@@ -1,0 +1,383 @@
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+  
+   /* border-radius: 15px;*/
+  }
+
+tr.cabe {
+    text-align: left;
+    background: #BE3E3E;
+    
+color: #FFFFFF;
+}
+.table100 {
+    background-color: #fff;
+    margin: 2%;
+    
+}
+
+
+#tablaini {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: none;
+    
+}
+
+#tablefiltro {
+    width: 100%;
+    border-collapse: none;
+    border-top: none;
+    
+    
+}
+
+#tablefiltro td, th {
+    border-left: sólido 1px negro;
+}
+
+
+tr {
+    font-weight: unset;
+    padding-right: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    
+}
+    
+
+
+td {
+    font-weight: unset;
+    padding: 0.2em;
+    width: 80%;
+    text-align: left;
+    
+    
+}
+
+
+.column1 {
+    width: 30px;
+    padding-left: 55px;
+    font-weight: bold;
+    font-family: Open Sans;
+    font-style: normal;
+    color: #fff;
+    
+    
+
+}
+
+.column2 {
+    width: 120px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.column3 {
+    width: 120px;
+    text-align: center;
+}
+
+.column4 {
+    width: 120px;
+    text-align: center;
+}
+
+.column5 {
+    width: 200px;
+    text-align: center;
+}
+
+.column6 {
+    width: 120px;
+    text-align: center;
+}
+
+
+.table100 th {
+    padding-top: 3px;
+    padding-bottom: 21px;
+}
+
+.table100 td {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.td.cell100.column2 {
+    font-weight: bold;
+}
+
+/*==================================================================
+[ Fix col ]*/
+.table100 {
+    width: 92%;
+    position: relative;
+    border: 3px;
+    background: #E5E5E5;
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    border-radius: 20px;
+    font-family: Open Sans;
+    font-style: normal;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    margin: 4em;
+    border-top: transparent;
+    margin-top: 0rem;
+    
+}
+
+.table100-firstcol {
+    position: absolute;
+    z-index: 1000;
+    width: 310px;
+    top: 0;
+    left: 0;
+    
+}
+
+    .table100-firstcol table {
+        background-color: aqua;
+    }
+
+.wrap-table100-nextcols {
+    width: 100%;
+    overflow: auto;
+    
+    padding-bottom: 28px;
+}
+
+.table100-nextcols table {
+    table-layout: fixed;
+}
+
+.shadow-table100-firstcol {
+    box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+    -o-box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+    -ms-box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+}
+
+.table100-firstcol table {
+    background-color: transparent;
+}
+
+/*==================================================================
+[ Ver1 ]*/
+
+tr.consulope {
+    background: #EDEDED;
+    color: #ffff;
+    border-bottom: 3px solid #000000;
+}
+
+.table100.ver1 th {
+    font-family: Open Sans;
+    font-style: normal;
+
+    
+    
+    line-height: 2.4;
+    text-align: center;
+    font-family: 'Outfit';
+font-style: normal;
+font-weight: 500;
+font-size: 40px;
+line-height: 50px;
+
+align-items: center;
+
+color: #000000;
+    
+}
+
+.f {
+    font-family: Open Sans;
+    font-style: normal;
+    
+    color: #fff;
+    line-height: 2.4;
+    text-align: center;
+    
+}
+
+.table100.ver1 td {
+    font-family: 'Outfit';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 40px;
+padding-left: 0.5em;
+align-items: center;
+
+color: #000000;
+}
+
+.table100.ver1 .table100-firstcol td {
+    color: #666666;
+}
+
+.table100.ver1 .table100-nextcols td {
+    color: black
+}
+
+
+.table100.ver1 tr {
+   
+}
+
+.busq{
+     
+    margin-top: 0.5em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+  
+}
+
+input[type="buscarEmp"] {
+    border-radius: 3em;
+    padding: 1em;
+}
+
+.tab{
+    margin: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+/**Borde superior plano*******************************************/
+.table101 {
+    width: 96%;
+    position: relative;
+    border: 3px;
+    background: #EDEDED;
+    
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    border-bottom: transparent;
+    font-family: Open Sans;
+    font-style: normal;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    margin: 2em;
+    border-top: transparent;
+    margin-top: 0rem;
+    margin-bottom: 0em;
+    padding: auto;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    
+}
+
+.table101.ver1 th {
+    text-align: center;
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 50px;
+    /* display: flex; */
+    align-items: center;
+    color: #000000
+    
+}
+
+
+
+.table101.ver1 td {
+    font-family: 'Outfit';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 40px;
+padding: 0.5em;
+align-items: center;
+
+color: #000000;
+}
+
+.table101.ver1 .table100-firstcol td {
+    color: #666666;
+}
+
+.table101.ver1 .table100-nextcols td {
+    color: black
+}
+
+
+.table101.f tr {
+    border-bottom: 1px solid #f2f2f2;
+}
+
+td.tcentrar {
+    text-align: center;
+}
+
+/*Borde superior redondo abajo plano****/
+
+.table102 {
+    width: 96%;
+    position: relative;
+    border: 3px;
+    background: #E5E5E5;
+    border: 3px solid #B1A7A6;
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    border-bottom: transparent;
+    font-family: Open Sans;
+    font-style: normal;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin: 2em;
+    border-top: transparent;
+    margin-top: 0rem;
+    margin-bottom: 0em;
+    
+}
+
+.table102.ver1 th {
+    font-family: Open Sans;
+    font-style: normal;
+
+    
+    
+    line-height: 2.4;
+    text-align: center;
+    
+}
+
+
+
+.table102.ver1 td {
+    font-family: Open Sans;
+    font-style: normal;
+    margin: 10px;
+    padding: 15px;
+    line-height: 1.4;
+}
+
+.table102.ver1 .table100-firstcol td {
+    color: #666666;
+}
+
+.table102.ver1 .table100-nextcols td {
+    color: black
+}
+
+
+.table102.f tr {
+    border-bottom: 1px solid #f2f2f2;
+}
+
+td.tcentrar {
+    text-align: center;
+}
