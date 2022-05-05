@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useAuth } from '../../context/AuthContext';
+// import { useAuth } from '../../context/AuthContext';
 import Nav from '../nav';
 
 import '../../Styles/cajon.css'
 
 export const Home = () => {
-  const { logout, currentUser } = useAuth();
+  
   const history = useHistory();
 
   const [error, setError] = useState('');
 
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-      history.push('/login');
-    } catch (error) {
-      setError('Server Error')
-    }
-  }
+  // const handleLogout = async () => {
+  //   try {
+  //     await logout();
+  //     history.push('/login');
+  //   } catch (error) {
+  //     setError('Server Error')
+  //   }
+  // }
 
   const consulServicio = async (e) => {
     e.preventDefault();

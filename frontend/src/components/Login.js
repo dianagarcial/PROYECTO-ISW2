@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { useAuth } from '../context/AuthContext';
+
 //import Spinner from '../spinner.svg';
 import '../Styles/login.css'
 import Nav from '../components/nav';

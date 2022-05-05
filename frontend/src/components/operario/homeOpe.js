@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useAuth } from '../../context/AuthContext';
+//import { useAuth } from '../../context/AuthContext';
 import Nav from '../nav';
 import '../../Styles/conServ.css'
 
@@ -11,20 +11,20 @@ import '../../Styles/btn.css'
 
 
 export const HomeOperario = () => {
-  const { logout, currentUser } = useAuth();
+  //const { logout, currentUser } = useAuth();
   const history = useHistory();
 
   const [error, setError] = useState('');
 
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-      history.push('/login');
-    } catch (error) {
-      setError('Server Error')
-    }
-  }
+  // const handleLogout = async () => {
+  //   try {
+  //     await logout();
+  //     history.push('/login');
+  //   } catch (error) {
+  //     setError('Server Error')
+  //   }
+  // }
 
   const conServicio = async (e) => {
     e.preventDefault();

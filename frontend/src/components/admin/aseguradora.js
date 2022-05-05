@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useAuth } from '../../context/AuthContext';
+
 import Nav from '../nav';
 import '../../Styles/conServ.css'
 import '../../Styles/tablas.css'
@@ -10,20 +10,20 @@ import '../../Styles/cajondatos.css'
 
 
 export const Aseguradora = () => {
-  const { logout, currentUser } = useAuth();
+ 
   const history = useHistory();
 
   const [error, setError] = useState('');
 
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-      history.push('/login');
-    } catch (error) {
-      setError('Server Error')
-    }
-  }
+  // const handleLogout = async () => {
+  //   try {
+  //     await logout();
+  //     history.push('/login');
+  //   } catch (error) {
+  //     setError('Server Error')
+  //   }
+  // }
 
   const aseguradora = async (e) => {
     e.preventDefault();

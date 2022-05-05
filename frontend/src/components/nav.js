@@ -2,25 +2,25 @@ import react from "react";
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useAuth } from '../context/AuthContext';
+// import { useAuth } from '../context/AuthContext';
 import '../Styles/nav.css'
 
 function Nav (){
 
-    const { logout, currentUser } = useAuth();
+  
   const history = useHistory();
 
   const [error, setError] = useState('');
 
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-      history.push('/login');
-    } catch (error) {
-      setError('Server Error')
-    }
-  }
+  // const handleLogout = async () => {
+  //   try {
+  //     await logout();
+  //     history.push('/login');
+  //   } catch (error) {
+  //     setError('Server Error')
+  //   }
+  // }
 
     
     return(
@@ -34,7 +34,7 @@ function Nav (){
             </div>
                 <div class="nav-nom">
                     
-                    <button className='logout-button' onClick={handleLogout} >Salir</button>
+                    <button className='logout-button' >Salir</button>
                     
                     
                 </div>
