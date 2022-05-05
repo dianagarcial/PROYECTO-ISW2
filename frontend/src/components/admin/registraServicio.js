@@ -38,10 +38,16 @@ export const RegistraServicio = () => {
       history.push('/busca');
     
   }
+
+  const crearServicio=async (e) =>{
+    e.preventDefault();
+
+  }
   return (
     
     <div>
       <Nav></Nav>
+    <form onSubmit={crearServicio} >
     <div class="contServ">
     <h1>Creación de un servicio</h1>
     <h2>Ingresa la informacion del servicio (Las entradas marcadas con * con obligatorias)</h2>
@@ -69,6 +75,7 @@ export const RegistraServicio = () => {
     </tr>
        
   </table>
+  
   </div>
     
   <div class="vertical">
@@ -88,9 +95,12 @@ export const RegistraServicio = () => {
   </table>
   </div>
   
+  
   </div>
+  
     
 </div>
+
 <div class="cajCab1">
           <div class="cabeBusq">
            <h1>Detalles servicio</h1>
@@ -219,10 +229,15 @@ export const RegistraServicio = () => {
   </div>
 
   <div class="btn-desc">
-   <button name="add" class="desRep">Guardar servicio</button>
+  <input class="desRep" type='submit' value='Guardar servicio' />
+   
    </div>
 
+
+   </form>
+   
 </div>
+
 
 
 
