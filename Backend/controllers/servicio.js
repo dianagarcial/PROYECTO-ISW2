@@ -12,28 +12,28 @@ const getServicios = async( req, res = response ) => {
 
 }
 
-const getServiciosXOperario = async ( req, res = response ) => {
+// const getServiciosXOperario = async ( req, res = response ) => {
 
-    try {
+//     try {
 
-        const serviciosOperario  = await Servicio.();
+//         const serviciosOperario  = await Servicio.();
 
-        res.json({
-            ok: true,
-            servicio: serviciosOperario
-        });
+//         res.json({
+//             ok: true,
+//             servicio: serviciosOperario
+//         });
 
-    } catch (error) {
+//     } catch (error) {
         
-        console.log(error)
-        res.status(500).json({
-            ok: false,
-            msg: 'Hable con el administrador'
-        });
+//         console.log(error)
+//         res.status(500).json({
+//             ok: false,
+//             msg: 'Hable con el administrador'
+//         });
 
-    }
+//     }
 
-}
+// }
 
 const crearServicio = async ( req, res = response) => {
 
