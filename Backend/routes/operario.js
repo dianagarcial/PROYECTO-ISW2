@@ -15,12 +15,12 @@ router.get('/listaOperarios', getOperarios);
 router.post(
     '/newOperario', 
     [ // middlewares
-        check('nombre_usuario', 'El nombre es obligatorio').not().isEmpty(),
+        check('nombreUsuario', 'El nombre es obligatorio').not().isEmpty(),
         check('contraseña', 'La contraseña debe ser de 6 caracteres').isLength({ min: 6 }),
         check('cedula', 'La cedula es obligatoria').isInt().isLength({min:6}),
         check('rh', 'El tipo de sangre es obligatorio').not().isEmpty(),
         check('edad', 'La edad es obligatorio').isInt(),
-        check('nombre_completo', 'El nombre es obligatorio').not().isEmpty(),
+        check('nombreCompleto', 'El nombre es obligatorio').not().isEmpty(),
         check('telefono', 'El telefono es obligatorio').isInt(),
         check('estado', 'El estado es obligatorio').not().isEmpty(),
         validarCampos

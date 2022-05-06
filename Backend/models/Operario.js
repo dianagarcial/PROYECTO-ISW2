@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const OperarioSchema = Schema({
     
-    nombre_usuario:{
+    nombreUsuario:{
         type: String,
         required: true
     },
@@ -28,7 +28,7 @@ const OperarioSchema = Schema({
         required: true
     },
 
-    nombre_completo:{
+    nombreCompleto:{
         type: String,
         required: true
     },
