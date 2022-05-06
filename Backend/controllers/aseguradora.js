@@ -1,59 +1,59 @@
-const { response } = require('express');
-const Aseguradora = require('../models/Aseguradora');
+// const { response } = require('express');
+// const Aseguradora = require('../models/Aseguradora');
 
 
-const getAseguradora = async( req, res = response ) => {
+// const getAseguradora = async( req, res = response ) => {
 
-    const aseguradoras = await Aseguradora.find();
+//     const aseguradoras = await Aseguradora.find();
 
-    res.json({
-        ok: true,
-        aseguradoras
-    });
+//     res.json({
+//         ok: true,
+//         aseguradoras
+//     });
 
-}
+// }
 
-const crearAseguradora = async ( req, res = response) => {
+// const crearAseguradora = async ( req, res = response) => {
 
-    const aseguradora = new Aseguradora ( req.body );
-    const { expediente } = req.body;
+//     const aseguradora = new Aseguradora ( req.body );
+//     const { expediente } = req.body;
 
 
-    try {
+//     try {
 
-        const expedienteExite = await Aseguradora.findOne({ expediente });
-        if (expedienteExite) {
+//         const expedienteExite = await Aseguradora.findOne({ expediente });
+//         if (expedienteExite) {
 
-            return res.status(400).json({
-                of: false,
-                msg: 'El expediente ya existe'
-            });
+//             return res.status(400).json({
+//                 of: false,
+//                 msg: 'El expediente ya existe'
+//             });
 
-        }
+//         }
 
-        aseguradora.user = req.uid;
+//         aseguradora.user = req.uid;
 
-        const aseguradoraGuardada = await aseguradora.save();
+//         const aseguradoraGuardada = await aseguradora.save();
 
-        res.json({
-            ok: true,
-            aseguradora: aseguradoraGuardada
-        });
+//         res.json({
+//             ok: true,
+//             aseguradora: aseguradoraGuardada
+//         });
         
         
-    } catch (error) {
+//     } catch (error) {
 
-        console.log(error)
-        res.status(500).json({
-            ok: false,
-            msg: 'Contacte con el administrador'
-        });
+//         console.log(error)
+//         res.status(500).json({
+//             ok: false,
+//             msg: 'Contacte con el administrador'
+//         });
         
-    }
+//     }
 
-}
+// }
 
-module.exports = {
-    getAseguradora,
-    crearAseguradora
-}
+// module.exports = {
+//     getAseguradora,
+//     crearAseguradora
+// }

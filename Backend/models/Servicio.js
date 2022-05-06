@@ -42,12 +42,25 @@ const ServicioSchema = Schema({
         required: true
     },
 
-    aseguradora:{
-        type: Schema.Types.ObjectId,
-        ref: 'Aseguradora',
+
+//ASEGURADORA SCHEMA
+    aseguradoraNombre:{
+        type: String,
         required: true
     },
 
+    aseguradoraExpediente:{
+        type: Number,
+        required: true,
+        unique: true
+    },
+
+    aseguradoraTecnico: {
+        type: String
+    },
+
+
+    //ASEGURADOR SCHEMA
     nombreAsegurado:{
         type: String,
         required: true
@@ -64,7 +77,7 @@ const ServicioSchema = Schema({
         required: true
     }
 
-    //agregar la referencia al licencia click, el asegurado
+   
 
 
 });

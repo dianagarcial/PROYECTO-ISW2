@@ -27,11 +27,19 @@ router.post(
         check('contraseña', 'La contraseña de la licencia Click es obligatoria').not().isEmpty(),
         check('operario', 'La cedula del operario es obligatorio').not().isEmpty(),
         check('aseguradora', 'El nombre de la aseguradora es obligatorio').not().isEmpty(),
+        check('expediente', 'El expediente es obligatorio').isInt(),
 
         //Del Asegurado
         check('nombreAsegurado', 'El Nombre del Asegurado es obligatorio').not().isEmpty(),
         check('placaAsegurado', 'La Placa del Asegurado es obligatorio').not().isEmpty(),
         check('telefonoAsegurado', 'El telefono del Asegurado es obligatorio').isInt(),
+
+
+        //DE LA ASEGURADORA
+        check('aseguradoraNombre', 'El Nombre de la Aseguradora es obligatorio').not().isEmpty(),
+        check('aseguradoraExpediente', 'El expediente es obligatorio').isInt(),
+
+        
         // check('asegurado', 'los datos del asegurado son obligatorios').not().isEmpty(),
         validarCampos
 
