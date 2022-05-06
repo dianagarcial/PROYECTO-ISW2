@@ -48,11 +48,22 @@ const ServicioSchema = Schema({
         required: true
     },
 
-    asegurado:{
-        type: Schema.Types.ObjectId,
-        ref: 'Asegurado'
-        // required: true
+    nombreAsegurado:{
+        type: String,
+        required: true
+    },
+
+    apellidoAsegurado:String,
+    
+    placaAsegurado:{
+        type: String,
+        required: true
+    },
+    telefonoAsegurado:{
+        type: Number,
+        required: true
     }
+
     //agregar la referencia al licencia click, el asegurado
 
 

@@ -1,25 +1,25 @@
-const { Schema, model } = require('mongoose');
+// const { Schema, model } = require('mongoose');
 
-const AseguradoSchema = Schema({
+// const AseguradoSchema = Schema({
 
-            nombre:{
-                type: String,
-                required: true
-            },
+//             nombre:{
+//                 type: String,
+//                 required: true
+//             },
 
-            apellido:String,
+//             apellido:String,
             
-            placa:{
-                type: String,
-                required: true
-            },
+//             placa:{
+//                 type: String,
+//                 required: true
+//             },
 
-            telefono:{
-                type: Integer,
-                required: true
-            }
+//             telefono:{
+//                 type: Integer,
+//                 required: true
+//             }
 
 
-});
+// });
 
-module.exports = model('Asegurado', AseguradoSchema);
+// module.exports = model('Asegurado', AseguradoSchema);
