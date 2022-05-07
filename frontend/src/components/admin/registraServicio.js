@@ -24,7 +24,7 @@ export const RegistraServicio = () => {
   const [licenciaclick,setlicenciaclick]=useState('')
   const [contraseñaClick,setcontraseñaClick]=useState('')
 
-  const [tipo,setTipo]=useState([])
+  const [tipoServicio,settipoServicio]=useState([])
   const [tipoSel,setTipoSel]=useState([])
   const [fecha,setFecha]=useState('')
   const [hora,setHora]=useState('')
@@ -39,7 +39,7 @@ export const RegistraServicio = () => {
   
   const [operario,setOperario]=useState('')
   const [operarios,setOperarios]=useState([])
-  const [idOpe,setIdOpe]=useState('')
+  
   const [nombreOpe,setNombreOpe]=useState([])
   const [nombreOpeSelect,setNombreOpeSelect]=useState([])
   const [cedulaOpe,setCedulaOpe]=useState('')
@@ -54,7 +54,7 @@ export const RegistraServicio = () => {
   useEffect(() => {
     obtenerOperarios();
     setaseguradora(['Suramericana','Bolivar','A365','iKEA','GEA Colombia', 'Assiprex'])
-    setTipo(['Familiar','Elegido', 'otro'])
+    settipoServicio(['Familiar','Elegido', 'otro'])
 
   }, [])
 
@@ -74,7 +74,7 @@ export const RegistraServicio = () => {
   })
 
   setNombreOpe(nombresOpera)
-  //console.log(nombresOpera)
+  console.log(nombresOpera)
 
 
 
@@ -96,12 +96,12 @@ export const RegistraServicio = () => {
   const crearServicio=async (e) =>{
     e.preventDefault();
     const servicio= {
-      tipo:tipoSel,
+      tipoServicio:tipoSel,
       fecha,
       hora,
       origen,
       destino,
-      valor,
+      valor:valorPagado(),
       licenciaclick,
       contraseñaClick,
       nombreAsegurado,
@@ -109,9 +109,8 @@ export const RegistraServicio = () => {
       telefonoAsegurado,
       expediente,
       aseguradora:aseguradoraSect,
-      estado:'N',    
-      operario:{
-        cedula:cedulaOpe}
+      estadoServicio:'N',    
+      operario:cedulaOpe
 
     }    
 
@@ -136,30 +135,37 @@ export const RegistraServicio = () => {
 
   }
 
-  const asignarOpe =async (openom) => {
-    setNombreOpeSelect(openom)
+  const asignarOpe =async (nombre) => {
+    const token=sessionStorage.getItem('token')
+    const res= await Axios.get('/api/operario/nom', nombre,{
+      headers: {'x-token':token}
+    })
+    console.log(res.data)
+   
 
-    const respuesta = await Axios.get('/nombreOpe/'+ openom)
-    console.log(respuesta);
+
+
+
+
     
 
   }
 
-  // const valorPagado =async (tipoSel) => {
-  //   if(tipoSel=='Familiar'){
-  //     return setValor(20.000)
-  //   }else if (){
-  //     return set
+  const valorPagado =async (tipoSel) => {
+    if(tipoSel=='Familiar'){
+      return setValor(20.000)
+    }else if (tipoSel=='Elegido'){
+      return setValor(14.000)
 
-  //   }else{
-  //     return setValor(10.000)
-  //   }
+    }else{
+      return setValor(10.000)
+    }
 
     
-  //   console.log(valor);
+   
     
 
-  // }
+  }
 
   
 
@@ -259,7 +265,7 @@ export const RegistraServicio = () => {
         <td class="enu"> <label>Tipo*</label></td>
         <td><select class="cajonform" type="text" onChange={(e)=>setTipoSel(e.target.value)}>
         {
-            tipo.map(item=>(
+            tipoServicio.map(item=>(
               <option key={item}>{item}</option>
             ))
           }
@@ -371,7 +377,8 @@ export const RegistraServicio = () => {
       <table >
         <tr >
         <td class="enu"> <label>Cedula</label></td>
-        <td><input class="cajonform" type="text" name="tservicio"></input></td>
+        {/* <td><input class="cajonform" type="number" name="tservicio" onChange={(e)=>asignarOpe(e.target.value)}></input></td> */}
+        
         </tr>
       
           

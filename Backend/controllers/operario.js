@@ -19,12 +19,25 @@ const getOperarioCedula = async (req, res = Response) => {
     const {cedula} = req.body;
 
     const opeCedula = await Operario.findOne({ cedula });
-                                            
+
 
     res.json({
         ok:true,
         opeCedula
     });
+
+}
+
+const getOperarioNombre = async (req, res) => {
+
+    const nombre = req.body;
+
+    const respuesta = await Operario.findOne({ nombreCompleto: nombre }, {cedula:1,_id:1});
+
+
+    res.json(        
+        respuesta
+    );
 
 }
 
@@ -131,5 +144,6 @@ module.exports = {
     getOperarioCedula,
     crearOperario,
     loginOperario,
-    revalidarToken
+    revalidarToken,
+    getOperarioNombre
 }
