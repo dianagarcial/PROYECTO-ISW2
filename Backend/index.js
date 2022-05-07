@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
 const { dbConnection } = require ('./database/config');
+const morgan =require ('morgan');
 
 //Se crea el servidor de express
 const app = express();
@@ -11,6 +12,11 @@ dbConnection();
 
 //CORS
 app.use(cors())
+
+
+
+app.use(morgan('dev'))
+
 
 //Directorio
 
