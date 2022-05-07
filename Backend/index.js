@@ -21,7 +21,7 @@ app.use (express.json());
 
 //Rutas
 app.use('/api/usuario', require('./routes/usuario'));
-// app.use('/api/operario', require('./routes/operario'));
+ app.use('/api/operario', require('./routes/operario'));
 // app.use('/api/aseguradora', require('./routes/aseguradora'));
 app.use('/api/servicio', require('./routes/servicio'));
 
