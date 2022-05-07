@@ -30,7 +30,7 @@ const getOperarioCedula = async (req, res = Response) => {
 
 const getOperarioNombre = async (req, res) => {
 
-    const nombre = req.body;
+    const {nombre} = req.body;
 
     const respuesta = await Operario.findOne({ nombre }, {cedula:1,_id:1});
 
