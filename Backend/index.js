@@ -2,7 +2,6 @@ const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
 const { dbConnection } = require ('./database/config');
-const morgan = require('morgan');
 
 //Se crea el servidor de express
 const app = express();
@@ -10,9 +9,8 @@ const app = express();
 //Se ejecuta la función de conexión a la BD
 dbConnection();
 
-//CORS y MORGAN
-app.use(cors());
-app.use(morgan('dev'));
+//CORS
+app.use(cors())
 
 //Directorio
 
@@ -21,8 +19,7 @@ app.use (express.json());
 
 //Rutas
 app.use('/api/usuario', require('./routes/usuario'));
- app.use('/api/operario', require('./routes/operario'));
-// app.use('/api/aseguradora', require('./routes/aseguradora'));
+app.use('/api/operario', require('./routes/operario'));
 app.use('/api/servicio', require('./routes/servicio'));
 
 

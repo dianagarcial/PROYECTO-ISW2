@@ -2,9 +2,13 @@ const { Schema, model } = require('mongoose');
 
 const ServicioSchema = Schema({
 
-    tipo_servicio: {
+    tipoServicio: {
         type: String,
         required: true
+    },
+
+    fecha:{ 
+        type: Date
     },
 
     hora: {
@@ -27,7 +31,7 @@ const ServicioSchema = Schema({
         required: true
     },
 
-    correo_cuenta:{
+    correoCuenta:{
         type: String,
 
     },
@@ -36,49 +40,46 @@ const ServicioSchema = Schema({
         type: String
     },
 
+    nombreAsegurado: {
+        type: String,
+        required: true
+    },
+
+    apellidoAsegurado: {
+        type: String
+    },
+
+    placaAsegurado: {
+        type: String,
+        required: true
+    },
+
+    telefonoAsegurado: {
+        type: Number,
+        required: true
+    },
+
+    expendiente: {
+        type: String,
+        
+    },
+
+    aseguradoraNombre: {
+        type: String,
+        required: true
+    },
+
+    aseguradoraTecnico: {
+        type: String,
+        required: true
+    },
+
     operario:{
         type: Schema.Types.ObjectId,
         ref: 'Operario',
         required: true
-    },
-
-
-//ASEGURADORA SCHEMA
-    aseguradoraNombre:{
-        type: String,
-        required: true
-    },
-
-    aseguradoraExpediente:{
-        type: Number,
-        required: true,
-        unique: true
-    },
-
-    aseguradoraTecnico: {
-        type: String
-    },
-
-
-    //ASEGURADOR SCHEMA
-    nombreAsegurado:{
-        type: String,
-        required: true
-    },
-
-    apellidoAsegurado:String,
-    
-    placaAsegurado:{
-        type: String,
-        required: true
-    },
-    telefonoAsegurado:{
-        type: Number,
-        required: true
     }
 
-   
 });
 
 module.exports = model('Servicio', ServicioSchema);
-

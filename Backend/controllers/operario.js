@@ -14,6 +14,20 @@ const getOperarios = async (req, res = Response ) =>{
 
 }
 
+const getOperarioCedula = async (req, res = Response) => {
+
+    const {cedula} = req.body;
+
+    const opeCedula = await Operario.findOne({ cedula });
+                                            
+
+    res.json({
+        ok:true,
+        opeCedula
+    });
+
+}
+
 const crearOperario = async ( req, res = response ) => {
 
     const { nombreUsuario, contraseña, cedula, 
@@ -68,24 +82,9 @@ const revalidarToken = async (req, res = response ) => {
     })
 }
 
-const buscarporNombre= async ( req, res) => {
-    const nombre=req.params.nombre;
-    try {
-        const respuesta= await Operario.find({nombre_completo:nombre})
-        res.json(respuesta);
-    } catch (error) {
-        return res.status(400).json({
-            ok: false,
-           msg: 'No encontrado'
-
-        
-    })
-}
-}
-
 module.exports = {
     getOperarios,
+    getOperarioCedula,
     crearOperario,
-    revalidarToken,
-    buscarporNombre
+    revalidarToken
 }
