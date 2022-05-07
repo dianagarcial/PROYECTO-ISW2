@@ -13,15 +13,11 @@ function Nav (){
   const [error, setError] = useState('');
 
 
-  // const handleLogout = async () => {
-  //   try {
-  //     await logout();
-  //     history.push('/login');
-  //   } catch (error) {
-  //     setError('Server Error')
-  //   }
-  // }
-
+  const logout = async(e) =>{ 
+    e.preventDefault()
+    sessionStorage.clear()
+    window.location.href= "/"
+}
     
     return(
         <header>
@@ -34,7 +30,7 @@ function Nav (){
             </div>
                 <div class="nav-nom">
                     
-                    <button className='logout-button' >Salir</button>
+                    <button className='logout-button' onClick={logout}>Salir</button>
                     
                     
                 </div>

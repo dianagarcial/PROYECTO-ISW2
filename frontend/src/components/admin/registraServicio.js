@@ -20,9 +20,9 @@ export const RegistraServicio = () => {
 
   const [aseguradora,setaseguradora]=useState([])
   const [aseguradoraSect,setaseguradoraSect]=useState([])
-  const [aseguradoraExpediente,setAseguradoraExpediente]=useState('')
+  const [expediente,setExpediente]=useState('')
   const [licenciaclick,setlicenciaclick]=useState('')
-  const [contrasena,setcontrasena]=useState('')
+  const [contraseñaClick,setcontraseñaClick]=useState('')
 
   const [tipo,setTipo]=useState([])
   const [tipoSel,setTipoSel]=useState([])
@@ -102,19 +102,16 @@ export const RegistraServicio = () => {
       origen,
       destino,
       valor,
-      aseguradora:aseguradoraSect,
-      aseguradoraExpediente,
       licenciaclick,
-      contrasena,
-      
-      
-      
-      
+      contraseñaClick,
       nombreAsegurado,
-      telefonoAsegurado,
-      apellidoAsegurado,
       placaAsegurado,
-      operario
+      telefonoAsegurado,
+      expediente,
+      aseguradora:aseguradoraSect,
+      estado:'N',    
+      operario:{
+        cedula:cedulaOpe}
 
     }    
 
@@ -216,7 +213,7 @@ export const RegistraServicio = () => {
         </tr>
         <tr >
         <td class="enu"> <label>Expediente*</label></td>
-        <td><input class="cajonform" type="text" onChange={(e)=>setAseguradoraExpediente(e.target.value)}></input></td>
+        <td><input class="cajonform" type="text" onChange={(e)=>setExpediente(e.target.value)}></input></td>
         </tr>
           
       </table>
@@ -233,7 +230,7 @@ export const RegistraServicio = () => {
         </tr>
         <tr>
         <td class="enu"> <label>Contraseña*</label></td>
-        <td><input class="cajonform" type="text" onChange={(e)=>setcontrasena(e.target.value)}></input></td>
+        <td><input class="cajonform" type="text" onChange={(e)=>setcontraseñaClick(e.target.value)}></input></td>
         </tr>
         
         
@@ -315,10 +312,7 @@ export const RegistraServicio = () => {
         <td class="enu"> <label>Nombre*</label></td>
         <td><input class="cajonform" type="text" onChange={(e)=>setNombreAsegurado(e.target.value)}></input></td>
         </tr>
-        <tr >
-        <td class="enu"> <label>Apellido</label></td>
-        <td><input class="cajonform" type="text" onChange={(e)=>setApellidoAsegurado(e.target.value)}></input></td>
-        </tr>
+       
           
       </table>
       </div>

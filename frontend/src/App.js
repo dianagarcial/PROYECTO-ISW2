@@ -28,7 +28,7 @@ function App() {
     
           <Switch>
                        
-            <Route exact path='/' component={Home} />
+            <Route exact path='/home' component={Home} />
             <Route exact path='/conServi' component={ConServicio} />
             <Route exact path='/registraServicio' component={RegistraServicio} />
             <Route exact path='/generaReporte' component={GeneraReporte} />
@@ -40,7 +40,7 @@ function App() {
             <Route exact path='/verServicio' component={VerServicio} />
 
 
-            <Route exact path='/login' component={Login} />
+            <Route exact path='/' component={Login} />
             
             
             
