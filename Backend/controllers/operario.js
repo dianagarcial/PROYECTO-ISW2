@@ -35,9 +35,9 @@ const getOperarioNombre = async (req, res) => {
     const respuesta = await Operario.findOne({ nombreCompleto: nombre }, {cedula:1,_id:1});
 
 
-    res.json(        
+    res.json({        
         respuesta
-    );
+    });
 
 }
 

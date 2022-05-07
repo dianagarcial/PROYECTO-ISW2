@@ -58,7 +58,16 @@ export const RegistraServicio = () => {
 
   }, [])
 
+  const asignarOpe =async (nombre) => {
+    const token=sessionStorage.getItem('token')
+    const res= await Axios.get('/api/operario/nom', nombre,{
+      headers: {'x-token':token}
+    })
+    console.log(res.data)
+   
 
+
+  }
   const obtenerOperarios=async () =>{
   const token=sessionStorage.getItem('token')
   const res=await Axios.get('/api/operario/listaOperarios',{
@@ -66,11 +75,11 @@ export const RegistraServicio = () => {
   })
 
   setOperarios(res.data)
-  //console.log(res.data)
+  console.log(res.data)
 
   const aux= res.data.operarios;
   const nombresOpera= aux.map(function(item){
-    return item.nombre_completo
+    return item.nombreCompleto
   })
 
   setNombreOpe(nombresOpera)
@@ -135,21 +144,7 @@ export const RegistraServicio = () => {
 
   }
 
-  const asignarOpe =async (nombre) => {
-    const token=sessionStorage.getItem('token')
-    const res= await Axios.get('/api/operario/nom', nombre,{
-      headers: {'x-token':token}
-    })
-    console.log(res.data)
-   
 
-
-
-
-
-    
-
-  }
 
   const valorPagado =async (tipoSel) => {
     if(tipoSel=='Familiar'){
