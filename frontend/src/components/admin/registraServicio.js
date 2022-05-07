@@ -20,12 +20,12 @@ export const RegistraServicio = () => {
 
   const [aseguradora,setaseguradora]=useState([])
   const [aseguradoraSect,setaseguradoraSect]=useState([])
-  const [expediente,setExpediente]=useState('')
+  const [aseguradoraExpediente,setAseguradoraExpediente]=useState('')
   const [licenciaclick,setlicenciaclick]=useState('')
   const [contrasena,setcontrasena]=useState('')
 
   const [tipo,setTipo]=useState([])
-  const [tipoSel,settipoSel]=useState([])
+  const [tipoSel,setTipoSel]=useState([])
   const [hora,setHora]=useState('')
   const [origen,setOrigen]=useState('')
   const [destino,setDestino]=useState('')
@@ -33,7 +33,7 @@ export const RegistraServicio = () => {
   const [nombreAsegurado,setNombreAsegurado]=useState('')
   const [telefonoAsegurado,setTelefonoAsegurado]=useState('')
   const [apellidoAsegurado,setApellidoAsegurado]=useState('')
-  const [placa,setPlaca]=useState('')
+  const [placaAsegurado,setPlacaAsegurado]=useState('')
   
   const [operario,setOperario]=useState('')
   const [operarios,setOperarios]=useState([])
@@ -95,7 +95,7 @@ export const RegistraServicio = () => {
     e.preventDefault();
     const servicio= {
       aseguradora:aseguradoraSect,
-      expediente,
+      aseguradoraExpediente,
       licenciaclick,
       contrasena,
       tipo:tipoSel,
@@ -105,7 +105,7 @@ export const RegistraServicio = () => {
       nombreAsegurado,
       telefonoAsegurado,
       apellidoAsegurado,
-      placa,
+      placaAsegurado,
       operario
 
     }    
@@ -192,7 +192,7 @@ export const RegistraServicio = () => {
         </tr>
         <tr >
         <td class="enu"> <label>Expediente*</label></td>
-        <td><input class="cajonform" type="text" onChange={(e)=>setExpediente(e.target.value)}></input></td>
+        <td><input class="cajonform" type="text" onChange={(e)=>setAseguradoraExpediente(e.target.value)}></input></td>
         </tr>
           
       </table>
@@ -236,7 +236,7 @@ export const RegistraServicio = () => {
       <table >
         <tr >
         <td class="enu"> <label>Tipo*</label></td>
-        <td><select class="cajonform" type="text" onChange={(e)=>settipoSel(e.target.value)}>
+        <td><select class="cajonform" type="text" onChange={(e)=>setTipoSel(e.target.value)}>
         {
             tipo.map(item=>(
               <option key={item}>{item}</option>
@@ -305,7 +305,7 @@ export const RegistraServicio = () => {
         </tr>
         <tr >
         <td class="enu"> <label>Placa*</label></td>
-        <td><input class="cajonform" type="text" onChange={(e)=>setPlaca(e.target.value)}></input></td>
+        <td><input class="cajonform" type="text" onChange={(e)=>setPlacaAsegurado(e.target.value)}></input></td>
         </tr>
           
       </table>
