@@ -5,7 +5,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validarCampos');
-const { getOperarios,crearOperario, revalidarToken, buscarporNombre } = require('../controllers/operario');
+const { getOperarios,crearOperario, revalidarToken } = require('../controllers/operario');
 const { validarJWT } = require('../middlewares/validarJWT');
 
 const router = Router();
@@ -30,7 +30,6 @@ router.post(
 
 
 router.get('/renew', validarJWT ,revalidarToken );
-router.get('/nombreOpe',buscarporNombre )
 
-//FALTA EL DE BUSCARNOMBRE
+
 module.exports = router;

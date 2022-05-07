@@ -7,8 +7,6 @@
     "@testing-library/react": "^11.2.1",
     "@testing-library/user-event": "^12.2.2",
     "firebase": "^9.6.6",
-    "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",

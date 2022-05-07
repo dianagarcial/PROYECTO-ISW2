@@ -68,24 +68,8 @@ const revalidarToken = async (req, res = response ) => {
     })
 }
 
-const buscarporNombre= async ( req, res) => {
-    const nombre=req.params.nombre;
-    try {
-        const respuesta= await Operario.find({nombre_completo:nombre})
-        res.json(respuesta);
-    } catch (error) {
-        return res.status(400).json({
-            ok: false,
-           msg: 'No encontrado'
-
-        
-    })
-}
-}
-
 module.exports = {
     getOperarios,
     crearOperario,
-    revalidarToken,
-    buscarporNombre
+    revalidarToken
 }
