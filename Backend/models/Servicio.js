@@ -78,8 +78,6 @@ const ServicioSchema = Schema({
     }
 
    
-
-
 });
 
 module.exports = model('Servicio', ServicioSchema);

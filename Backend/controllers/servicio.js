@@ -12,6 +12,30 @@ const getServicios = async( req, res = response ) => {
 
 }
 
+
+
+
+const getServiciosTodosDatos = async( req, res = response ) => {
+
+    const servicios = await Servicio.find().populate('operarios',{
+        nombre_usuario : 0 , 
+        contraseña : 0 ,
+        cedula : 1 ,
+        rh : 0 ,
+        edad : 0 ,
+        nombre_completo : 1 ,
+        telefono :  1 ,
+        estado :0
+
+    });
+
+    res.json({
+        ok: true,
+        servicios
+    });
+
+}
+
 // const getServiciosXOperario = async ( req, res = response ) => {
 
 //     try {
@@ -34,6 +58,7 @@ const getServicios = async( req, res = response ) => {
 //     }
 
 // }
+
 
 const crearServicio = async ( req, res = response) => {
 
@@ -67,5 +92,6 @@ const crearServicio = async ( req, res = response) => {
 
 module.exports = {
     getServicios,
-    crearServicio
+    crearServicio,
+    getServiciosTodosDatos
 }
