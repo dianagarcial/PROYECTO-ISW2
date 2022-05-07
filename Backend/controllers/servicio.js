@@ -13,6 +13,56 @@ const getServicios = async( req, res = response ) => {
 
 }
 
+
+//CONSULTAR SERVICIOS POR ASEGURADORA 
+// PANTALLA /conServi 
+
+const getServiciosAsegura = async( req, res = response ) => {
+    
+    const nombreAseguradora =req.params.nombreAseguradora ;
+
+    try {
+        
+        const serviciosAseguradora = await Servicio.findOne( {aseguradora:nombreAseguradora},{aseguradoraNombre:1, expediente:1 , tipoServicio:1, fecha:1, valor:1});
+
+   
+        res.json({
+            ok: true,
+            serviciosAseguradora
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            ok: false,
+            msg:'Hable con el administrador'
+        });
+    }
+
+    
+
+}
+
+//CONSULTAR SERVICIOS DIARIOS 
+// PANTALLA /conServi 
+
+const getServiciosDiarios = async( req, res = response ) => {
+    
+    const fechaTraida =req.params.fecha ;
+
+    const getServiciosDiarios = await Servicio.findOne( {fecha:fechaTraida} );
+
+   
+    res.json({
+        ok: true,
+        getServiciosDiarios
+    });
+
+}
+
+
+
+
 const crearServicio = async ( req, res = response) => {
 
     const servicio = new Servicio ( req.body );
@@ -52,5 +102,7 @@ const crearServicio = async ( req, res = response) => {
 
 module.exports = {
     getServicios,
-    crearServicio
+    crearServicio,
+    getServiciosAsegura,
+    getServiciosDiarios
 }

@@ -7,13 +7,19 @@ const { check } = require('express-validator');
 
 const { isDate } = require('../helpers/isDate');
 const { validarCampos } = require('../middlewares/validarCampos');
-const { getServicios,crearServicio} = require('../controllers/servicio');
+const { getServiciosDiarios,getServiciosAsegura,getServicios,crearServicio} = require('../controllers/servicio');
 // const { validarJWT } = require('../middlewares/validarJWT');
 
 
 const router = Router();
 
 router.get('/listarServicios', getServicios);
+
+//ROUTE FROM ASEGURADORA 
+router.get('/serDiario/:fecha', getServiciosDiarios);
+
+//ROUTE FROM ASEGURADORA 
+router.get('/serAsegura/:nombreAseguradora', getServiciosAsegura);
 
 router.post(
         '/newServicio', 
