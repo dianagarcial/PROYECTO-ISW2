@@ -69,6 +69,50 @@ const crearOperario = async ( req, res = response ) => {
 
 }
 
+const loginOperario = async(req, res = response) => {
+
+    const { nombreUsuario, contraseña } = req.body;
+
+    try {
+        const operario = await Operario.findOne({ nombreUsuario });
+
+        if(!operario) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'El usuario no existe con ese email'
+            });
+        }
+
+        // Confirmar los passwords
+        const validPassword = bcrypt.compareSync( contraseña, operario.contraseña );
+
+        if ( !validPassword ) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Password incorrecto'
+            });
+        }
+
+        // Generar JWT
+        const token = await generarJWT( usuario.id, usuario.name );
+
+        res.json({
+            ok: true,
+            uid: usuario.id,
+            name: usuario.name,
+            token
+        })
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Por favor hable con el administrador'
+        });    
+    }
+
+}
+
 const revalidarToken = async (req, res = response ) => {
 
     const { uid, name } = req;
@@ -86,5 +130,6 @@ module.exports = {
     getOperarios,
     getOperarioCedula,
     crearOperario,
+    loginOperario,
     revalidarToken
 }
