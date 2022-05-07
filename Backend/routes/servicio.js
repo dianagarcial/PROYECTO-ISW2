@@ -19,17 +19,19 @@ router.post(
         '/newServicio', 
         [ // middlewares
             check('tipoServicio', 'El tipo de Servicio es obligatorio').not().isEmpty(),
-            check('hora', 'La hora es obligatoria en formato tal tal tal').custom( isDate ),
+            check('fecha', 'La fecha es del servicio es obligatoria').custom( isDate ),
+            check('hora', 'La hora es obligatoria en formato tal tal tal').not().isEmpty(),
             check('origen', 'El origen es obligatorio').not().isEmpty(),
             check('destino', 'El destino es obligatorio').not().isEmpty(),
             check('valor', 'El valor del servicio es obligatorio').isInt(),
-            check('correoCuenta', 'La licencia Click es obligatoria').isEmail(),
-            check('contraseña', 'La contraseña de la licencia Click es obligatoria').not().isEmpty(),
+            check('licenciaClick', 'La licencia Click es obligatoria').isEmail(),
+            check('contraseñaClick', 'La contraseña de la licencia Click es obligatoria').not().isEmpty(),
             check('nombreAsegurado', 'El nombre del asegurado es obligatorio').not().isEmpty(),
             check('placaAsegurado', 'La placa del asegurado es obligatoria').not().isEmpty(),
             check('telefonoAsegurado', 'El telefono del asegurado es obligatorio').not().isEmpty(),
+            check('expediente','El número de expediente es obligatorio').isInt(),
             check('aseguradoraNombre', 'La aseguradora es obligatoria').not().isEmpty(),
-            check('aseguradoraTecnico', 'El tecnico de la aseguradora es obligatorio').not().isEmpty(),
+            check('estadoServicio','El estado del servicio es obligatorio').not().isEmpty(),
             check('operario', 'El id del operario es obligatorio').not().isEmpty(),
             
             

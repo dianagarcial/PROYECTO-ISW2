@@ -8,11 +8,12 @@ const ServicioSchema = Schema({
     },
 
     fecha:{ 
-        type: Date
+        type: Date,
+        required: true
     },
 
     hora: {
-        type: Date,
+        type: String,
         required: true
     },
 
@@ -31,22 +32,19 @@ const ServicioSchema = Schema({
         required: true
     },
 
-    correoCuenta:{
+    licenciaClick:{
         type: String,
-
+        required: true
     },
 
-    contraseña:{
-        type: String
+    contraseñaClick:{
+        type: String,
+        required: true
     },
 
     nombreAsegurado: {
         type: String,
         required: true
-    },
-
-    apellidoAsegurado: {
-        type: String
     },
 
     placaAsegurado: {
@@ -59,9 +57,9 @@ const ServicioSchema = Schema({
         required: true
     },
 
-    expendiente: {
-        type: String,
-        
+    expediente: {
+        type: Number,
+        required: true
     },
 
     aseguradoraNombre: {
@@ -69,7 +67,7 @@ const ServicioSchema = Schema({
         required: true
     },
 
-    aseguradoraTecnico: {
+    estadoServicio: {
         type: String,
         required: true
     },

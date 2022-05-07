@@ -26,9 +26,11 @@ export const RegistraServicio = () => {
 
   const [tipo,setTipo]=useState([])
   const [tipoSel,setTipoSel]=useState([])
+  const [fecha,setFecha]=useState('')
   const [hora,setHora]=useState('')
   const [origen,setOrigen]=useState('')
   const [destino,setDestino]=useState('')
+  const [valor, setValor]=useState('')
 
   const [nombreAsegurado,setNombreAsegurado]=useState('')
   const [telefonoAsegurado,setTelefonoAsegurado]=useState('')
@@ -94,14 +96,20 @@ export const RegistraServicio = () => {
   const crearServicio=async (e) =>{
     e.preventDefault();
     const servicio= {
+      tipo:tipoSel,
+      fecha,
+      hora,
+      origen,
+      destino,
+      valor,
       aseguradora:aseguradoraSect,
       aseguradoraExpediente,
       licenciaclick,
       contrasena,
-      tipo:tipoSel,
-      origen,
-      hora,
-      destino,
+      
+      
+      
+      
       nombreAsegurado,
       telefonoAsegurado,
       apellidoAsegurado,
@@ -139,6 +147,22 @@ export const RegistraServicio = () => {
     
 
   }
+
+  // const valorPagado =async (tipoSel) => {
+  //   if(tipoSel=='Familiar'){
+  //     return setValor(20.000)
+  //   }else if (){
+  //     return set
+
+  //   }else{
+  //     return setValor(10.000)
+  //   }
+
+    
+  //   console.log(valor);
+    
+
+  // }
 
   
 
@@ -243,6 +267,10 @@ export const RegistraServicio = () => {
             ))
           }
           </select></td>
+        </tr>
+        <tr >
+        <td class="enu"> <label>Fecha*</label></td>
+        <td><input class="cajonform" type="date" onChange={(e)=>setHora(e.target.value)}></input></td>
         </tr>
         <tr >
         <td class="enu"> <label>Hora*</label></td>
