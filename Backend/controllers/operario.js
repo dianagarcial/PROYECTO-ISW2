@@ -32,7 +32,7 @@ const getOperarioNombre = async (req, res) => {
 
     const nombre = req.body;
 
-    const respuesta = await Operario.findOne({ nombreCompleto: nombre }, {cedula:1,_id:1});
+    const respuesta = await Operario.findOne({ nombre }, {cedula:1,_id:1});
 
 
     res.json({        
