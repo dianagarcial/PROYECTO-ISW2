@@ -23,8 +23,9 @@ const getServiciosAsegura = async( req, res = response ) => {
 
     try {
         
-        const serviciosAseguradora = await Servicio.find( {aseguradoraNombre:nombreAseguradora},{aseguradoraNombre:1, expediente:1 , tipoServicio:1, fecha:1, valor:1});
+        const serviciosAseguradora = await Servicio.find( {aseguradoraNombre:nombreAseguradora},{aseguradoraNombre:1, expediente:1 , tipoServicio:1, fecha:1, valor:1,nombreAsegurado:1,placaAsegurado:1});
 
+        //VALIDAR CUANDO ESTE VACIO
    
         res.json({
             ok: true,
@@ -48,7 +49,9 @@ const getServiciosAsegura = async( req, res = response ) => {
 
 const getServiciosDiarios = async( req, res = response ) => {
     
-    const fechaTraida = ISODate("2022-05-11T00:00:00.000Z");
+
+    //Toca traer la fecha ene ste formato 
+    const fechaTraida = "2022-05-11T00:00:00.000Z";
 
     const getServiciosDiarios = await Servicio.find( {fecha:fechaTraida} );
 
@@ -57,6 +60,8 @@ const getServiciosDiarios = async( req, res = response ) => {
         ok: true,
         getServiciosDiarios
     });
+
+    //validacion de la fecha, que no este vacia los registros
 
 }
 
