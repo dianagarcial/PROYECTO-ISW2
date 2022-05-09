@@ -1,16 +1,13 @@
-import react from "react";
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+
+
 
 // import { useAuth } from '../context/AuthContext';
 import '../Styles/nav.css'
 
 function Nav (){
 
-  
-  const history = useHistory();
 
-  const [error, setError] = useState('');
+
 
 
   const logout = async(e) =>{ 
@@ -23,9 +20,7 @@ function Nav (){
         <header>
             <nav>
             <div class="nav-bar">
-            <div class="imgr">
-              
-            <img class="bar" src="https://i.ibb.co/J3W18z2/Vector.png" alt="Vector" border="0"></img>
+            <div class="imgr">                       
             <img class="logos" src='https://i.ibb.co/J3D3BM9/logo.png'/>
             </div>
                 <div class="nav-nom">

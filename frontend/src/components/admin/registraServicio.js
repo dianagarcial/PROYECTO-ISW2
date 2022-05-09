@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory} from 'react-router-dom';
-
+//import { useHistory, useState, useE} from 'react-router-dom';
 //import { useAuth } from '../../context/AuthContext';
 import Nav from '../nav';
 import '../../Styles/conServ.css'
-
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
 import Axios from 'axios';
@@ -14,15 +12,16 @@ import jsPDF from 'jspdf';
 
 export const RegistraServicio = () => {
   // const { logout, currentUser } = useAuth();
-  const history = useHistory();
+  //const history = useHistory();
 
   
 
   const [aseguradora,setaseguradora]=useState([])
   const [aseguradoraSect,setaseguradoraSect]=useState([])
   const [expediente,setExpediente]=useState('')
-  const [licenciaclick,setlicenciaclick]=useState('')
+  const [licenciaClick,setlicenciaclick]=useState('')
   const [contraseñaClick,setcontraseñaClick]=useState('')
+  const [estadoServicio,setestadoServicio]=useState('')
 
   const [tipoServicio,settipoServicio]=useState([])
   const [tipoSel,setTipoSel]=useState([])
@@ -34,103 +33,101 @@ export const RegistraServicio = () => {
 
   const [nombreAsegurado,setNombreAsegurado]=useState('')
   const [telefonoAsegurado,setTelefonoAsegurado]=useState('')
-  const [apellidoAsegurado,setApellidoAsegurado]=useState('')
+  
   const [placaAsegurado,setPlacaAsegurado]=useState('')
   
-  const [operario,setOperario]=useState('')
-  const [operarios,setOperarios]=useState([])
   
-  const [nombreOpe,setNombreOpe]=useState([])
-  const [nombreOpeSelect,setNombreOpeSelect]=useState([])
-  const [cedulaOpe,setCedulaOpe]=useState('')
+  const [operario,setCedula]=useState('')
 
+  
+  const [operarios,setOperarios]=useState([]);
+  const [nombreOpe,setNombreOpe]=useState('');
 
-
-
-
-
-  const [error, setError] = useState('');
 
   useEffect(() => {
-    obtenerOperarios();
+    // obtenerOperarios();
+    setestadoServicio('N');
+    setValor(2000);
+    
     setaseguradora(['Suramericana','Bolivar','A365','iKEA','GEA Colombia', 'Assiprex'])
     settipoServicio(['Familiar','Elegido', 'otro'])
 
   }, [])
 
-  const asignarOpe =async (nombre) => {
-    const token=sessionStorage.getItem('token')
-    const res= await Axios.get('/api/operario/nom', nombre,{
-      headers: {'x-token':token}
-    })
-    console.log(res.data)
+  // const asignarOpe =async (nombre) => {
+  //   const token=sessionStorage.getItem('token')
+  //   const res= await Axios.get('/api/operario/nom', nombre,{
+  //     headers: {'x-token':token}
+  //   })
+  //   console.log(res.data)
    
 
 
-  }
-  const obtenerOperarios=async () =>{
-  const token=sessionStorage.getItem('token')
-  const res=await Axios.get('/api/operario/listaOperarios',{
-    headers: {'x-token':token}
-  })
+  // }
+  // const obtenerOperarios=async () =>{
+  // const token=sessionStorage.getItem('token')
+  // const res=await Axios.get('/api/operario/listaOperarios',{
+  //   headers: {'x-token':token}
+  // })
 
-  setOperarios(res.data)
-  console.log(res.data)
+  // setOperarios(res.data)
+  // console.log(res.data)
 
-  const aux= res.data.operarios;
-  const nombresOpera= aux.map(function(item){
-    return item.nombreCompleto
-  })
+  // const aux= res.data.operarios;
+  // const nombresOpera= aux.map(function(item){
+  //   return item.nombreCompleto
+  // })
 
-  setNombreOpe(nombresOpera)
-  console.log(nombresOpera)
-
-
+  // setNombreOpe(nombresOpera)
+  // console.log(nombresOpera)
 
 
-  }
+
+
+  // }
 
   
 
 
 
 
-  const buscaOp=async (e) => {
-    e.preventDefault();
-    //BUSCAR EN LA BD
-      history.push('/busca');
-    
-  }
+  
 
   const crearServicio=async (e) =>{
     e.preventDefault();
+
+    
     const servicio= {
       tipoServicio:tipoSel,
       fecha,
       hora,
       origen,
       destino,
-      valor:valorPagado(),
-      licenciaclick,
+      valor,
+      licenciaClick,
       contraseñaClick,
       nombreAsegurado,
       placaAsegurado,
-      telefonoAsegurado,
-      expediente,
-      aseguradora:aseguradoraSect,
-      estadoServicio:'N',    
-      operario:cedulaOpe
+      telefonoAsegurado :parseFloat(telefonoAsegurado),
+      expediente: parseFloat(expediente),
+      aseguradoraNombre: aseguradoraSect,
+      estadoServicio,  
+      operario: parseFloat(operario),
+   
+      
+    };   
 
-    }    
+    console.log(servicio)
 
     //VALIDACIONES VACIOS 
     //ELSE 
 
     const token=sessionStorage.getItem('token')
     const res=await Axios.post('/api/servicio/newServicio',servicio,{
-      headers: {'x-token':token}
+      headers: {'token':token}
     })
     const ok =res.data.ok
+    console.log(ok)
     Swal.fire({
       icon: 'success',
       title: 'Servicio registrado exitosamente',
@@ -139,28 +136,14 @@ export const RegistraServicio = () => {
       
     });
 
-    e.target.reset();//Se limpia el formulario
+   // e.target.reset();//Se limpia el formulario
     
 
   }
 
 
 
-  const valorPagado =async (tipoSel) => {
-    if(tipoSel=='Familiar'){
-      return setValor(20.000)
-    }else if (tipoSel=='Elegido'){
-      return setValor(14.000)
-
-    }else{
-      return setValor(10.000)
-    }
-
-    
-   
-    
-
-  }
+  
 
   
 
@@ -264,11 +247,12 @@ export const RegistraServicio = () => {
               <option key={item}>{item}</option>
             ))
           }
+         
           </select></td>
         </tr>
         <tr >
         <td class="enu"> <label>Fecha*</label></td>
-        <td><input class="cajonform" type="date" onChange={(e)=>setHora(e.target.value)}></input></td>
+        <td><input class="cajonform" type="date" onChange={(e)=>setFecha(e.target.value)}></input></td>
         </tr>
         <tr >
         <td class="enu"> <label>Hora*</label></td>
@@ -324,7 +308,7 @@ export const RegistraServicio = () => {
       <table >
         <tr >
         <td class="enu"> <label>Telefono*</label></td>
-        <td><input class="cajonform" type="text" onChange={(e)=>setTelefonoAsegurado(e.target.value)}></input></td>
+        <td><input class="cajonform" type="number" onChange={(e)=>setTelefonoAsegurado(e.target.value)}></input></td>
         </tr>
         <tr >
         <td class="enu"> <label>Placa*</label></td>
@@ -351,7 +335,7 @@ export const RegistraServicio = () => {
       <table >
         <tr >
         <td class="enu"> <label>Nombre*</label></td>
-        <td><select class="cajonform" type="text" onChange={(e)=>asignarOpe(e.target.value)}>
+        {/* <td><select class="cajonform" type="text" onChange={(e)=>asignarOpe(e.target.value)}>
         {
             nombreOpe.map(item=>(
               <option key={item}>{item}</option>
@@ -359,7 +343,7 @@ export const RegistraServicio = () => {
 
             ))
           }
-          </select></td>
+          </select></td> */}
         </tr>
       
           
@@ -372,7 +356,7 @@ export const RegistraServicio = () => {
       <table >
         <tr >
         <td class="enu"> <label>Cedula</label></td>
-        {/* <td><input class="cajonform" type="number" name="tservicio" onChange={(e)=>asignarOpe(e.target.value)}></input></td> */}
+        <td><input class="cajonform" type="number" name="tservicio" onChange={(e)=>setCedula(e.target.value)}></input></td>
         
         </tr>
       
