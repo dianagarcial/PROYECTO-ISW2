@@ -65,6 +65,37 @@ const getServiciosDiarios = async( req, res = response ) => {
 
 }
 
+//CONSULTAR SERVICIOS POR OPERARIO
+// PANTALLA /conServi 
+
+
+//falta acomodar
+const getServiciosOpera = async( req, res = response ) => {
+    
+
+    try {
+        
+        const serviciosAseguradora = await Servicio.find( {},{valor:1}).populate('operario',{nombre_completo:1,cedula:1,telefono:1});
+
+        //VALIDAR CUANDO ESTE VACIO
+   
+        res.json({
+            ok: true,
+            serviciosAseguradora
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            ok: false,
+            msg:'Hable con el administrador'
+        });
+    }
+
+    
+
+}
+
 
 
 
@@ -109,5 +140,6 @@ module.exports = {
     getServicios,
     crearServicio,
     getServiciosAsegura,
-    getServiciosDiarios
+    getServiciosDiarios,
+    getServiciosOpera
 }
