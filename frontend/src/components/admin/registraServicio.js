@@ -40,17 +40,19 @@ export const RegistraServicio = () => {
   const [operario,setCedula]=useState('')
 
   
-  const [operarios,setOperarios]=useState([]);
-  const [nombreOpe,setNombreOpe]=useState('');
+  //const [operarios,setOperarios]=useState([]);
+  //const [nombreOpe,setNombreOpe]=useState('');
 
 
   useEffect(() => {
     // obtenerOperarios();
     setestadoServicio('N');
-    setValor(2000);
+    
+    setValor(valorRes(tipoSel));
+    setaseguradoraSect('Suramericana')
     
     setaseguradora(['Suramericana','Bolivar','A365','iKEA','GEA Colombia', 'Assiprex'])
-    settipoServicio(['Familiar','Elegido', 'otro'])
+    settipoServicio(['Familiar','Elegido'])
 
   }, [])
 
@@ -85,6 +87,16 @@ export const RegistraServicio = () => {
 
 
   // }
+  function valorRes(sel){
+    if(sel==='Familiar'){
+      console.log(sel)
+      return 20000
+      
+    }else{      
+      console.log(sel);
+      return 14000;
+    }
+  }
 
   
 
@@ -118,7 +130,55 @@ export const RegistraServicio = () => {
     };   
 
     console.log(servicio)
-
+    if(expediente==='' ){
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor, digite el numero de expediente',
+        showConfirmButton: false,
+        timer: 1500
+        
+      });
+    }else if(licenciaClick===''){ //VALIDAR FORMATO CORREO
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor, digite la licencia click en el formato correcto',
+        showConfirmButton: false,
+        timer: 1500
+        
+      });
+    }else if(contraseñaClick==''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor, digite la contraseña',
+        showConfirmButton: false,
+        timer: 1500
+        
+      });
+    }else if(fecha==''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor, digite la fecha de realizacion del servicio',
+        showConfirmButton: false,
+        timer: 1500
+        
+      });
+    }else if(hora==''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor, digite la hora de realizacion del servicio',
+        showConfirmButton: false,
+        timer: 1500
+        
+      });
+    }else if(origen==''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor, digite la direccion de origen del servicio',
+        showConfirmButton: false,
+        timer: 1500
+        
+      });
+    }else{
     //VALIDACIONES VACIOS 
     //ELSE 
 
@@ -141,7 +201,7 @@ export const RegistraServicio = () => {
 
   }
 
-
+}
 
   
 
@@ -149,6 +209,7 @@ export const RegistraServicio = () => {
 
   const exportPDF=()=>{
     const input =document.getElementById('contenidopdf')
+    if (document.getElementById('checkbox').checked){
     html2canvas(input,{logging:true, letterRendering: 1,useCORS:true}).then(canvas =>{
       const imgWidth=200;
       const imgHeight=canvas.height*imgWidth/canvas.width;
@@ -158,6 +219,7 @@ export const RegistraServicio = () => {
       pdf.save('servicio.pdf')
     })
   }
+}
 
 
   
@@ -197,7 +259,7 @@ export const RegistraServicio = () => {
         </tr>
         <tr >
         <td class="enu"> <label>Expediente*</label></td>
-        <td><input class="cajonform" type="text" onChange={(e)=>setExpediente(e.target.value)}></input></td>
+        <td><input class="cajonform" type="number" onChange={(e)=>setExpediente(e.target.value)}></input></td>
         </tr>
           
       </table>
@@ -247,6 +309,7 @@ export const RegistraServicio = () => {
               <option key={item}>{item}</option>
             ))
           }
+          
          
           </select></td>
         </tr>
@@ -369,12 +432,12 @@ export const RegistraServicio = () => {
       </div>
       </div>
       <div class="check">
-      <input type="checkbox"></input>
+      <input type="checkbox" id="checkbox"></input>
       <h2>Guardar imagen del servicio</h2>
       </div>
 
       <div class="btn-desc">
-      <input class="desRep" type='submit' value='Guardar servicio' />
+      <input class="desRep" type='submit' value='Guardar servicio' onClick={()=>exportPDF()} />
       
       </div>
 
@@ -382,7 +445,6 @@ export const RegistraServicio = () => {
     </form>
    
    
-   <button onClick={()=>exportPDF()}>Imprimir</button>   
    
 </div>
 
