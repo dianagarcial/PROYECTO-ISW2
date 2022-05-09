@@ -32,7 +32,7 @@ const getOperarioId = async (req, res = Response) => {
 
     const {_id} = req.body;
 
-    const opeId = await Operario.findOne({ _id });
+    const opeId = await Operario.findOne({ nombre_completo });
 
 
     res.json({
