@@ -1,4 +1,5 @@
 const { response } = require('express');
+const moment = require('moment');
 const Servicio = require('../models/Servicio');
 const Operario = require('../models/Operario');
 
@@ -49,19 +50,14 @@ const getServiciosAsegura = async( req, res = response ) => {
 
 const getServiciosDiarios = async( req, res = response ) => {
     
+    const fechaHoy = moment().format('YYYY-MM-DD');
 
-    //Toca traer la fecha ene ste formato 
-    const fechaTraida = "2022-05-11T00:00:00.000Z";
-
-    const getServiciosDiarios = await Servicio.find( {fecha:fechaTraida} );
-
+    const getServiciosDiarios = await Servicio.find( {fecha:fechaHoy} );
    
     res.json({
         ok: true,
         getServiciosDiarios
     });
-
-    //validacion de la fecha, que no este vacia los registros
 
 }
 
@@ -71,8 +67,13 @@ const getServiciosDiarios = async( req, res = response ) => {
 
 //falta acomodar
 const getServiciosOpera = async( req, res = response ) => {
-    
 
+    const primerDiaMes = moment().subtract('months').startOf('month').format('DD-MM-YYYY')
+    console.log(primerDiaMes);
+
+    const ultimoDiaMes = moment().subtract('months').endOf('month').format('DD-MM-YYYY')
+    console.log(ultimoDiaMes);
+    
     try {
         
         const serviciosAseguradora = await Servicio.find( {},{valor:1}).populate('operario',{nombre_completo:1,cedula:1,telefono:1});
