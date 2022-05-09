@@ -15,15 +15,15 @@ export const ConServicio = () => {
   // const { logout, currentUser } = useAuth();
   const history = useHistory();
 
-  const [servicios, setServicios] = useState();
+  //const [servicios, setServicios] = useState();
   const [serviciosDia, setServiciosDia] = useState();
   const [aseguradoraB, setAseguradoraB] = useState();
   const [nomOpe, setNomOpe]=useState([]);
   const [idOpe, setIdOpe]=useState([]);
 
 
-  const [todo, setTodo] = useState('desaparece');
-  const [hoy, sethoy]= useState('tcentrar')
+  //const [todo, setTodo] = useState('desaparece');
+  //const [hoy, sethoy]= useState('tcentrar')
 
 
   
@@ -53,17 +53,17 @@ export const ConServicio = () => {
 
 
 
-   const mostrarserv =async () => {
-    const token=sessionStorage.getItem('token')
-    const res= await Axios.get('/api/servicio/listarServicios',{
-      headers: {'x-token':token}
-    })
-    setServicios(res.data.servicios)
-    console.log(res.data.servicios)
+//    const mostrarserv =async () => {
+//     const token=sessionStorage.getItem('token')
+//     const res= await Axios.get('/api/servicio/listarServicios',{
+//       headers: {'x-token':token}
+//     })
+//     setServicios(res.data.servicios)
+//     console.log(res.data.servicios)
  
    
   
-}
+// }
 
 const mostrarservDiario =async () => {
   const token=sessionStorage.getItem('token')
@@ -76,19 +76,20 @@ const mostrarservDiario =async () => {
  
 
 }
-const verTodoServ = async () => {
+// const verTodoServ = async () => {
 
   
-    setTodo('tcentrar')
-    sethoy('desaparece')
-    document.getElementById('verdia').innerHTML='Ver menos'
+//     setTodo('tcentrar')
+//     sethoy('desaparece')
+//     document.getElementById('verdia').innerHTML='Ver menos'
+
 
   
-}
+// }
 
   useEffect(() => {
-    // obtenerOperarios();
-    mostrarserv();
+  
+    //mostrarserv();
     mostrarOperario();
     mostrarservDiario();
     
@@ -108,7 +109,7 @@ const verTodoServ = async () => {
   <div class="cajCab1">
   <h1>Datos aseguradora</h1>
   <div class='ver'>
-    <button id="verdia" class="verm" onClick={()=>verTodoServ() } >Ver mas</button>
+    <a id="verdia" class="verm"  >Ver mas</a>
   </div>
   </div>
 
@@ -139,7 +140,7 @@ const verTodoServ = async () => {
                     </tr>
             
                    
-                   {servicios && servicios.length>0 && servicios.map((item)=>{
+                   {/* {servicios && servicios.length>0 && servicios.map((item)=>{
                      return  <tr class="tcentrar">
                      <td class={todo}>  {item.aseguradoraNombre}  </td>
                      <td class={todo}>  {item.tipoServicio}  </td>
@@ -149,16 +150,16 @@ const verTodoServ = async () => {
                      </tr>
                  
                    
-                  })}
+                  })} */}
 
 
                   {serviciosDia && serviciosDia.length>0 && serviciosDia.map((item)=>{
                      return  <tr class="tcentrar">
-                     <td class={hoy}>  {item.aseguradoraNombre}  </td>
-                     <td class={hoy}>  {item.tipoServicio}  </td>
-                     <td class={hoy}>  {item.estadoServicio}  </td>
-                     <td class={hoy}>  {item.operario}  </td>
-                     <td class={hoy}>  {item.valor}  </td>
+                     <td class='tcentrar'>  {item.aseguradoraNombre}  </td>
+                     <td class='tcentrar'>  {item.tipoServicio}  </td>
+                     <td class='tcentrar'>  {item.estadoServicio}  </td>
+                     <td class='tcentrar'>  {item.operario.nombre_completo}  </td>
+                     <td class='tcentrar'>  {item.valor}  </td>
                      </tr>
                  
                    
@@ -166,8 +167,8 @@ const verTodoServ = async () => {
 
                     
                  </tbody>
-                                </table>
-                            </div>
+                    </table>
+                    </div>
                        
                 </div>
             </div>
@@ -176,7 +177,7 @@ const verTodoServ = async () => {
      
     </div>
     <div class='plan'>
-    <button className='registro'  onClick={aseguradora} >
+    <a href='aseguradora/?nombreAseguradora=Suramericana' className='registro'>
       <div class="bot1-t">
       <div class="tit">
       <h1 class="h1bot">SURAMERICANA</h1>
@@ -185,10 +186,10 @@ const verTodoServ = async () => {
       <img class="imgaseg" src="https://i.ibb.co/ZNsZF7M/image-3.pnghttps://i.ibb.co/ZNsZF7M/image-3.png"/>
       
       </div>
-      </button>
+      </a>
       
       
-      <button className='registro'  onClick={aseguradora} >
+      <a href='aseguradora/?nombreAseguradora=Bolivar' className='registro'>
       <div class="bot1-t">
       <div class="tit">
       <h1 class="h1bot">BOLÍVAR</h1>
@@ -197,11 +198,11 @@ const verTodoServ = async () => {
       <img class="imgaseg" src="https://i.ibb.co/S08tPF8/image-3-1.png"/>
       
       </div>
-      </button>
+      </a>
       
       
       
-      <button className='registro'  onClick={aseguradora} >
+      <a href='aseguradora/?nombreAseguradora=A365' className='registro'>
       <div class="bot1-t">
       <div class="tit">
       <h1 class="h1bot">A365</h1>
@@ -210,11 +211,11 @@ const verTodoServ = async () => {
       <img class="imgaseg" src="https://i.ibb.co/7n22t9r/image-3-2.png"/>
       
       </div>
-      </button>
+      </a>
       </div>
 
       <div class='plan'>
-    <button className='registro'  onClick={aseguradora} >
+      <a href='aseguradora/?nombreAseguradora=iKEA' className='registro'>
       <div class="bot1-t">
       <div class="tit">
       <h1 class="h1bot">iKEA</h1>
@@ -223,10 +224,10 @@ const verTodoServ = async () => {
       <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png"/>
       
       </div>
-      </button>
+      </a>
       
       
-      <button className='registro'  onClick={aseguradora} >
+      <a href='aseguradora/?nombreAseguradora=GEA Colombia' className='registro'>
       <div class="bot1-t">
       <div class="tit">
       <h1 class="h1bot">GEA COLOMBIA</h1>
@@ -235,11 +236,11 @@ const verTodoServ = async () => {
       <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png"/>
       
       </div>
-      </button>
+      </a>
       
       
       
-      <button className='registro'  onClick={aseguradora} >
+      <a href='aseguradora/?nombreAseguradora=Assiprex' className='registro'>
       <div class="bot1-t">
       <div class="tit">
       <h1 class="h1bot">ASSIPREX</h1>
@@ -248,7 +249,7 @@ const verTodoServ = async () => {
       <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png"/>
       
       </div>
-      </button>
+      </a>
       </div>     
       <div class="contSer">
       <h1>Reporte por operario</h1> 

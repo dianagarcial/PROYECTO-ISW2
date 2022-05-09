@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 
 
@@ -7,13 +7,15 @@ import '../../Styles/conServ.css'
 import '../../Styles/tablas.css'
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
+import Axios from 'axios';
 
 
 export const Aseguradora = () => {
  
   const history = useHistory();
 
-  const [error, setError] = useState('');
+  const [nombreAseguradora, setNombreAseguradora] = useState();
+
 
 
   // const handleLogout = async () => {
@@ -24,6 +26,34 @@ export const Aseguradora = () => {
   //     setError('Server Error')
   //   }
   // }
+  useEffect(() => {
+    buscarAseguradora();
+
+  }, [])
+
+  const buscarAseguradora = async()=>{
+    const valores = window.location.search;
+    const urlParams = new URLSearchParams(valores)
+    const values = urlParams.values()
+
+
+    for (const value of values) {
+
+      console.log(value)
+      const token = sessionStorage.getItem('token')
+
+      const respuesta = await Axios.get('/api/servicio/serAsegura/' + value ,{
+        headers : {'x-token': token}
+    })
+      console.log(respuesta.data)
+
+     
+    }
+  
+  }
+  
+    
+  
 
   const aseguradora = async (e) => {
     e.preventDefault();
