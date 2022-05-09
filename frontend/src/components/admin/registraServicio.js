@@ -38,6 +38,7 @@ export const RegistraServicio = () => {
   
   
   const [operario,setCedula]=useState('')
+  const [cedulas,setCedulas]=useState([])
 
   
   //const [operarios,setOperarios]=useState([]);
@@ -47,8 +48,9 @@ export const RegistraServicio = () => {
   useEffect(() => {
     // obtenerOperarios();
     setestadoServicio('N');
+    busqCedula();
+    valorRes();
     
-    setValor(valorRes(tipoSel));
     setaseguradoraSect('Suramericana')
     
     setaseguradora(['Suramericana','Bolivar','A365','iKEA','GEA Colombia', 'Assiprex'])
@@ -83,6 +85,27 @@ export const RegistraServicio = () => {
   // setNombreOpe(nombresOpera)
   // console.log(nombresOpera)
 
+  const busqCedula=async () =>{
+   const token=sessionStorage.getItem('token')
+   const res=await Axios.get('/api/operario/cedulaOpe',{
+     headers: {'x-token':token}
+    })
+
+   setCedulas(res.data)
+   console.log(res.data)
+
+   const aux= res.data.operarios;
+   const nombresOpera= aux.map(function(item){
+     return item.nombreCompleto
+   })
+
+  }
+
+  // setNombreOpe(nombresOpera)
+  // console.log(nombresOpera)
+
+  
+
 
 
 
@@ -115,7 +138,7 @@ export const RegistraServicio = () => {
       hora,
       origen,
       destino,
-      valor,
+      valor:valorRes(tipoSel),
       licenciaClick,
       contraseñaClick,
       nombreAsegurado,

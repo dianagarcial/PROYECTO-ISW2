@@ -5,12 +5,14 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validarCampos');
-const { getOperarios,getOperarioCedula,getOperarioNombre,crearOperario, revalidarToken} = require('../controllers/operario');
+const { getOperarios,getOperarioCedula,getOperarioId,getOperarioNombre,crearOperario, revalidarToken} = require('../controllers/operario');
 const { validarJWT } = require('../middlewares/validarJWT');
 
 const router = Router();
 
 router.get('/listaOperarios', getOperarios);
+
+router.get('/idOpe', getOperarioId);
 
 router.get('/cedulaOpe', getOperarioCedula);
 

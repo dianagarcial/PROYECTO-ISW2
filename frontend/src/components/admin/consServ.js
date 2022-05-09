@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 
@@ -7,23 +7,26 @@ import '../../Styles/conServ.css'
 import '../../Styles/tablas.css'
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
+import Axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 export const ConServicio = () => {
   // const { logout, currentUser } = useAuth();
   const history = useHistory();
 
-  const [error, setError] = useState('');
+  const [servicios, setServicios] = useState();
+  const [serviciosDia, setServiciosDia] = useState();
+  const [aseguradoraB, setAseguradoraB] = useState();
+  const [nomOpe, setNomOpe]=useState([]);
+  const [idOpe, setIdOpe]=useState([]);
 
 
-  // const handleLogout = async () => {
-  //   try {
-  //     await logout();
-  //     history.push('/login');
-  //   } catch (error) {
-  //     setError('Server Error')
-  //   }
-  // }
+  const [todo, setTodo] = useState('desaparece');
+  const [hoy, sethoy]= useState('tcentrar')
+
+
+  
 
   const aseguradora = async (e) => {
     e.preventDefault();
@@ -38,6 +41,61 @@ export const ConServicio = () => {
       history.push('/detOPerario');
     
   }
+
+  const mostrarOperario =async () => {
+    const token=sessionStorage.getItem('token')
+    const res= await Axios.get('/api/operario/cedulaOpe',idOpe,{
+      headers: {'x-token':token}
+    })
+    setNomOpe(res.data.nombre)
+    console.log(res.data)}
+
+
+
+
+   const mostrarserv =async () => {
+    const token=sessionStorage.getItem('token')
+    const res= await Axios.get('/api/servicio/listarServicios',{
+      headers: {'x-token':token}
+    })
+    setServicios(res.data.servicios)
+    console.log(res.data.servicios)
+ 
+   
+  
+}
+
+const mostrarservDiario =async () => {
+  const token=sessionStorage.getItem('token')
+  const res= await Axios.get('/api/servicio/serDiario',{
+    headers: {'x-token':token}
+  })
+  setServiciosDia(res.data.getServiciosDiarios)
+  console.log(res.data.getServiciosDiarios)
+
+ 
+
+}
+const verTodoServ = async () => {
+
+  
+    setTodo('tcentrar')
+    sethoy('desaparece')
+    document.getElementById('verdia').innerHTML='Ver menos'
+
+  
+}
+
+  useEffect(() => {
+    // obtenerOperarios();
+    mostrarserv();
+    mostrarOperario();
+    mostrarservDiario();
+    
+
+  }, [])
+
+
   return (
     
     <div>
@@ -50,7 +108,7 @@ export const ConServicio = () => {
   <div class="cajCab1">
   <h1>Datos aseguradora</h1>
   <div class='ver'>
-    <a href='#' class="verm" >Ver mas</a>
+    <button id="verdia" class="verm" onClick={()=>verTodoServ() } >Ver mas</button>
   </div>
   </div>
 
@@ -76,17 +134,37 @@ export const ConServicio = () => {
                         <th>Operario</th>
                         <th>Valor</th>
                         
+                        
 
                     </tr>
+            
                    
-                 <tr>
-                     <td class="tcentrar">Bolivar</td>
-                     <td class="tcentrar">Elegido</td>
-                     <td class="tcentrar">Aceptado </td>
-                     <td class="tcentrar">4556699 </td>
-             
-                     <td class="tcentrar">$14.000</td>
-                 </tr>
+                   {servicios && servicios.length>0 && servicios.map((item)=>{
+                     return  <tr class="tcentrar">
+                     <td class={todo}>  {item.aseguradoraNombre}  </td>
+                     <td class={todo}>  {item.tipoServicio}  </td>
+                     <td class={todo}>  {item.estadoServicio}  </td>
+                     <td class={todo}>  {item.operario}  </td>
+                     <td class={todo}>  {item.valor}  </td>
+                     </tr>
+                 
+                   
+                  })}
+
+
+                  {serviciosDia && serviciosDia.length>0 && serviciosDia.map((item)=>{
+                     return  <tr class="tcentrar">
+                     <td class={hoy}>  {item.aseguradoraNombre}  </td>
+                     <td class={hoy}>  {item.tipoServicio}  </td>
+                     <td class={hoy}>  {item.estadoServicio}  </td>
+                     <td class={hoy}>  {item.operario}  </td>
+                     <td class={hoy}>  {item.valor}  </td>
+                     </tr>
+                 
+                   
+                  })}
+
+                    
                  </tbody>
                                 </table>
                             </div>
