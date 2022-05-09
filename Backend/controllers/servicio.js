@@ -23,7 +23,7 @@ const getServiciosAsegura = async( req, res = response ) => {
 
     try {
         
-        const serviciosAseguradora = await Servicio.findOne( {aseguradora:nombreAseguradora},{aseguradoraNombre:1, expediente:1 , tipoServicio:1, fecha:1, valor:1});
+        const serviciosAseguradora = await Servicio.find( {aseguradoraNombre:nombreAseguradora},{aseguradoraNombre:1, expediente:1 , tipoServicio:1, fecha:1, valor:1});
 
    
         res.json({
