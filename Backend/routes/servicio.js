@@ -16,7 +16,7 @@ const router = Router();
 router.get('/listarServicios', getServicios);
 
 //ROUTE FROM ASEGURADORA 
-router.get('/serDiario/:fecha', getServiciosDiarios);
+router.get('/serDiario', getServiciosDiarios);
 
 //ROUTE FROM ASEGURADORA 
 router.get('/serAsegura/:nombreAseguradora', getServiciosAsegura);

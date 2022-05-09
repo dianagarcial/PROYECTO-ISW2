@@ -48,9 +48,9 @@ const getServiciosAsegura = async( req, res = response ) => {
 
 const getServiciosDiarios = async( req, res = response ) => {
     
-    const fechaTraida =req.params.fecha ;
+    const fechaTraida = ISODate("2022-05-11T00:00:00.000Z");
 
-    const getServiciosDiarios = await Servicio.findOne( {fecha:fechaTraida} );
+    const getServiciosDiarios = await Servicio.find( {fecha:fechaTraida} );
 
    
     res.json({
