@@ -52,7 +52,7 @@ const getServiciosDiarios = async( req, res = response ) => {
     
     const fechaHoy = moment().format('YYYY-MM-DD');
 
-    const getServiciosDiarios = await Servicio.find( {fecha:fechaHoy} );
+    const getServiciosDiarios = await Servicio.find( {fecha:fechaHoy}).populate('operario',{nombre_completo:1});
    
     res.json({
         ok: true,
