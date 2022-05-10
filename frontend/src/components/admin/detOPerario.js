@@ -61,7 +61,7 @@ export const DetOperario = () => {
     </div>
   <h1>Información personal</h1>  
     <div class="cajCab1">
-  <h1>David Sanchez </h1>
+  <h1>{operario.nombre_completo} </h1>
   <div class='ver'>
     <a href='/#' class="verm" >Editar</a>
   </div>
@@ -116,7 +116,7 @@ export const DetOperario = () => {
   <h1>Despliegue y detalle</h1>
   
   <div class="cajCab1">
-  <h1>David Sanchez</h1>
+  <h1>Servicios</h1>
   </div>
   
 
