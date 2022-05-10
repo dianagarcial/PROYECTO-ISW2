@@ -2,7 +2,7 @@ const { response } = require('express');
 const moment = require('moment');
 const Servicio = require('../models/Servicio');
 const Operario = require('../models/Operario');
-const { countDocuments } = require('../models/Operario');
+
 
 const getServicios = async( req, res = response ) => {
 
@@ -74,16 +74,15 @@ const getServiciosOpera = async( req, res = response ) => {
 
     const ultimoDiaMes = moment().subtract('months').endOf('month').format('DD-MM-YYYY')
     console.log(ultimoDiaMes);
-    
 
 
     try {
         
         //const serviciosAseguradora = await Servicio.aggregate( {"$group" : {operario:"$operario", count:{$sum:1}}});
          //,{valor:1}).populate('operario',{nombre_completo:1,cedula:1,telefono:1}
-        // const operarioxMes = await Servicio.find({Operario})
-        //                                     .select({Operario.valor})
-        //                                     .countDocuments();
+        const operarioxMes = await Servicio.find()
+                                            .select()
+                                            .count();
 
         //VALIDAR CUANDO ESTE VACIO
    
@@ -104,8 +103,30 @@ const getServiciosOpera = async( req, res = response ) => {
 
 }
 
+const getdetOperario = async ( req, res = response ) => {
 
+    const cedula = req.params.cedula;
 
+    try {
+        
+        const serOpe = await Servicio.findOne({ cedula });
+
+        res.json({
+            ok: true,
+            serOpe
+        });
+
+    } catch (error) {
+
+        console.log(error)
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+        
+    }
+
+}
 
 const crearServicio = async ( req, res = response) => {
 
@@ -149,5 +170,6 @@ module.exports = {
     crearServicio,
     getServiciosAsegura,
     getServiciosDiarios,
-    getServiciosOpera
+    getServiciosOpera,
+    getdetOperario
 }
