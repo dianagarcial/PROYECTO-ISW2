@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 
@@ -7,43 +7,50 @@ import '../../Styles/conServ.css'
 import '../../Styles/tablas.css'
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
+import Axios from 'axios';
 
 
 export const DetOperario = () => {
   // const { logout, currentUser } = useAuth();
-  const history = useHistory();
-
-  const [error, setError] = useState('');
 
 
-  // const handleLogout = async () => {
-  //   try {
-  //     await logout();
-  //     history.push('/login');
-  //   } catch (error) {
-  //     setError('Server Error')
-  //   }
-  // }
+  const [operario, setOperario] = useState('');
 
-  const aseguradora = async (e) => {
-    e.preventDefault();
+
+  const mostrarDPersonal = async()=>{
+    const valores = window.location.search;
+    const urlParams = new URLSearchParams(valores)
+    const values = urlParams.values()
+
+
+    for (const value of values) {
+
+      console.log(value)
+      const token = sessionStorage.getItem('token')
+
+      const respuesta = await Axios.get('/api/operario/ceduOperario/' + value ,{
+        headers : {'x-token': token}
+    })
     
-      history.push('/aseguradora');
-    
+      console.log(respuesta.data.opeCedula)
+      setOperario(respuesta.data.opeCedula)
+     
+     
+    }
+  
   }
 
-  const buscaOp=async (e) => {
-    e.preventDefault();
-    //BUSCAR EN LA BD
-      history.push('/busca');
-    
-  }
+ 
+
+  useEffect(() => {
+    mostrarDPersonal()
+  }, [])
   return (
     
     <div>
       <Nav></Nav>
     <div class="contServ">
-    <h1>Operario: DAVID SANCHEZ</h1>
+    <h1>Operario: {operario.nombre_completo}</h1>
     <h2>Aqui se encuentran todos los servicios realizados para el operario</h2>
     <div class="cajCabTot">
   <h4>Total a cobrar: $XXX.XXX</h4>
@@ -67,15 +74,15 @@ export const DetOperario = () => {
   <table >
     <tr >
     <td> <label>Cedula</label></td>
-    <td><label>X.XXX.XXX.XXX</label></td>
+    <td><label>{operario.cedula}</label></td>
     </tr>
     <tr>
     <td> <label>Nombre</label></td>
-    <td> <label>XXXXX XXXXX </label></td>
+    <td class='mas'> <label class='mas'>{operario.nombre_completo} </label></td>
     </tr>
     <tr>
     <td> <label>Celular</label></td>
-    <td> <label>XXXXXXXXXX</label></td>
+    <td> <label>{operario.telefono}</label></td>
     </tr>
     
     
@@ -89,15 +96,15 @@ export const DetOperario = () => {
     
     <tr>
     <td> <label>E-mail</label></td>
-    <td> <label>david@gmail.com</label></td>
+    <td> <label>{operario.nombre_usuario}</label></td>
     </tr>
     <tr>
     <td> <label>Edad</label></td>
-    <td> <label>20 años</label></td>
+    <td> <label>{operario.edad} años</label></td>
     </tr>
     <tr>
     <td> <label>RH</label></td>
-    <td> <label>O+</label></td>
+    <td> <label>{operario.rh}</label></td>
     </tr>
     
     

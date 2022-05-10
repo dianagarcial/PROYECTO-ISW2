@@ -42,6 +42,19 @@ const getOperarioCedulaparam = async (req, res = response ) => {
 
 }
 
+const getOperarioUsuarioparam = async (req, res = response ) => {
+
+    const  nombre_usuario = req.params.nombre_usuario;
+
+    const opeNombre = await Operario.findOne({ nombre_usuario });
+
+    res.json({
+        ok:true,
+        opeNombre
+    });
+
+}
+
 const getOperarioId = async (req, res = Response) => {
 
     const {_id} = req.body;
@@ -172,6 +185,7 @@ module.exports = {
     getOperarios,
     getOperarioCedula,
     getOperarioCedulaparam,
+    getOperarioUsuarioparam,
     getOperarioId,
     crearOperario,
     loginOperario,

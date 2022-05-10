@@ -12,6 +12,7 @@ import { DetOperario } from './components/admin/detOPerario';
 /*Lo del operario*/
 import { HomeOperario } from './components/operario/homeOpe';
 import { ReporteServicio } from './components/operario/reporteOpe';
+import { ReportePendiente} from './components/operario/reportePendiente';
 import { VerServicio } from './components/operario/servicioOpe';
 
 
@@ -38,6 +39,7 @@ function App() {
 
             <Route exact path='/homeOperario' component={HomeOperario} />
             <Route exact path='/reporteOperario' component={ReporteServicio} />
+            <Route exact path='/reportePendiente' component={ReportePendiente} />
             <Route exact path='/verServicio' component={VerServicio} />
 
 

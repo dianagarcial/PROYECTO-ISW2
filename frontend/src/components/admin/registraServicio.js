@@ -29,7 +29,7 @@ export const RegistraServicio = () => {
   const [hora,setHora]=useState('')
   const [origen,setOrigen]=useState('')
   const [destino,setDestino]=useState('')
-  const [valor, setValor]=useState('')
+  
 
   const [nombreAsegurado,setNombreAsegurado]=useState('')
   const [telefonoAsegurado,setTelefonoAsegurado]=useState('')
@@ -94,10 +94,10 @@ export const RegistraServicio = () => {
    setCedulas(res.data)
    console.log(res.data)
 
-   const aux= res.data.operarios;
-   const nombresOpera= aux.map(function(item){
-     return item.nombreCompleto
-   })
+  //  const aux= res.data.operarios;
+  //  const nombresOpera= aux.map(function(item){
+  //    return item.nombreCompleto
+  //  })
 
   }
 
@@ -169,7 +169,7 @@ export const RegistraServicio = () => {
         timer: 1500
         
       });
-    }else if(contraseñaClick==''){
+    }else if(contraseñaClick===''){
       Swal.fire({
         icon: 'error',
         title: 'Por favor, digite la contraseña',
@@ -177,7 +177,7 @@ export const RegistraServicio = () => {
         timer: 1500
         
       });
-    }else if(fecha==''){
+    }else if(fecha===''){
       Swal.fire({
         icon: 'error',
         title: 'Por favor, digite la fecha de realizacion del servicio',
@@ -185,7 +185,7 @@ export const RegistraServicio = () => {
         timer: 1500
         
       });
-    }else if(hora==''){
+    }else if(hora===''){
       Swal.fire({
         icon: 'error',
         title: 'Por favor, digite la hora de realizacion del servicio',
@@ -193,7 +193,7 @@ export const RegistraServicio = () => {
         timer: 1500
         
       });
-    }else if(origen==''){
+    }else if(origen===''){
       Swal.fire({
         icon: 'error',
         title: 'Por favor, digite la direccion de origen del servicio',

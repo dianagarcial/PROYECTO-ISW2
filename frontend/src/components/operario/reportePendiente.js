@@ -1,3 +1,5 @@
+
+// import { useAuth } from '../../context/AuthContext';
 import Nav from '../nav';
 import '../../Styles/conServ.css'
 
@@ -5,81 +7,21 @@ import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
 
 
-export const ReporteServicio = () => {
+export const ReportePendiente = () => {
 
 
+ 
 
 
+  
   return (
     
     <div>
       <Nav></Nav>
     <div class="contServ">
     <h1>Operario: DAVID SANCHEZ</h1>
-    <h2>Aqui se encuentran todos los servicios realizados para el operario</h2>
-    <div class="cajCabTot">
-  <h4>Total a cobrar: $XXX.XXX</h4>
-  <div class='ver'>
-    <button class="verm" >Descargar cuenta</button>
-  </div>
-    
-    </div>
-  <h1>Información personal</h1>  
-    <div class="cajCab1">
-  <h1>David Sanchez </h1>
-  <div class='ver'>
-    <button class="verm" >Editar</button>
-  </div>
-  </div>
-  <div class="cuadro4">
-  <div class="division">
-  <div class="vertical">
-  
-
-  <table >
-    <tr >
-    <td> <label>Cedula</label></td>
-    <td><label>X.XXX.XXX.XXX</label></td>
-    </tr>
-    <tr>
-    <td> <label>Nombre</label></td>
-    <td> <label>XXXXX XXXXX </label></td>
-    </tr>
-    <tr>
-    <td> <label>Celular</label></td>
-    <td> <label>XXXXXXXXXX</label></td>
-    </tr>
-    
-    
-  </table>
-  </div>
-    
-  <div class="vertical">
-  
-
-  <table >
-    
-    <tr>
-    <td> <label>E-mail</label></td>
-    <td> <label>david@gmail.com</label></td>
-    </tr>
-    <tr>
-    <td> <label>Edad</label></td>
-    <td> <label>20 años</label></td>
-    </tr>
-    <tr>
-    <td> <label>RH</label></td>
-    <td> <label>O+</label></td>
-    </tr>
-    
-    
-  </table>
-  </div>
-  </div>
-  </div>
-
-  <h1>Despliegue y detalle</h1>
-  
+    <h2>Aqui se encuentran los servicios que se le han asignado y se encuentran por realizar</h2>
+ 
   <div class="cajCab1">
   <h1>David Sanchez</h1>
   </div>
@@ -116,6 +58,7 @@ export const ReporteServicio = () => {
                      <td class="tcentrar">Aceptado</td>
                      <td class="tcentrar">Elegido</td>
                      <td class="tcentrar">$14.000</td>
+                     {/* <td class='tcentrar'><a className='logout-button' href={item.cedula ? "/detOPerario/?cedula=" + item.cedula : ""}>Detalles</a>  </td> */}
                      
              
                    

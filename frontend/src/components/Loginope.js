@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+
 
 
 //import Spinner from '../spinner.svg';
@@ -30,6 +30,9 @@ export const LoginOpe = () => {
     const response = await Axios.post('/api/operario/', operario);
     const ok = response.data.ok;
     const msg = response.data.msg;
+
+
+    
 
     console.log(response);
 

@@ -5,7 +5,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validarCampos');
-const { getOperarios,getOperarioCedula,getOperarioCedulaparam,getOperarioId,getOperarioNombre,crearOperario,loginOperario, revalidarToken} = require('../controllers/operario');
+const { getOperarios,getOperarioCedula,getOperarioCedulaparam,getOperarioUsuarioparam,getOperarioId,getOperarioNombre,crearOperario,loginOperario, revalidarToken} = require('../controllers/operario');
 const { validarJWT } = require('../middlewares/validarJWT');
 
 const router = Router();
@@ -16,6 +16,7 @@ router.get('/idOpe', getOperarioId);
 
 router.get('/cedulaOpe', getOperarioCedula);
 router.get('/ceduOperario/:cedula',getOperarioCedulaparam)
+router.get('/nombreOperario/:nombre_usuario', getOperarioUsuarioparam)
 
 router.get('/nom', getOperarioNombre);
 

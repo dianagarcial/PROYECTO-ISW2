@@ -13,7 +13,7 @@ import {convertToCurrency} from '../../funciones/convertir'
 
 export const Aseguradora = () => {
  
-  const history = useHistory();
+
 
   const [nombreAseguradora, setNombreAseguradora] = useState();
   const [servicio, setServicio] = useState();
@@ -59,19 +59,7 @@ export const Aseguradora = () => {
     
   
 
-  const aseguradora = async (e) => {
-    e.preventDefault();
-    
-      history.push('/aseguradora');
-    
-  }
-
-  const buscaOp=async (e) => {
-    e.preventDefault();
-    //BUSCAR EN LA BD
-      history.push('/busca');
-    
-  }
+  
   return (
     
     <div>

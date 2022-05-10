@@ -8,12 +8,11 @@ import '../../Styles/tablas.css'
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
 import Axios from 'axios';
-import Swal from 'sweetalert2';
+
 import {convertToCurrency} from '../../funciones/convertir'
 
 export const ConServicio = () => {
   // const { logout, currentUser } = useAuth();
-  const history = useHistory();
 
   //const [servicios, setServicios] = useState();
   const [serviciosDia, setServiciosDia] = useState();
@@ -28,22 +27,7 @@ export const ConServicio = () => {
 
   
 
-  const aseguradora = async (e) => {
-    e.preventDefault();
-    
-      history.push('/aseguradora');
-    
-  }
-
-  const buscaOp=async (e) => {
-    e.preventDefault();
-    //BUSCAR EN LA BD
-      history.push('/detOPerario');
-    
-  }
-
-
-
+  
 
 //    const mostrarserv =async () => {
 //     const token=sessionStorage.getItem('token')
@@ -188,7 +172,7 @@ const reporteOpe =async () => {
       <h1 class="h1bot">SURAMERICANA</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/ZNsZF7M/image-3.pnghttps://i.ibb.co/ZNsZF7M/image-3.png"/>
+      <img class="imgaseg" src="https://i.ibb.co/ZNsZF7M/image-3.pnghttps://i.ibb.co/ZNsZF7M/image-3.png" alt="imagen"/>
       
       </div>
       </a>
