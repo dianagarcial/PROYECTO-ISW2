@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
+
 
 
 import Nav from '../nav';
@@ -71,7 +71,7 @@ export const Aseguradora = () => {
     <div class="cajCabTot">
   <h4>Total a cobrar: $XXX.XXX</h4>
   <div class='ver'>
-    <a href='#' class="verm" >Descargar cuenta</a>
+    <a href='/#' class="verm" >Descargar cuenta</a>
   </div>
   
   </div>

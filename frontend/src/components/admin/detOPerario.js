@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+
 
 
 import Nav from '../nav';
@@ -55,7 +55,7 @@ export const DetOperario = () => {
     <div class="cajCabTot">
   <h4>Total a cobrar: $XXX.XXX</h4>
   <div class='ver'>
-    <a href='#' class="verm" >Descargar cuenta</a>
+    <a href='/#' class="verm" >Descargar cuenta</a>
   </div>
     
     </div>
@@ -63,7 +63,7 @@ export const DetOperario = () => {
     <div class="cajCab1">
   <h1>David Sanchez </h1>
   <div class='ver'>
-    <a href='#' class="verm" >Editar</a>
+    <a href='/#' class="verm" >Editar</a>
   </div>
   </div>
   <div class="cuadro4">

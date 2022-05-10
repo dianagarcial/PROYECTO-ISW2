@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+
 
 
 import Nav from '../nav';
@@ -98,7 +98,7 @@ const reporteOpe =async () => {
   <div class="cajCab1">
   <h1>Datos aseguradora</h1>
   <div class='ver'>
-    <a id="verdia" class="verm"  >Ver mas</a>
+    <a id="verdia" class="verm" href='/#' >Ver mas</a>
   </div>
   </div>
 
@@ -184,7 +184,7 @@ const reporteOpe =async () => {
       <h1 class="h1bot">BOLÍVAR</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/S08tPF8/image-3-1.png"/>
+      <img class="imgaseg" src="https://i.ibb.co/S08tPF8/image-3-1.png" alt="imagen"/>
       
       </div>
       </a>
@@ -197,7 +197,7 @@ const reporteOpe =async () => {
       <h1 class="h1bot">A365</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/7n22t9r/image-3-2.png"/>
+      <img class="imgaseg" src="https://i.ibb.co/7n22t9r/image-3-2.png" alt="imagen"/>
       
       </div>
       </a>
@@ -210,7 +210,7 @@ const reporteOpe =async () => {
       <h1 class="h1bot">iKEA</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png"/>
+      <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png" alt="imagen"/>
       
       </div>
       </a>
@@ -222,7 +222,7 @@ const reporteOpe =async () => {
       <h1 class="h1bot">GEA COLOMBIA</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png"/>
+      <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png" alt="imagen"/>
       
       </div>
       </a>
@@ -235,7 +235,7 @@ const reporteOpe =async () => {
       <h1 class="h1bot">ASSIPREX</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png"/>
+      <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png" alt="imagen"/>
       
       </div>
       </a>
@@ -247,7 +247,7 @@ const reporteOpe =async () => {
       <div class="cajCab1">
       <h1>Operario</h1>
       <div class='ver'>
-    <a href='#' class="verm" >Ver mas</a>
+    <a href='/#' class="verm" >Ver mas</a>
   </div>
  
   </div>

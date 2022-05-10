@@ -38,7 +38,7 @@ export const RegistraServicio = () => {
   
   
   const [operario,setCedula]=useState('')
-  const [cedulas,setCedulas]=useState([])
+  // const [cedulas,setCedulas]=useState([])
 
   
   //const [operarios,setOperarios]=useState([]);
@@ -48,7 +48,7 @@ export const RegistraServicio = () => {
   useEffect(() => {
     // obtenerOperarios();
     setestadoServicio('N');
-    busqCedula();
+    //busqCedula();
     valorRes();
     
     setaseguradoraSect('Suramericana')
@@ -85,21 +85,21 @@ export const RegistraServicio = () => {
   // setNombreOpe(nombresOpera)
   // console.log(nombresOpera)
 
-  const busqCedula=async () =>{
-   const token=sessionStorage.getItem('token')
-   const res=await Axios.get('/api/operario/cedulaOpe',{
-     headers: {'x-token':token}
-    })
+  // const busqCedula=async () =>{
+  //  const token=sessionStorage.getItem('token')
+  //  const res=await Axios.get('/api/operario/cedulaOpe',{
+  //    headers: {'x-token':token}
+  //   })
 
-   setCedulas(res.data)
-   console.log(res.data)
+  //  setCedulas(res.data)
+  //  console.log(res.data)
 
-  //  const aux= res.data.operarios;
-  //  const nombresOpera= aux.map(function(item){
-  //    return item.nombreCompleto
-  //  })
+  // //  const aux= res.data.operarios;
+  // //  const nombresOpera= aux.map(function(item){
+  // //    return item.nombreCompleto
+  // //  })
 
-  }
+  // }
 
   // setNombreOpe(nombresOpera)
   // console.log(nombresOpera)
