@@ -5,7 +5,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validarCampos');
-const { getOperarios,getOperarioCedula,getOperarioId,getOperarioNombre,crearOperario, revalidarToken} = require('../controllers/operario');
+const { getOperarios,getOperarioCedula,getOperarioCedulaparam,getOperarioId,getOperarioNombre,crearOperario,loginOperario, revalidarToken} = require('../controllers/operario');
 const { validarJWT } = require('../middlewares/validarJWT');
 
 const router = Router();
@@ -15,8 +15,10 @@ router.get('/listaOperarios', getOperarios);
 router.get('/idOpe', getOperarioId);
 
 router.get('/cedulaOpe', getOperarioCedula);
+router.get('/ceduOperario/:cedula',getOperarioCedulaparam)
 
 router.get('/nom', getOperarioNombre);
+
 
 router.post(
     '/newOperario', 
@@ -32,6 +34,16 @@ router.post(
         validarCampos
     ],
     crearOperario 
+);
+
+router.post(
+    '/',
+    [
+        check('nombre_usuario', 'El email es obligatorio').isEmail(),
+        check('contraseña', 'El password debe ser de minimo 6 caracteres').isLength({min: 6}),
+        validarCampos
+    ],
+    loginOperario
 );
 
 

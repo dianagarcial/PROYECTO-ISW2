@@ -9,44 +9,25 @@ import Axios  from 'axios';
 import Swal from 'sweetalert2';
 
 
-export const LoginAdmi = () => {
+export const LoginOpe = () => {
 
   // const { login } = useAuth();
   // const [error, setError] = useState(null);
   
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [nombre_usuario, setNombre_usuario] = useState('');
+  const [contraseña, setContraseña] = useState('');
 
   // const history = useHistory();
-  const handleEmail = e => setEmail(e.target.value);
-  const handlePassword = e => setPassword(e.target.value);
+  const handleEmail = e => setNombre_usuario(e.target.value);
+  const handlePassword = e => setContraseña(e.target.value);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   //setLoading(true);
-  //   try {
-  //     await login(email, password);
-  //     //setLoading(false);
-
-  //     if(email=='admin@gmail.com'){
-  //       history.push('/')
-  //     }else{
-  //       history.push('/homeOperario');
-  //     }
-      
-      
-  //   } catch (error) {
-  //     //setLoading(false);
-  //     setError('Credenciales incorrectas');
-  //     setTimeout(() => setError(''), 1500);
-  //   }
-  // }
+  
   const iniciarSesion = async (e) => {
 
     e.preventDefault();
     
-    const usuario = {email,password};
-    const response = await Axios.post('/api/usuario/', usuario);
+    const operario = {nombre_usuario,contraseña};
+    const response = await Axios.post('/api/operario/', operario);
     const ok = response.data.ok;
     const msg = response.data.msg;
 
@@ -76,7 +57,7 @@ export const LoginAdmi = () => {
         timer:1500
       });
 
-      window.location.href='/home';
+      window.location.href='/homeOperario';
 
     }    
 

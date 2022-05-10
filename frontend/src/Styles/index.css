@@ -1,0 +1,13 @@
+.cajonIndex {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.reIndex {
+    background: #EDEDED;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2%;
+    width: 35%;
+}

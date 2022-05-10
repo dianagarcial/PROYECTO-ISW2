@@ -20,6 +20,20 @@ const getOperarioCedula = async (req, res = Response) => {
 
     const opeCedula = await Operario.findOne({ cedula });
 
+    res.json({
+        ok:true,
+        opeCedula
+    });
+
+}
+
+
+
+const getOperarioCedulaparam = async (req, res = response ) => {
+
+    const cedula = req.params.cedula;
+
+    const opeCedula = await Operario.findOne({ cedula });
 
     res.json({
         ok:true,
@@ -98,10 +112,10 @@ const crearOperario = async ( req, res = response ) => {
 
 const loginOperario = async(req, res = response) => {
 
-    const { nombreUsuario, contraseña } = req.body;
+    const { nombre_usuario, contraseña } = req.body;
 
     try {
-        const operario = await Operario.findOne({ nombreUsuario });
+        const operario = await Operario.findOne({ nombre_usuario });
 
         if(!operario) {
             return res.status(400).json({
@@ -121,12 +135,12 @@ const loginOperario = async(req, res = response) => {
         }
 
         // Generar JWT
-        const token = await generarJWT( usuario.id, usuario.name );
+        const token = await generarJWT( operario.id, operario.nombre_usuario );
 
         res.json({
             ok: true,
-            uid: usuario.id,
-            name: usuario.name,
+            uid: operario.id,
+            name: operario.nombre_usuario,
             token
         })
 
@@ -153,9 +167,11 @@ const revalidarToken = async (req, res = response ) => {
     })
 }
 
+
 module.exports = {
     getOperarios,
     getOperarioCedula,
+    getOperarioCedulaparam,
     getOperarioId,
     crearOperario,
     loginOperario,

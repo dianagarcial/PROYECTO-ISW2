@@ -1,6 +1,7 @@
 import './App.css';
-import { Login } from './components/Login';
-
+import { LoginAdmi } from './components/Login';
+import { LoginOpe } from './components/Loginope';
+import { Index } from './components/index';
 import { Home } from './components/admin/Home';
 import { ConServicio } from './components/admin/consServ';
 
@@ -40,7 +41,9 @@ function App() {
             <Route exact path='/verServicio' component={VerServicio} />
 
 
-            <Route exact path='/' component={Login} />
+            <Route exact path='/administrador' component={LoginAdmi} />
+            <Route exact path='/operario' component={LoginOpe} />
+            <Route exact path='/' component={Index} />
             
             
             

@@ -9,7 +9,7 @@ import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
 import Axios from 'axios';
 import Swal from 'sweetalert2';
-
+import {convertToCurrency} from '../../funciones/convertir'
 
 export const ConServicio = () => {
   // const { logout, currentUser } = useAuth();
@@ -17,10 +17,10 @@ export const ConServicio = () => {
 
   //const [servicios, setServicios] = useState();
   const [serviciosDia, setServiciosDia] = useState();
-  const [aseguradoraB, setAseguradoraB] = useState();
-  const [nomOpe, setNomOpe]=useState([]);
-  const [idOpe, setIdOpe]=useState([]);
-
+  //const [aseguradoraB, setAseguradoraB] = useState();
+  //const [nomOpe, setNomOpe]=useState([]);
+  //const [idOpe, setIdOpe]=useState([]);
+  const [operario, setOperario] = useState();
 
   //const [todo, setTodo] = useState('desaparece');
   //const [hoy, sethoy]= useState('tcentrar')
@@ -41,14 +41,6 @@ export const ConServicio = () => {
       history.push('/detOPerario');
     
   }
-
-  const mostrarOperario =async () => {
-    const token=sessionStorage.getItem('token')
-    const res= await Axios.get('/api/operario/cedulaOpe',idOpe,{
-      headers: {'x-token':token}
-    })
-    setNomOpe(res.data.nombre)
-    console.log(res.data)}
 
 
 
@@ -76,6 +68,18 @@ const mostrarservDiario =async () => {
  
 
 }
+
+const reporteOpe =async () => {
+  const token=sessionStorage.getItem('token')
+  const res= await Axios.get('/api/operario/listaOperarios',{
+    headers: {'x-token':token}
+  })
+  setOperario(res.data.operarios)
+  console.log(res.data.operarios)
+
+ 
+
+}
 // const verTodoServ = async () => {
 
   
@@ -90,8 +94,9 @@ const mostrarservDiario =async () => {
   useEffect(() => {
   
     //mostrarserv();
-    mostrarOperario();
+    //mostrarOperario();
     mostrarservDiario();
+    reporteOpe();
     
 
   }, [])
@@ -159,7 +164,7 @@ const mostrarservDiario =async () => {
                      <td class='tcentrar'>  {item.tipoServicio}  </td>
                      <td class='tcentrar'>  {item.estadoServicio}  </td>
                      <td class='tcentrar'>  {item.operario.nombre_completo}  </td>
-                     <td class='tcentrar'>  {item.valor}  </td>
+                     <td class='tcentrar'>  {convertToCurrency(item.valor)}  </td>
                      </tr>
                  
                    
@@ -287,15 +292,19 @@ const mostrarservDiario =async () => {
                         
 
                     </tr>
-                 <tr>
-                     <td class="tcentrar">David Sanchez</td>
-                     <td class="tcentrar">1005456689</td>
-                     <td class="tcentrar">3004562891 </td>
-                     <td class="tcentrar">$301.000</td>
-                     <td class="tcentrar"><button onClick={buscaOp} className='logout-button'>Detalles</button></td>
-             
-                     
-                 </tr>
+                    {operario && operario.length>0 && operario.map((item)=>{
+                     return  <tr class="tcentrar">
+                     <td class='tcentrar'>  {item.nombre_completo}  </td>
+                     <td class='tcentrar'>  {item.cedula}  </td>
+                     <td class='tcentrar'>  {item.telefono}  </td>
+                     <td class='tcentrar'>  ${}  </td>
+                     <td class='tcentrar'><a className='logout-button' href={item.cedula ? "/detOPerario/?cedula=" + item.cedula : ""}>Detalles</a>  </td>
+                     </tr>
+                 
+                   
+                  })}
+                   
+           
                  </tbody>
                                 </table>
                             </div>

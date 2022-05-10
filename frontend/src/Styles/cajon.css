@@ -78,6 +78,7 @@ width: 30%;
 .bot1-t{
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .h1bot{

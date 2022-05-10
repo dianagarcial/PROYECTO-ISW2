@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-
 //import Spinner from '../spinner.svg';
 import '../Styles/login.css'
+import '../Styles/index.css'
 import Nav from '../components/nav';
 import Axios  from 'axios';
 import Swal from 'sweetalert2';
 
 
-export const LoginAdmi = () => {
+export const Index = () => {
 
   // const { login } = useAuth();
   // const [error, setError] = useState(null);
@@ -87,27 +87,37 @@ export const LoginAdmi = () => {
       <Nav></Nav>
     <div class="fondoLog">
     <div class="combologi">
-    <div class="tilogin">
-        <h1>Ingresa al sistema de <br/>CEOCOL</h1>
-        </div>                                                                                        
-        <div class="conte-login">
-        <form onSubmit={iniciarSesion} className='card-logi'>
-        
-        
-        {/* {error && <p className='error' >{error}</p>} */}
-          <label class="lalogin">Usuario</label>
-          <input type='email' placeholder='Correo electronico' onChange={handleEmail} />
-          <label class="lalogin">Contraseña</label>
-          <input type='password' placeholder='Contraseña' onChange={handlePassword} />
-          <div class="btn-log">
-          <input class="desRep" type='submit' value='Log In' />
-       
+    <div class='plan'>
+    <a href='/administrador' className='reIndex'>
+      <div class="cajonIndex">
+      <div class="tit">
+     
       </div>
-        </form>
-        </div> 
+      
+      <img class="imgaseg" src="https://i.ibb.co/8xcNfmv/ajustes.png"/>
+      <h2>Administrador</h2>
+      </div>
+      </a>
+
+
+
+
+      <a href='/operario' className='reIndex'>
+      <div class="cajonIndex">
+      <div class="tit">
+     
+      </div>
+      
+      <img class="imgaseg" src="https://i.ibb.co/gRvd1h5/conductor.png"/>
+      <h2>Operario</h2>
+      </div>
+      </a>
+
+      </div>
         </div>
         </div>
         </div>
+ 
       
 
         
