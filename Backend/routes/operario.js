@@ -15,7 +15,7 @@ router.get('/listaOperarios', getOperarios);
 router.get('/idOpe', getOperarioId);
 
 router.get('/cedulaOpe', getOperarioCedula);
-router.get('/ceduOperario/:cedula',getOperarioCedulaparam)
+router.get('/idOperario/:_id',getOperarioCedulaparam)
 router.get('/nombreOperario/:nombre_usuario', getOperarioUsuarioparam)
 
 router.get('/nom', getOperarioNombre);

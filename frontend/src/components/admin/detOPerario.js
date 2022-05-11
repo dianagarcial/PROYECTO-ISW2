@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-
+import {convertToCurrency} from '../../funciones/convertir'
 
 import Nav from '../nav';
 import '../../Styles/conServ.css'
@@ -15,35 +15,60 @@ export const DetOperario = () => {
 
 
   const [operario, setOperario] = useState('');
-
+  const [servicio, setServicio] = useState('');
 
   const mostrarDPersonal = async()=>{
     const valores = window.location.search;
-    const urlParams = new URLSearchParams(valores)
-    const values = urlParams.values()
+    const bus = valores.substring(5)
+    
+    console.log(bus)
 
-
-    for (const value of values) {
-
-      console.log(value)
+   
       const token = sessionStorage.getItem('token')
 
-      const respuesta = await Axios.get('/api/operario/ceduOperario/' + value ,{
+      const respuesta = await Axios.get('/api/operario/idOperario/'+bus,{
         headers : {'x-token': token}
     })
     
-      console.log(respuesta.data.opeCedula)
-      setOperario(respuesta.data.opeCedula)
+       console.log(respuesta.data.opeId)
+      setOperario(respuesta.data.opeId)
+      
      
      
-    }
+    
   
   }
+  //BUSCAR LOS OPERARIOS
+  const mostarServicoOpe= async()=>{
+    const valores = window.location.search;
+    const bus = valores.substring(5)
+    
+    
+    const token = sessionStorage.getItem('token')
+    // const valor= 'ObjectId('+values+')'
+    
+    const respuesta = await Axios.get('/api/servicio/detOpe/' + bus ,{
+      headers : {'x-token': token}
+  })
+  //console.log(respuesta.data.serOpe);
+  setServicio(respuesta.data.serOpe);
 
- 
+    
+  }
+  function busEstados(estado) {
+    if (estado==='N'){
+      return 'Pendiente'
+    }else if (estado ==='F'){
+      return 'Fallido'
+    }else if (estado == 'C'){
+      return 'Completado'
+    }
+    
+  }
 
   useEffect(() => {
     mostrarDPersonal()
+    mostarServicoOpe()
   }, [])
   return (
     
@@ -61,7 +86,7 @@ export const DetOperario = () => {
     </div>
   <h1>Información personal</h1>  
     <div class="cajCab1">
-  <h1>{operario.nombre_completo} </h1>
+  <h1>{} </h1>
   <div class='ver'>
     <a href='/#' class="verm" >Editar</a>
   </div>
@@ -145,27 +170,18 @@ export const DetOperario = () => {
                         
 
                     </tr>
-                 <tr>
-                     <td class="tcentrar">Bolivar</td>
-                     <td class="tcentrar">4559632</td>
-                     <td class="tcentrar">Aceptado</td>
-                     <td class="tcentrar">Elegido</td>
-                     <td class="tcentrar">$14.000</td>
-                     
-             
+                    {servicio && servicio.length>0 && servicio.map((item)=>{
+                     return  <tr class="tcentrar">
+                     <td class='tcentrar'>  {item.aseguradoraNombre}  </td>
+                     <td class='tcentrar'>  {item.expediente}  </td>
+                     <td class='tcentrar'>  {busEstados(item.estadoServicio)}  </td>
+                     <td class='tcentrar'>  {item.tipoServicio}  </td>
+                     <td class='tcentrar'>  {convertToCurrency(item.valor)}  </td>
                    
-                 </tr>
-                 <tr>
-                     <td class="tcentrar">Bolivar</td>
-                     <td class="tcentrar">4559632</td>
-                     <td class="tcentrar">Aceptado</td>
-                     <td class="tcentrar">Elegido</td>
-                     <td class="tcentrar">$14.000</td>
-                     
-             
+                     </tr>
+                 
                    
-                 </tr>
-
+                  })}
                 
                  </tbody>
                                 </table>

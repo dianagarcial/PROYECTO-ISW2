@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import {getEncryptEmail,decryptEmail} from '../funciones/encriptador'
 
 
 //import Spinner from '../spinner.svg';
@@ -16,6 +16,7 @@ export const LoginOpe = () => {
   
   const [nombre_usuario, setNombre_usuario] = useState('');
   const [contraseña, setContraseña] = useState('');
+  const [items, setItems] = useState([]);
 
   // const history = useHistory();
   const handleEmail = e => setNombre_usuario(e.target.value);
@@ -61,10 +62,15 @@ export const LoginOpe = () => {
       });
 
       window.location.href='/homeOperario';
-
+      
     }    
 
   }
+
+
+
+
+
 
   return (
     <div>

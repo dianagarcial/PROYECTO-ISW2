@@ -105,11 +105,66 @@ const getServiciosOpera = async( req, res = response ) => {
 
 const getdetOperario = async ( req, res = response ) => {
 
-    const cedula = req.params.cedula;
-
+    const operario = req.params.operario;
+    console.log(operario)
     try {
         
-        const serOpe = await Servicio.findOne({ cedula });
+        const serOpe = await Servicio.find({operario},{aseguradoraNombre:1, tipoServicio:1,expediente:1,estadoServicio:1, valor:1} );
+                                            
+
+        res.json({
+            ok: true,
+            serOpe
+        });
+
+    } catch (error) {
+
+        console.log(error)
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+        
+    }
+
+}
+//CONSULTAR DETALLE DE SERVICIO
+
+const getdetServicio = async ( req, res = response ) => {
+
+    const id = req.params._id;
+    console.log(id)
+    try {
+        
+        const serOpe = await Servicio.find({id});
+                                            
+
+        res.json({
+            ok: true,
+            serOpe
+        });
+
+    } catch (error) {
+
+        console.log(error)
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+        
+    }
+
+}
+//REVISAR PARA SACAR LOS SERVICIOS PENDIENTES
+
+const getdetOperarioPendiente = async ( req, res = response ) => {
+
+    const operario = req.params.operario;
+    console.log(operario)
+    try {
+        
+        const serOpe = await Servicio.find({$and:[{operario},{estado:'N'}]},{aseguradoraNombre:1, tipoServicio:1,expediente:1,estadoServicio:1, valor:1} );
+                                            
 
         res.json({
             ok: true,
@@ -170,6 +225,8 @@ module.exports = {
     crearServicio,
     getServiciosAsegura,
     getServiciosDiarios,
+    getdetOperarioPendiente,
     getServiciosOpera,
-    getdetOperario
+    getdetOperario,
+    getdetServicio
 }

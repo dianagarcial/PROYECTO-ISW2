@@ -1,4 +1,6 @@
 
+import'../Loginope'
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 //import { useAuth } from '../../context/AuthContext';
@@ -14,9 +16,30 @@ export const HomeOperario = () => {
   //const { logout, currentUser } = useAuth();
   const history = useHistory();
 
+  
 
 
 
+  function verificarActivo(){
+
+let input = document.getElementById('switch-label');
+let button = document.getElementById("serviciobtn");
+button.disabled = true;
+input.addEventListener("change", stateHandle);
+function stateHandle() {
+  if (input.checked) {
+    button.disabled = false; 
+  } else {
+    button.disabled = true;
+  }
+}
+
+    
+  }
+
+  function veractividad(){
+    
+  }
 
 
   const conServicio = async (e) => {
@@ -32,6 +55,10 @@ export const HomeOperario = () => {
       history.push('/reportePendiente');
     
   }
+
+  useEffect(() => {
+    verificarActivo()
+  }, [])
   return (
     
     <div>
@@ -70,14 +97,14 @@ export const HomeOperario = () => {
       </div>
       </button>
 
-      <button className='registro' onClick={generaRep} >
-      <div class="bot1-t">
-      <div class="tit">
-      <h1 class="h1bot">Servicios pendientes</h1>
+      <button className='registro' id='serviciobtn' onClick={generaRep} >
+      <div class="bot1-t" id='serviciobtn1' >
+      <div class="tit" id='serviciobtn2'>
+      <h1 class="h1bot" id='serviciobtn3'>Servicios pendientes</h1>
       </div>
       
-      <img class="imgreg" src="https://i.ibb.co/RcGRy2g/Statistic-Document-1.png" alt="Writer-male" border="0"/>
-      <h2 class="h2bot">Consulta los servicios pendientes <br/> asignados</h2>
+      <img id='serviciobtn4'class="imgreg" src="https://i.ibb.co/RcGRy2g/Statistic-Document-1.png" alt="Writer-male" border="0"/>
+      <h2 id='serviciobtn5'class="h2bot">Consulta los servicios pendientes <br/> asignados</h2>
       </div>
       </button>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // import { useAuth } from '../../context/AuthContext';
@@ -7,6 +7,7 @@ import '../../Styles/conServ.css'
 
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
+import Axios from 'axios';
 
 
 export const VerServicio = () => {
@@ -14,30 +15,47 @@ export const VerServicio = () => {
   const history = useHistory();
 
   const [error, setError] = useState('');
+  const [servicio, setServicio] = useState('');
 
+  const mostarServicoOpe= async()=>{
+    const valores = window.location.search;
+   
+    const values = valores.substring(5);
+    console.log(values)
 
-  // const handleLogout = async () => {
-  //   try {
-  //     await logout();
-  //     history.push('/login');
-  //   } catch (error) {
-  //     setError('Server Error')
-  //   }
-  // }
-
-  const aseguradora = async (e) => {
-    e.preventDefault();
     
-      history.push('/aseguradora');
+    
+    const token = sessionStorage.getItem('token')
+    // const valor= 'ObjectId('+values+')'
+    
+    const respuesta = await Axios.get('/api/servicio/detServicio/' + values ,{
+      headers : {'x-token': token}
+  })
+  console.log(respuesta.data);
+  setServicio(respuesta.data.serOpe);
+
+    
+  }
+  function busEstados(estado) {
+    if (estado==='N'){
+      return 'Pendiente'
+    }else if (estado ==='F'){
+      return 'Fallido'
+    }else if (estado == 'C'){
+      return 'Completado'
+    }
     
   }
 
-  const buscaOp=async (e) => {
-    e.preventDefault();
-    //BUSCAR EN LA BD
-      history.push('/busca');
+  useEffect(() => {
+
+    mostarServicoOpe()
+  }, [])
+
+
+
     
-  }
+  
   return (
     
     <div>

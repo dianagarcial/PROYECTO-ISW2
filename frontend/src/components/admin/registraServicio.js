@@ -211,6 +211,7 @@ export const RegistraServicio = () => {
     })
     const ok =res.data.ok
     console.log(ok)
+    
     Swal.fire({
       icon: 'success',
       title: 'Servicio registrado exitosamente',

@@ -31,13 +31,14 @@ const getOperarioCedula = async (req, res = Response) => {
 
 const getOperarioCedulaparam = async (req, res = response ) => {
 
-    const cedula = req.params.cedula;
+    const _id = req.params._id;
+    
 
-    const opeCedula = await Operario.findOne({ cedula });
+    const opeId = await Operario.findOne({_id });
 
     res.json({
         ok:true,
-        opeCedula
+        opeId
     });
 
 }
@@ -59,7 +60,7 @@ const getOperarioId = async (req, res = Response) => {
 
     const {_id} = req.body;
 
-    const opeId = await Operario.findOne({ nombre_completo });
+    const opeId = await Operario.findOne({_id });
 
 
     res.json({
@@ -68,6 +69,20 @@ const getOperarioId = async (req, res = Response) => {
     });
 
 }
+
+// const getOperarioId = async (req, res = Response) => {
+
+//     const {id} = req.params._id;
+
+//     const opeId = await Operario.find({id });
+
+
+//     res.json({
+//         ok:true,
+//         opeId
+//     });
+
+// }
 
 const getOperarioNombre = async (req, res) => {
 

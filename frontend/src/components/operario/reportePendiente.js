@@ -1,15 +1,70 @@
-
+import React, { useState, useEffect } from 'react';
 // import { useAuth } from '../../context/AuthContext';
 import Nav from '../nav';
 import '../../Styles/conServ.css'
 
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
+import Axios from 'axios';
+import {convertToCurrency} from '../../funciones/convertir'
 
 
 export const ReportePendiente = () => {
 
+  const [operario, setOperario] = useState('');
+  const [servicio, setServicio] = useState('');
 
+  const mostrarDPersonal = async()=>{
+    const value= sessionStorage.getItem('uid');
+    
+    console.log(value)
+
+   
+      const token = sessionStorage.getItem('token')
+
+      const respuesta = await Axios.get('/api/operario/idOperario/'+value,{
+        headers : {'x-token': token}
+    })
+    
+       console.log(respuesta.data.opeId)
+      setOperario(respuesta.data.opeId)
+      
+     
+     
+    
+  
+  }
+  //BUSCAR LOS OPERARIOS
+  const mostarServicoOpe= async()=>{
+    const value= sessionStorage.getItem('uid');
+    
+    
+    const token = sessionStorage.getItem('token')
+    // const valor= 'ObjectId('+values+')'
+    
+    const respuesta = await Axios.get('/api/servicio/detOpe/' + value ,{
+      headers : {'x-token': token}
+  })
+  //console.log(respuesta.data.serOpe);
+  setServicio(respuesta.data.serOpe);
+
+    
+  }
+  function busEstados(estado) {
+    if (estado==='N'){
+      return 'Pendiente'
+    }else if (estado ==='F'){
+      return 'Fallido'
+    }else if (estado == 'C'){
+      return 'Completado'
+    }
+    
+  }
+
+  useEffect(() => {
+    mostrarDPersonal()
+    mostarServicoOpe()
+  }, [])
  
 
 
@@ -52,27 +107,21 @@ export const ReportePendiente = () => {
                         
 
                     </tr>
-                 <tr>
-                     <td class="tcentrar">Bolivar</td>
-                     <td class="tcentrar">4559632</td>
-                     <td class="tcentrar">Aceptado</td>
-                     <td class="tcentrar">Elegido</td>
-                     <td class="tcentrar">$14.000</td>
-                     {/* <td class='tcentrar'><a className='logout-button' href={item.cedula ? "/detOPerario/?cedula=" + item.cedula : ""}>Detalles</a>  </td> */}
+                    {servicio && servicio.length>0 && servicio.map((item)=>{
+                      
+                        
                      
-             
-                   
-                 </tr>
-                 <tr>
-                     <td class="tcentrar">Bolivar</td>
-                     <td class="tcentrar">4559632</td>
-                     <td class="tcentrar">Aceptado</td>
-                     <td class="tcentrar">Elegido</td>
-                     <td class="tcentrar">$14.000</td>
-                     
-             
-                   
-                 </tr>
+                     return  <tr class="tcentrar">
+                     <td class='tcentrar'>  {item.aseguradoraNombre}  </td>
+                     <td class='tcentrar'>  {item.expediente}  </td>
+                     <td class='tcentrar'>  {busEstados(item.estadoServicio)}  </td>
+                     <td class='tcentrar'>  {item.tipoServicio}  </td>
+                     <td class='tcentrar'>  {convertToCurrency(item.valor)}  </td>
+                     <td class='tcentrar'><a className='logout-button' href={item._id ? "/verServicio/?_id=" + item._id : ""}>Detalles</a>  </td>
+                     </tr>
+                 
+                
+                  })}
 
                 
                  </tbody>

@@ -64,6 +64,17 @@ const reporteOpe =async () => {
  
 
 }
+
+function busEstados(estado) {
+  if (estado==='N'){
+    return 'Pendiente'
+  }else if (estado ==='F'){
+    return 'Fallido'
+  }else if (estado == 'C'){
+    return 'Completado'
+  }
+  
+}
 // const verTodoServ = async () => {
 
   
@@ -146,7 +157,7 @@ const reporteOpe =async () => {
                      return  <tr class="tcentrar">
                      <td class='tcentrar'>  {item.aseguradoraNombre}  </td>
                      <td class='tcentrar'>  {item.tipoServicio}  </td>
-                     <td class='tcentrar'>  {item.estadoServicio}  </td>
+                     <td class='tcentrar'>  {busEstados(item.estadoServicio)}  </td>
                      <td class='tcentrar'>  {item.operario.nombre_completo}  </td>
                      <td class='tcentrar'>  {convertToCurrency(item.valor)}  </td>
                      </tr>
@@ -282,7 +293,7 @@ const reporteOpe =async () => {
                      <td class='tcentrar'>  {item.cedula}  </td>
                      <td class='tcentrar'>  {item.telefono}  </td>
                      <td class='tcentrar'>  ${}  </td>
-                     <td class='tcentrar'><a className='logout-button' href={item.cedula ? "/detOPerario/?cedula=" + item.cedula : ""}>Detalles</a>  </td>
+                     <td class='tcentrar'><a className='logout-button' href={item._id ? "/detOPerario/?_id=" + item._id : ""}>Detalles</a>  </td>
                      </tr>
                  
                    

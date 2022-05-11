@@ -1,34 +1,88 @@
 import Nav from '../nav';
 import '../../Styles/conServ.css'
-
+import React, { useState, useEffect } from 'react';
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
+import Axios from 'axios';
+import {convertToCurrency} from '../../funciones/convertir'
 
 
 export const ReporteServicio = () => {
 
+  
+  const [operario, setOperario] = useState('');
+  const [servicio, setServicio] = useState('');
 
+  const mostrarDPersonal = async()=>{
+    const value= sessionStorage.getItem('uid');
+    
+    console.log(value)
 
+   
+      const token = sessionStorage.getItem('token')
 
+      const respuesta = await Axios.get('/api/operario/idOperario/'+value,{
+        headers : {'x-token': token}
+    })
+    
+       console.log(respuesta.data.opeId)
+      setOperario(respuesta.data.opeId)
+      
+     
+     
+    
+  
+  }
+  //BUSCAR LOS OPERARIOS
+  const mostarServicoOpe= async()=>{
+    const value= sessionStorage.getItem('uid');
+    
+    
+    const token = sessionStorage.getItem('token')
+    // const valor= 'ObjectId('+values+')'
+    
+    const respuesta = await Axios.get('/api/servicio/detOpe/' + value ,{
+      headers : {'x-token': token}
+  })
+  //console.log(respuesta.data.serOpe);
+  setServicio(respuesta.data.serOpe);
+
+    
+  }
+  function busEstados(estado) {
+    if (estado==='N'){
+      return 'Pendiente'
+    }else if (estado ==='F'){
+      return 'Fallido'
+    }else if (estado == 'C'){
+      return 'Completado'
+    }
+    
+  }
+
+  useEffect(() => {
+    mostrarDPersonal()
+    mostarServicoOpe()
+  }, [])
   return (
     
     <div>
       <Nav></Nav>
     <div class="contServ">
-    <h1>Operario: DAVID SANCHEZ</h1>
+    <h1>Operario: {operario.nombre_completo}</h1>
     <h2>Aqui se encuentran todos los servicios realizados para el operario</h2>
     <div class="cajCabTot">
   <h4>Total a cobrar: $XXX.XXX</h4>
   <div class='ver'>
-    <button class="verm" >Descargar cuenta</button>
+    <a href='/#' class="verm" >Descargar cuenta</a>
   </div>
     
     </div>
   <h1>Información personal</h1>  
     <div class="cajCab1">
-  <h1>David Sanchez </h1>
+  <h1>{operario.nombre_completo} </h1>
   <div class='ver'>
-    <button class="verm" >Editar</button>
+    <a href='/#' class="verm" >Editar</a>
   </div>
   </div>
   <div class="cuadro4">
@@ -39,15 +93,15 @@ export const ReporteServicio = () => {
   <table >
     <tr >
     <td> <label>Cedula</label></td>
-    <td><label>X.XXX.XXX.XXX</label></td>
+    <td><label>{operario.cedula}</label></td>
     </tr>
     <tr>
     <td> <label>Nombre</label></td>
-    <td> <label>XXXXX XXXXX </label></td>
+    <td> <label>{operario.nombre_completo}</label></td>
     </tr>
     <tr>
     <td> <label>Celular</label></td>
-    <td> <label>XXXXXXXXXX</label></td>
+    <td> <label>{operario.telefono}</label></td>
     </tr>
     
     
@@ -61,15 +115,15 @@ export const ReporteServicio = () => {
     
     <tr>
     <td> <label>E-mail</label></td>
-    <td> <label>david@gmail.com</label></td>
+    <td> <label>{operario.nombre_usuario}</label></td>
     </tr>
     <tr>
     <td> <label>Edad</label></td>
-    <td> <label>20 años</label></td>
+    <td> <label>{operario.edad} años</label></td>
     </tr>
     <tr>
     <td> <label>RH</label></td>
-    <td> <label>O+</label></td>
+    <td> <label>{operario.rh}</label></td>
     </tr>
     
     
@@ -110,26 +164,18 @@ export const ReporteServicio = () => {
                         
 
                     </tr>
-                 <tr>
-                     <td class="tcentrar">Bolivar</td>
-                     <td class="tcentrar">4559632</td>
-                     <td class="tcentrar">Aceptado</td>
-                     <td class="tcentrar">Elegido</td>
-                     <td class="tcentrar">$14.000</td>
-                     
-             
+                    {servicio && servicio.length>0 && servicio.map((item)=>{
+                     return  <tr class="tcentrar">
+                     <td class='tcentrar'>  {item.aseguradoraNombre}  </td>
+                     <td class='tcentrar'>  {item.expediente}  </td>
+                     <td class='tcentrar'>  {busEstados(item.estadoServicio)}  </td>
+                     <td class='tcentrar'>  {item.tipoServicio}  </td>
+                     <td class='tcentrar'>  {convertToCurrency(item.valor)}  </td>
                    
-                 </tr>
-                 <tr>
-                     <td class="tcentrar">Bolivar</td>
-                     <td class="tcentrar">4559632</td>
-                     <td class="tcentrar">Aceptado</td>
-                     <td class="tcentrar">Elegido</td>
-                     <td class="tcentrar">$14.000</td>
-                     
-             
+                     </tr>
+                 
                    
-                 </tr>
+                  })}
 
                 
                  </tbody>
