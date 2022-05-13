@@ -59,7 +59,8 @@ const ServicioSchema = Schema({
 
     expediente: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
 
     aseguradoraNombre: {

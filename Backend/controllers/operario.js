@@ -1,4 +1,4 @@
-const { response, json } = require('express');
+const { response} = require('express');
 const bcrypt = require('bcryptjs');
 const Operario = require('../models/Operario');
 const { generarJWT } = require('../helpers/jwt');
@@ -19,6 +19,13 @@ const getOperarioCedula = async (req, res = Response) => {
     const {cedula} = req.body;
 
     const opeCedula = await Operario.findOne({ cedula });
+
+    if(!opeCedula){
+        return res.status(400).json({
+            ok: false,
+            msg: 'El operario por esa cedula no existe'
+        });
+    }
 
     res.json({
         ok:true,
@@ -69,20 +76,6 @@ const getOperarioId = async (req, res = Response) => {
     });
 
 }
-
-// const getOperarioId = async (req, res = Response) => {
-
-//     const {id} = req.params._id;
-
-//     const opeId = await Operario.find({id });
-
-
-//     res.json({
-//         ok:true,
-//         opeId
-//     });
-
-// }
 
 const getOperarioNombre = async (req, res) => {
 

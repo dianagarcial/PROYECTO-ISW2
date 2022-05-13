@@ -21,16 +21,18 @@ router.get('/serDiario', getServiciosDiarios);
 //ROUTE FROM ASEGURADORA 
 router.get('/serAsegura/:nombreAseguradora', getServiciosAsegura);
 
-
 //OPERARIO
 router.get('/serOperario', getServiciosOpera);
 
+//DETALLE DEL OPERARIO
 router.get('/detOpe/:operario', getdetOperario);
+
+//DETALLES DEL SERVICIO
 router.get('/detServicio/:_id', getdetServicio);
 
-
-
+//
 router.get('/detOpePen/:operario', getdetOperarioPendiente);
+
 
 router.post(
         '/newServicio', 

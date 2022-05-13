@@ -187,7 +187,7 @@ const crearServicio = async ( req, res = response) => {
 
     const servicio = new Servicio ( req.body );
 
-    const {operario} = req.body;
+    const {operario, expediente} = req.body;
 
     
    
@@ -199,14 +199,20 @@ const crearServicio = async ( req, res = response) => {
 
         servicio.user = req.uid;
         
+        if(expediente){
+            return res.status(400).json({
+                ok: false,
+                msg: 'El Expediente ya existe'
+            });
+        }
 
         const servicioGuardado = await servicio.save();
 
-        res.json({
-            ok: true,
-            servicio: servicioGuardado
-        });
-        
+            res.json({
+                ok: true,
+                servicio: servicioGuardado
+            });
+
     } catch (error) {
 
         console.log(error)
