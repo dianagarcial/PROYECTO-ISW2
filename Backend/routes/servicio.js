@@ -7,7 +7,7 @@ const { check } = require('express-validator');
 
 const { isDate } = require('../helpers/isDate');
 const { validarCampos } = require('../middlewares/validarCampos');
-const { getdetOperario, getServiciosOpera, getdetOperarioPendiente,getServiciosDiarios, getServiciosAsegura, getServicios, crearServicio,getdetServicio} = require('../controllers/servicio');
+const { getSaldoOperario, getdetOperario, getServiciosOpera, getdetOperarioPendiente,getServiciosDiarios, getServiciosAsegura, getServicios, crearServicio,getdetServicio} = require('../controllers/servicio');
 // const { validarJWT } = require('../middlewares/validarJWT');
 
 
@@ -33,6 +33,8 @@ router.get('/detServicio/:_id', getdetServicio);
 //
 router.get('/detOpePen/:operario', getdetOperarioPendiente);
 
+//
+router.get('/saldoOperario', getSaldoOperario);
 
 router.post(
         '/newServicio', 

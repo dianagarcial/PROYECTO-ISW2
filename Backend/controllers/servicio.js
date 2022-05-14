@@ -225,6 +225,42 @@ const crearServicio = async ( req, res = response) => {
 
 }
 
+const getSaldoOperario = async ( req, res = response ) => {
+
+    const operario = req.params.operario;
+    console.log(operario)
+    try {
+        
+        const serOpe = await Servicio.aggregate([
+            
+            {$project: { operario:1,valor:1}},
+                {
+                  $group: { _id: "$operario", suma:{$sum:'$valor' },  records: { $push: "$$ROOT",}}
+                }
+              ],)
+
+
+        res.json({
+            ok: true,
+            serOpe
+        });
+
+    } catch (error) {
+
+        console.log(error)
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+        
+    }
+
+}
+
+
+
+
+
 
 module.exports = {
     getServicios,
@@ -234,5 +270,6 @@ module.exports = {
     getdetOperarioPendiente,
     getServiciosOpera,
     getdetOperario,
-    getdetServicio
+    getdetServicio,
+    getSaldoOperario
 }
