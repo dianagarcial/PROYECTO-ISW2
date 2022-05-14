@@ -235,7 +235,7 @@ const getSaldoOperario = async ( req, res = response ) => {
             
             {$project: { operario:1,valor:1}},
                 {
-                  $group: { _id: "$operario", suma:{$sum:'$valor' },  records: { $push: "$$ROOT",}}
+                  $group: { _id: "$operario", saldo:{$sum:'$valor' }}
                 }
               ],)
 
