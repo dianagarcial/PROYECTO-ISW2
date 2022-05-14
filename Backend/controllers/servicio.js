@@ -294,6 +294,35 @@ const actualizarEstado = async( req, res = response ) => {
 }
 
 
+const getServiciosPorId = async( req, res = response ) => {
+    
+    const idServicio =req.params._id ;
+    
+    console.log(idServicio)
+
+    try {
+        
+        const serviciosId = await Servicio.findById( idServicio);
+            // {aseguradoraNombre:1, expediente:1 , tipoServicio:1, fecha:1, valor:1,nombreAsegurado:1,placaAsegurado:1});
+
+        //VALIDAR CUANDO ESTE VACIO
+   
+        res.json({
+            ok: true,
+            serviciosId
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.json({
+            ok: false,
+            msg:'Hable con el administrador'
+        });
+    }
+
+    
+
+}
 
 
 module.exports = {
@@ -306,5 +335,6 @@ module.exports = {
     getdetOperario,
     getdetServicio,
     getSaldoOperario,
-    actualizarEstado
+    actualizarEstado,
+    getServiciosPorId
 }
