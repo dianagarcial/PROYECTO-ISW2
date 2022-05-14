@@ -227,15 +227,14 @@ const crearServicio = async ( req, res = response) => {
 
 const getSaldoOperario = async ( req, res = response ) => {
 
-    const operario = req.params.operario;
-    console.log(operario)
+   
     try {
         
         const serOpe = await Servicio.aggregate([
-            
-            {$project: { operario:1,valor:1}},
+
+        //  {$project: { operario:1,valor:1,fecha:1}},
                 {
-                  $group: { _id: "$operario", saldo:{$sum:'$valor' }}
+                  $group: { _id: "$operario", suma:{$sum:'$valor' },  servicios: { $push: "$$ROOT",}}
                 }
               ],)
 
