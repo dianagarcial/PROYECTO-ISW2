@@ -5,7 +5,10 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validarCampos');
-const { getOperarios,getOperarioCedula,getOperarioCedulaparam,getOperarioUsuarioparam,getOperarioId,getOperarioNombre,crearOperario,loginOperario, revalidarToken} = require('../controllers/operario');
+const { getOperarios,getOperarioCedula,getOperarioCedulaparam,
+    getOperarioUsuarioparam,getOperarioId,getOperarioNombre,
+    crearOperario,loginOperario, revalidarToken, actualizarEstadoOpe} = require('../controllers/operario');
+    
 const { validarJWT } = require('../middlewares/validarJWT');
 
 const router = Router();
@@ -49,6 +52,8 @@ router.post(
 
 
 router.get('/renew', validarJWT ,revalidarToken );
+
+router.put('/:id/:nuevoEstado', actualizarEstadoOpe);
 
 
 module.exports = router;

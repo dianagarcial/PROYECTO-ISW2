@@ -256,7 +256,42 @@ const getSaldoOperario = async ( req, res = response ) => {
 
 }
 
+const actualizarEstado = async( req, res = response ) => {
+    
+    const servicioId = req.params.id;
+    
+    try {
 
+        const servicio = await Servicio.findById( servicioId );
+
+        if ( !servicio ) {
+            return res.status(404).json({
+                ok: false,
+                msg: 'Servicio no existe por ese id'
+            });
+        }
+
+        const nuevoEstado = req.params.nuevoEstado;
+        
+        const estadoServicio = {"estadoServicio": nuevoEstado};
+
+        const estadoActualizado = await Servicio.findByIdAndUpdate( servicioId, estadoServicio, { new: true } );
+
+        res.json({
+            ok: true,
+            servicio: estadoActualizado
+        });
+
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
+
+}
 
 
 
@@ -270,5 +305,6 @@ module.exports = {
     getServiciosOpera,
     getdetOperario,
     getdetServicio,
-    getSaldoOperario
+    getSaldoOperario,
+    actualizarEstado
 }

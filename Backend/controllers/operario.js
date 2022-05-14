@@ -188,6 +188,45 @@ const revalidarToken = async (req, res = response ) => {
     })
 }
 
+const actualizarEstadoOpe = async( req, res = response ) => {
+    
+    const operarioId = req.params.id;
+    
+
+    try {
+
+        const operario = await Operario.findById( operarioId );
+
+        if ( !operarioId ) {
+            return res.status(404).json({
+                ok: false,
+                msg: 'Operario no existe por ese id'
+            });
+        }
+
+
+        const nuevoEstado = req.params.nuevoEstado;
+
+        const estadoDia = {"estado": nuevoEstado}
+
+        const estadoActualizado = await Operario.findByIdAndUpdate( operarioId, estadoDia, { new: true } );
+
+        res.json({
+            ok: true,
+            estado: estadoActualizado
+        });
+
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
+
+}
+
 
 module.exports = {
     getOperarios,
@@ -198,5 +237,6 @@ module.exports = {
     crearOperario,
     loginOperario,
     revalidarToken,
-    getOperarioNombre
+    getOperarioNombre,
+    actualizarEstadoOpe
 }
