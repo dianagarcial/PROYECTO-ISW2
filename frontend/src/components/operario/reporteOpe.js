@@ -10,8 +10,13 @@ import {convertToCurrency} from '../../funciones/convertir'
 export const ReporteServicio = () => {
 
   
+  const cont=0;
   const [operario, setOperario] = useState('');
   const [servicio, setServicio] = useState('');
+  const [valorCobrar, setValorCobrar] = useState('');
+  const [susServicios, setSusservicios] = useState('');
+  const [serviPagado, setServipagado] = useState('');
+  
 
   const mostrarDPersonal = async()=>{
     const value= sessionStorage.getItem('uid');
@@ -31,6 +36,49 @@ export const ReporteServicio = () => {
      
      
     
+  
+  }
+
+  const mostrardatosid= async()=>{
+    let valores;
+    let valor;
+      const token = sessionStorage.getItem('token')
+
+      const respuesta = await Axios.get('/api/servicio/saldoOperario/',{
+        headers : {'x-token': token}
+    })
+    
+       console.log(respuesta.data.serOpe)
+      setValorCobrar(respuesta.data.serOpe)
+
+      valorCobrar && valorCobrar.length>0 && valorCobrar.map((item)=>{
+        const valueid= sessionStorage.getItem('uid');
+              
+        if(item._id===valueid){
+
+          setSusservicios(item.servicios)
+          console.log(item.servicios)
+     
+        }
+    })
+  
+    susServicios && susServicios.length>0 && susServicios.map((item)=>{
+      
+      if(item.estadoServicio==true){
+     
+        console.log(item.valor)
+      
+      }
+      
+      console.log(item.valor)
+      
+      
+    }
+   
+
+  )
+  
+  console.log(valores)
   
   }
   //BUSCAR LOS OPERARIOS
@@ -63,6 +111,7 @@ export const ReporteServicio = () => {
   useEffect(() => {
     mostrarDPersonal()
     mostarServicoOpe()
+    mostrardatosid()
   }, [])
   return (
     
@@ -72,7 +121,10 @@ export const ReporteServicio = () => {
     <h1>Operario: {operario.nombre_completo}</h1>
     <h2>Aqui se encuentran todos los servicios realizados para el operario</h2>
     <div class="cajCabTot">
-  <h4>Total a cobrar: $XXX.XXX</h4>
+    {
+      
+    }
+  
   <div class='ver'>
     <a href='/#' class="verm" >Descargar cuenta</a>
   </div>
@@ -165,6 +217,8 @@ export const ReporteServicio = () => {
 
                     </tr>
                     {servicio && servicio.length>0 && servicio.map((item)=>{
+                     
+                     if(item.estadoServicio !='N'){
                      return  <tr class="tcentrar">
                      <td class='tcentrar'>  {item.aseguradoraNombre}  </td>
                      <td class='tcentrar'>  {item.expediente}  </td>
@@ -173,7 +227,7 @@ export const ReporteServicio = () => {
                      <td class='tcentrar'>  {convertToCurrency(item.valor)}  </td>
                    
                      </tr>
-                 
+                  }
                    
                   })}
 
