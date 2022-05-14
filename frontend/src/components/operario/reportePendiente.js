@@ -109,7 +109,7 @@ export const ReportePendiente = () => {
                     </tr>
                     {servicio && servicio.length>0 && servicio.map((item)=>{
                       
-                        
+                        if(item.estadoServicio==='N'){
                      
                      return  <tr class="tcentrar">
                      <td class='tcentrar'>  {item.aseguradoraNombre}  </td>
@@ -119,7 +119,7 @@ export const ReportePendiente = () => {
                      <td class='tcentrar'>  {convertToCurrency(item.valor)}  </td>
                      <td class='tcentrar'><a className='logout-button' href={item._id ? "/verServicio/?_id=" + item._id : ""}>Detalles</a>  </td>
                      </tr>
-                 
+                 }
                 
                   })}
 
