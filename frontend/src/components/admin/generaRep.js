@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // import { useAuth } from '../../context/AuthContext';
@@ -7,13 +7,20 @@ import '../../Styles/conServ.css'
 import '../../Styles/tablas.css'
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
-
+import Axios from 'axios';
 
 export const GeneraReporte = () => {
   // const { logout, currentUser } = useAuth();
   const history = useHistory();
-
+  
   const [error, setError] = useState('');
+  const [aseguradoras,setaseguradoras]=useState([])
+  const [mese,setMes]=useState([])
+  const [operarios,setOperarios]=useState([])
+  const [operariosd,setOperariosd]=useState([])
+  
+ 
+
 
 
   // const handleLogout = async () => {
@@ -38,6 +45,25 @@ export const GeneraReporte = () => {
       history.push('/busca');
     
   }
+
+  const obtenerOperarios=async () =>{
+  
+    const token=sessionStorage.getItem('token')
+    const res=await Axios.get('/api/operario/listaOperarios',{
+      headers: {'x-token':token}
+    })
+  
+    setOperarios(res.data.operarios)
+    
+  }
+  
+
+  useEffect(() => {
+    setaseguradoras(['Suramericana','Bolivar','A365','iKEA','GEA Colombia', 'Assiprex'])
+    setMes(['enero','febrero','merzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre', 'diciembre'])
+    obtenerOperarios();
+    console.log(operarios)
+  })
   return (
     
     <div>
@@ -52,25 +78,31 @@ export const GeneraReporte = () => {
   <div class="cajCab2">
   <label class="replabel">Mes*      </label>
   <select class="busRep"name="select">
-            <option value="value1">Value 1</option>
-            <option value="value2" selected>Value 2</option>
-            <option value="value3">Value 3</option>
+  {
+            aseguradoras.map(item=>(
+              <option key={item}>{item}</option>
+            ))
+          }
           </select>
   </div>
   <div class="cajCab2">
   <label class="replabel">Aseguradora</label>
   <select class="busRep"name="select">
-            <option value="value1">Value 1</option>
-            <option value="value2" selected>Value 2</option>
-            <option value="value3">Value 3</option>
+  {
+            mese.map(item=>(
+              <option key={item}>{item}</option>
+            ))
+          }
           </select>
   </div>
   <div class="cajCab2">
   <label class="replabel">Operario  </label>
   <select class="busRep"name="select">
-            <option value="value1">Value 1</option>
-            <option value="value2" selected>Value 2</option>
-            <option value="value3">Value 3</option>
+  {
+            aseguradoras.map(item=>(
+              <option key={item}>{item}</option>
+            ))
+          }
           </select>
   </div>
   </div>

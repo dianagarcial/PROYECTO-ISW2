@@ -1,6 +1,6 @@
 import '../Styles/login.css'
 import '../Styles/index.css'
-
+import Nav from './nav'
 
 
 
@@ -10,7 +10,7 @@ export const Index = () => {
 
   return (
     <div>
-      
+    <Nav></Nav>  
     <div class="fondoLog">
     <div class="combologi">
     <div class='plan'>
@@ -20,8 +20,8 @@ export const Index = () => {
      
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/8xcNfmv/ajustes.png" alt="imagen"/>
-      <h2>Administrador</h2>
+      <img class="imgaseg" src="https://i.ibb.co/svk22TM/agente-de-servicio-al-cliente.png" alt="imagen"/>
+      <h2 class='linkl'>Administrador</h2>
       </div>
       </a>
 
@@ -34,8 +34,8 @@ export const Index = () => {
      
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/gRvd1h5/conductor.png "alt="imagen"/>
-      <h2>Operario</h2>
+      <img class="imgaseg" src="https://i.ibb.co/Y8MC1XV/conductor-2.png" alt="imagen"/>
+      <h2 class='linkl'>Operario</h2>
       </div>
       </a>
 

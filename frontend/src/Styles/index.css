@@ -4,10 +4,22 @@
     width: 100%;
 }
 .reIndex {
-    background: #EDEDED;
+    background: #000;;
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     border-radius: 20px;
     padding: 2%;
     width: 35%;
+}
+.linkl{
+    
+        font-size: 4vh;
+        color: #fff;
+        margin: 1em;
+        text-align: center;
+        font-weight: bold;
+        font-family: Open Sans;
+        font-style: normal;
+        text-decoration: none;
+    
 }
