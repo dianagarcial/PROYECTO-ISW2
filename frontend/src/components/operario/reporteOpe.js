@@ -41,10 +41,10 @@ export const ReporteServicio = () => {
   
   }
 
-  
-
   const mostrardatosid= async()=>{
-  const token = sessionStorage.getItem('token')
+    let acum=0;
+    let valor;
+      const token = sessionStorage.getItem('token')
 
       const respuesta = await Axios.get('/api/servicio/saldoOperario/',{
         headers : {'x-token': token}
@@ -52,26 +52,21 @@ export const ReporteServicio = () => {
     
        console.log(respuesta.data.serOpe)
       setValorCobrar(respuesta.data.serOpe)
-      const res=respuesta.data.serOpe
-      res && res.length>0 && res.map((item)=>{
-        const valueid= sessionStorage.getItem('uid'); 
+
+      valorCobrar && valorCobrar.length>0 && valorCobrar.map((item)=>{
+        const valueid= sessionStorage.getItem('uid');
               
-        if(item._id===valueid){ 
+        if(item._id===valueid){
 
           setSusservicios(item.servicios)
           console.log(item.servicios)
-          valorCom(item.servicios)
-      
+     
         }
     })
+  
+    susServicios && susServicios.length>0 && susServicios.map((item)=>{
       
-  }
-  const valorCom=(susServicio)=>{
-    console.log(susServicio)  
-    let acum=0;
-    susServicio && susServicio.length>0 && susServicio.map((item)=>{
-      
-      if(item.estadoServicio==false){ 
+      if(item.estadoServicio==true){ 
      
         console.log(item.valor)
         acum+=item.valor; 
@@ -83,8 +78,11 @@ export const ReporteServicio = () => {
   )
   console.log(acum)
   setValores(acum)
+  
  
+  
   }
+  
 
   //BUSCAR LOS OPERARIOS
   const mostarServicoOpe= async()=>{
@@ -133,7 +131,7 @@ export const ReporteServicio = () => {
     mostrarDPersonal()
     mostarServicoOpe()
     mostrardatosid()
-    valorCom()
+  
     
    
   }, [])
@@ -144,17 +142,14 @@ export const ReporteServicio = () => {
     <div class="contServ" id='contServ'>
     <h1>Operario: {operario.nombre_completo}</h1>
     <h2>Aqui se encuentran todos los servicios realizados para el operario</h2>
-    <div class="cajCabTot">
-    {
-      
-    }
+    
    <div class="cajCabTot">
   <h4>Total a cobrar:{valorTotal}</h4>
   <div class='ver'>
   <button  onClick={()=>exportPDF()}>descargar</button>
 
 
- </div>
+
     </div>
     </div>
   <h1>Información personal</h1>  

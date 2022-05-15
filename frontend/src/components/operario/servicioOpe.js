@@ -75,9 +75,9 @@ export const VerServicio = () => {
     
     Swal.fire({
       icon: 'success',
-      title: 'Servicio registrado exitosamente',
+      title: 'Se actualizo el exito del servicio con exito',
       showConfirmButton: false,
-      timer: 1500
+      timer: 2000
       
     });
     //FALTA REDIRECCION

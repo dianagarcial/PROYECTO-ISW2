@@ -78,6 +78,13 @@ export const RegistraServicio = () => {
   console.log(res.data)
 
   const aux= res.data.operarios;
+  const estado=res.data.operarios;
+  
+  const estados= estado.map(function(item){
+    return item.estado
+  })
+
+  console.log(estados)
   console.log(aux)
   const nombresOpera= aux.map(function(item){
     return item.nombre_completo
