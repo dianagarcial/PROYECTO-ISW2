@@ -78,7 +78,7 @@ export const ReportePendiente = () => {
     <h2>Aqui se encuentran los servicios que se le han asignado y se encuentran por realizar</h2>
  
   <div class="cajCab1">
-  <h1>David Sanchez</h1>
+  <h1>{operario.nombre_completo}</h1>
   </div>
   
 

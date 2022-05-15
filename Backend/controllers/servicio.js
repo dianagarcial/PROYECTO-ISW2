@@ -109,7 +109,7 @@ const getdetOperario = async ( req, res = response ) => {
     console.log(operario)
     try {
         
-        const serOpe = await Servicio.find({operario},{aseguradoraNombre:1, tipoServicio:1,expediente:1,estadoServicio:1, valor:1} );
+        const serOpe = await Servicio.find({operario},{aseguradoraNombre:1, tipoServicio:1,expediente:1,estadoServicio:1, valor:1, fecha:1} );
                                             
 
         res.json({
@@ -232,11 +232,21 @@ const getSaldoOperario = async ( req, res = response ) => {
         
         const serOpe = await Servicio.aggregate([
 
-        //  {$project: { operario:1,valor:1,fecha:1}},
-                {
-                  $group: { _id: "$operario", suma:{$sum:'$valor' },  servicios: { $push: "$$ROOT",}}
-                }
-              ],)
+            {$project: { 
+                operario:1,
+                valor:1,
+                fecha:1,
+                estadoServicio:{            
+               $eq:['$estadoServicio','N']
+            
+           }
+       }
+       },
+              
+                   {
+                     $group: {  _id: "$operario", saldo:{$sum:'$valor' },  servicios: { $push: "$$ROOT",}}
+                   }
+                 ],)
 
 
         res.json({

@@ -7,10 +7,14 @@ import Axios from 'axios';
 import {convertToCurrency} from '../../funciones/convertir'
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-
+const moment = require('moment');
+// const moments = require('moment-range');
 export const ReporteServicio = () => {
 
-  
+  const fecha = new Date();
+    const mesActual = fecha.getMonth(); 
+    const mes=['enero','febrero','merzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre', 'diciembre']
+    
   const cont=0;
   const [operario, setOperario] = useState('');
   const [servicio, setServicio] = useState('');
@@ -19,7 +23,13 @@ export const ReporteServicio = () => {
   const [serviPagado, setServipagado] = useState('');
   const[valorTotal,setValores]=useState('');
   
+  const primerDiaMes = moment().subtract('months').startOf('month').format('MM')
+    console.log(primerDiaMes);
 
+    const ultimoDiaMes = moment().subtract('months').endOf('month').format('DD-MM-YYYY')
+    console.log(ultimoDiaMes);
+
+    // const range = moments().range(primerDiaMes, ultimoDiaMes);
   const mostrarDPersonal = async()=>{
     const value= sessionStorage.getItem('uid');
     
@@ -42,35 +52,44 @@ export const ReporteServicio = () => {
   }
 
   const mostrardatosid= async()=>{
-    let acum=0;
-    let valor;
+   
+    let valor;   
       const token = sessionStorage.getItem('token')
 
       const respuesta = await Axios.get('/api/servicio/saldoOperario/',{
-        headers : {'x-token': token}
+        headers : {'x-token': token} 
     })
     
-       console.log(respuesta.data.serOpe)
+       console.log(respuesta.data.serOpe) 
       setValorCobrar(respuesta.data.serOpe)
+    }
 
-      valorCobrar && valorCobrar.length>0 && valorCobrar.map((item)=>{
-        const valueid= sessionStorage.getItem('uid');
-              
-        if(item._id===valueid){
 
+    const busqdata = (cobro,servicio) => { 
+    let acum=0;
+ 
+      cobro && cobro.length>0 && cobro.map((item)=>{
+        const valueid= sessionStorage.getItem('uid'); 
+                
+        if(item._id===valueid){   
+            
           setSusservicios(item.servicios)
-          console.log(item.servicios)
+          console.log(item.servicios) 
+          
      
         }
     })
   
-    susServicios && susServicios.length>0 && susServicios.map((item)=>{
-      
-      if(item.estadoServicio==true){ 
+    servicio && servicio.length>0 && servicio.map((item)=>{
+      let fechad =moment(item.fecha).format('MM') 
+      if(item.estadoServicio==false && fechad === primerDiaMes){ 
      
+        console.log(fechad)
         console.log(item.valor)
-        acum+=item.valor; 
-      }
+        acum+=(item.valor); 
+     
+
+    }
    
     }
     
@@ -78,7 +97,11 @@ export const ReporteServicio = () => {
   )
   console.log(acum)
   setValores(acum)
-  
+  if(acum===0){
+    document.getElementById('valorsito').innerHTML=' '
+  }else{
+  document.getElementById('valorsito').innerHTML=convertToCurrency(acum)
+}
  
   
   }
@@ -113,9 +136,7 @@ export const ReporteServicio = () => {
   }
   const exportPDF=()=>{
     const input =document.getElementById('contServ')
-    const fecha = new Date();
-    const mesActual = fecha.getMonth(); 
-    const mes=['enero','febrero','merzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre', 'diciembre']
+    
     html2canvas(input,{logging:true, letterRendering: 1,useCORS:true}).then(canvas =>{
       const imgWidth=200;
       const imgHeight=canvas.height*imgWidth/canvas.width;
@@ -130,8 +151,10 @@ export const ReporteServicio = () => {
   useEffect(() => {
     mostrarDPersonal()
     mostarServicoOpe()
+    busqdata(valorCobrar,susServicios)
+ 
+
     mostrardatosid()
-  
     
    
   }, [])
@@ -144,7 +167,8 @@ export const ReporteServicio = () => {
     <h2>Aqui se encuentran todos los servicios realizados para el operario</h2>
     
    <div class="cajCabTot">
-  <h4>Total a cobrar:{valorTotal}</h4>
+  <button onClick={()=>busqdata(valorCobrar,susServicios)}>Conoce el valor a cobrar por el mes de {mes[mesActual]}</button>
+  <h4 id='valorsito'> </h4>
   <div class='ver'>
   <button  onClick={()=>exportPDF()}>descargar</button>
 
@@ -239,12 +263,13 @@ export const ReporteServicio = () => {
 
                     </tr>
                     {servicio && servicio.length>0 && servicio.map((item)=>{
-                     
-                     if(item.estadoServicio !='N'){
+                      let fechad =moment(item.fecha).format('MM') 
+                     if(item.estadoServicio !='N' && fechad===primerDiaMes){
                      return  <tr class="tcentrar">
                      <td class='tcentrar'>  {item.aseguradoraNombre}  </td>
                      <td class='tcentrar'>  {item.expediente}  </td>
                      <td class='tcentrar'>  {busEstados(item.estadoServicio)}  </td>
+                     <td class='tcentrar'>  {item.fecha}  </td>
                      <td class='tcentrar'>  {item.tipoServicio}  </td>
                      <td class='tcentrar'>  {convertToCurrency(item.valor)}  </td>
                    
