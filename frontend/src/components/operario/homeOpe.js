@@ -10,6 +10,8 @@ import '../../Styles/conServ.css'
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
 import '../../Styles/btn.css'
+import Axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 export const HomeOperario = () => {
@@ -17,31 +19,60 @@ export const HomeOperario = () => {
   const history = useHistory();
 
   
+  const [operario, setOperario] = useState([]);
+  const [estado, setEstado] = useState('');
+  const mostrarDPersonal = async()=>{
+    const value= sessionStorage.getItem('uid');
+        console.log(value)
+ 
+      const token = sessionStorage.getItem('token')
 
-
-
-  function verificarActivo(){
-
-let input = document.getElementById('switch-label');
-let button = document.getElementById("serviciobtn");
-button.disabled = true;
-input.addEventListener("change", stateHandle);
-function stateHandle() {
-  if (input.checked) {
-    button.disabled = false; 
-  } else {
-    button.disabled = true;
+      const respuesta = await Axios.get('/api/operario/idOperario/'+value,{
+        headers : {'x-token': token}
+    })
+    
+      console.log(respuesta.data.opeId.estado)
+      setEstado(respuesta.data.opeId.estado)
+      
+     
   }
-}
 
+  const actualizarEstado=async () =>{
+   // e.preventDefault();
+    
+    const value= sessionStorage.getItem('uid');
+    
+   
+   
+    const token = sessionStorage.getItem('token')
+    const res=await Axios.put('/api/operario/'+value+'/'+estado,{
+      headers: {'token':token}
+    })
+    const ok =res.data.ok
+    //console.log(ok)
     
   }
 
-  function veractividad(){
+  function verificarActivo(estado){
     
+    actualizarEstado()
+    let input = document.getElementById('switch-label');
+    let button = document.getElementById("serviciobtn");
+    // input.addEventListener("change", stateHandle);
+    // function stateHandle() {
+    //   if (input.checked) {
+    //     setEstado('A')
+    //     button.disabled = false; 
+    //   } else {
+    //     setEstado('O')
+    //     button.disabled = true;
+    //   }
+    //  }
+        
   }
 
 
+ 
   const conServicio = async (e) => {
     e.preventDefault();
     
@@ -57,7 +88,10 @@ function stateHandle() {
   }
 
   useEffect(() => {
-    verificarActivo()
+    mostrarDPersonal()
+    
+
+
   }, [])
   return (
     
@@ -71,7 +105,11 @@ function stateHandle() {
             
         </div>
         <div class="cajCabTot1">
-  <h1 class="h1bot">Estado</h1>
+  <h1 class="h1bot">Estado </h1>
+  {verificarActivo(operario.estado)}
+
+ 
+
   <div class='ver'>
   <div class="switch-button">
  

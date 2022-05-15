@@ -8,7 +8,7 @@ import '../../Styles/conServ.css'
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
 import Axios from 'axios';
-
+import Swal from 'sweetalert2';
 
 export const VerServicio = () => {
   // const { logout, currentUser } = useAuth();
@@ -16,6 +16,9 @@ export const VerServicio = () => {
 
   const [error, setError] = useState('');
   const [servicio, setServicio] = useState('');
+  const [estado,setestado]=useState([])
+  const [estadoSel,setaestadoSel]=useState([])
+  const [estadoServicio,setestadoServicio]=useState('')
 
   const mostarServicoOpe= async()=>{
     const valores = window.location.search;
@@ -28,11 +31,11 @@ export const VerServicio = () => {
     const token = sessionStorage.getItem('token')
     // const valor= 'ObjectId('+values+')'
     
-    const respuesta = await Axios.get('/api/servicio/detServicio/' + values ,{
+    const respuesta = await Axios.get('/api/servicio/servicioID/' + values ,{
       headers : {'x-token': token}
   })
-  console.log(respuesta.data);
-  setServicio(respuesta.data.serOpe);
+  console.log(respuesta.data.serviciosId);
+  setServicio(respuesta.data.serviciosId);
 
     
   }
@@ -47,9 +50,51 @@ export const VerServicio = () => {
     
   }
 
+  const actualizarEstado=async (e) =>{
+    e.preventDefault();
+
+    
+    const servicio= {
+      estadoServicio:estadoSel  
+      
+    };   
+
+    console.log(servicio)
+   
+    const valores = window.location.search;
+   
+    const values = valores.substring(5);
+    console.log(values)
+    
+    const token = sessionStorage.getItem('token')
+    const res=await Axios.put('/api/servicio/'+values+'/'+servicio,{
+      headers: {'token':token}
+    })
+    const ok =res.data.ok
+    console.log(ok)
+    
+    Swal.fire({
+      icon: 'success',
+      title: 'Servicio registrado exitosamente',
+      showConfirmButton: false,
+      timer: 1500
+      
+    });
+    //FALTA REDIRECCION
+    console.log(estadoSel)
+    window.Location.href('/reportePendiente')
+
+   // e.target.reset();//Se limpia el formulario
+    
+
+  
+
+}
+
   useEffect(() => {
 
     mostarServicoOpe()
+    
   }, [])
 
 
@@ -63,7 +108,23 @@ export const VerServicio = () => {
     <div class="contServ">
     <h1>Revision de un servicio</h1>
     <h2>Revisa la informacion del servicio </h2>
+    <div class='hori'>
+    <h2>Cambiar el estado del servicio</h2>
+    <form onSubmit={actualizarEstado} class='est' >
+    
+    <select class="cajonsel" type="text" onChange={(e)=>setaestadoSel(e.target.value)}>
+  <option value="N">Pendiente</option>
+  <option value="F">Fallido</option>
+  <option value="C">Completado</option>
+</select>
+<input class="desRep" type='submit' value='Aceptar' />
+        
+          </form>
+    
+          </div>
    
+ 
+ 
     <div class="cajCab1">
           <div class="cabeBusq">
            <h1>Detalles aseguradora</h1>
@@ -79,11 +140,11 @@ export const VerServicio = () => {
   <table >
     <tr >
     <td class="enu"> <label>Aseguradora</label></td>
-    <td><select class="cajonform" type="text" name="tservicio"></select></td>
+    <td class="cajonform" type="text">{servicio.aseguradoraNombre}</td>
     </tr>
     <tr >
     <td class="enu"> <label>Expediente</label></td>
-    <td><input class="cajonform" type="text" name="tservicio"></input></td>
+    <td class="cajonform" type="text" >{servicio.expediente}</td>
     </tr>
        
   </table>
@@ -95,11 +156,11 @@ export const VerServicio = () => {
   <table >
     <tr>
     <td class="enu"> <label>Licencia Click</label></td>
-    <td><input class="cajonform" type="text" name="tservicio"></input></td>
+    <td class="cajonform" type="text" >{servicio.licenciaClick}</td>
     </tr>
     <tr>
     <td class="enu"> <label>Contraseña</label></td>
-    <td><input class="cajonform" type="text" name="tservicio"></input></td>
+    <td class="cajonform" type="text" >{servicio.contraseñaClick}</td>
     </tr>
     
     
@@ -123,11 +184,11 @@ export const VerServicio = () => {
   <table >
     <tr >
     <td class="enu"> <label>Tipo</label></td>
-    <td><select class="cajonform" type="text" name="tservicio"></select></td>
+    <td class="cajonform" type="text" >{servicio.tipoServicio}</td>
     </tr>
     <tr >
     <td class="enu"> <label>Hora</label></td>
-    <td><input class="cajonform" type="text" name="tservicio"></input></td>
+    <td class="cajonform" type="text" >{servicio.hora}</td>
     </tr>
        
   </table>
@@ -139,11 +200,11 @@ export const VerServicio = () => {
   <table >
     <tr >
     <td class="enu"> <label>Origen</label></td>
-    <td><input class="cajonform" type="text" name="tservicio"></input></td>
+    <td class="cajonform" type="text" >{servicio.origen}</td>
     </tr>
     <tr >
     <td class="enu"> <label>Destino</label></td>
-    <td><input class="cajonform" type="text" name="tservicio"></input></td>
+    <td class="cajonform" type="text" >{servicio.destino}</td>
     </tr>
        
   </table>
@@ -166,12 +227,9 @@ export const VerServicio = () => {
   <table >
     <tr >
     <td class="enu"> <label>Nombre</label></td>
-    <td><input class="cajonform" type="text" name="tservicio"></input></td>
+    <td class="cajonform" type="text" >{servicio.nombreAsegurado}</td>
     </tr>
-    <tr >
-    <td class="enu"> <label>Apellido</label></td>
-    <td><input class="cajonform" type="text" name="tservicio"></input></td>
-    </tr>
+    
        
   </table>
   </div>
@@ -182,11 +240,11 @@ export const VerServicio = () => {
   <table >
     <tr >
     <td class="enu"> <label>Telefono</label></td>
-    <td><input class="cajonform" type="text" name="tservicio"></input></td>
+    <td class="cajonform" type="text" >{servicio.telefonoAsegurado}</td>
     </tr>
     <tr >
     <td class="enu"> <label>Placa</label></td>
-    <td><input class="cajonform" type="text" name="tservicio"></input></td>
+    <td class="cajonform" type="text" >{servicio.placaAsegurado}</td>
     </tr>
        
   </table>

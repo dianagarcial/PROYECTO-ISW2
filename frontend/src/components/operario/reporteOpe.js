@@ -5,7 +5,8 @@ import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
 import Axios from 'axios';
 import {convertToCurrency} from '../../funciones/convertir'
-
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 export const ReporteServicio = () => {
 
@@ -16,6 +17,7 @@ export const ReporteServicio = () => {
   const [valorCobrar, setValorCobrar] = useState('');
   const [susServicios, setSusservicios] = useState('');
   const [serviPagado, setServipagado] = useState('');
+  const[valorTotal,setValores]=useState('');
   
 
   const mostrarDPersonal = async()=>{
@@ -39,10 +41,10 @@ export const ReporteServicio = () => {
   
   }
 
+  
+
   const mostrardatosid= async()=>{
-    let valores;
-    let valor;
-      const token = sessionStorage.getItem('token')
+  const token = sessionStorage.getItem('token')
 
       const respuesta = await Axios.get('/api/servicio/saldoOperario/',{
         headers : {'x-token': token}
@@ -50,37 +52,40 @@ export const ReporteServicio = () => {
     
        console.log(respuesta.data.serOpe)
       setValorCobrar(respuesta.data.serOpe)
-
-      valorCobrar && valorCobrar.length>0 && valorCobrar.map((item)=>{
-        const valueid= sessionStorage.getItem('uid');
+      const res=respuesta.data.serOpe
+      res && res.length>0 && res.map((item)=>{
+        const valueid= sessionStorage.getItem('uid'); 
               
-        if(item._id===valueid){
+        if(item._id===valueid){ 
 
           setSusservicios(item.servicios)
           console.log(item.servicios)
-     
+          valorCom(item.servicios)
+      
         }
     })
-  
-    susServicios && susServicios.length>0 && susServicios.map((item)=>{
       
-      if(item.estadoServicio==true){
+  }
+  const valorCom=(susServicio)=>{
+    console.log(susServicio)  
+    let acum=0;
+    susServicio && susServicio.length>0 && susServicio.map((item)=>{
+      
+      if(item.estadoServicio==false){ 
      
         console.log(item.valor)
-      
+        acum+=item.valor; 
       }
-      
-      console.log(item.valor)
-      
-      
-    }
    
-
+    }
+    
+   
   )
-  
-  console.log(valores)
-  
+  console.log(acum)
+  setValores(acum)
+ 
   }
+
   //BUSCAR LOS OPERARIOS
   const mostarServicoOpe= async()=>{
     const value= sessionStorage.getItem('uid');
@@ -94,6 +99,7 @@ export const ReporteServicio = () => {
   })
   //console.log(respuesta.data.serOpe);
   setServicio(respuesta.data.serOpe);
+  console.log(respuesta.data.serOpe)
 
     
   }
@@ -107,28 +113,49 @@ export const ReporteServicio = () => {
     }
     
   }
+  const exportPDF=()=>{
+    const input =document.getElementById('contServ')
+    const fecha = new Date();
+    const mesActual = fecha.getMonth(); 
+    const mes=['enero','febrero','merzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre', 'diciembre']
+    html2canvas(input,{logging:true, letterRendering: 1,useCORS:true}).then(canvas =>{
+      const imgWidth=200;
+      const imgHeight=canvas.height*imgWidth/canvas.width;
+      const imgData =canvas.toDataURL('img/png');
+      const pdf= new jsPDF('p','mm','a4');
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save('Estado de cuenta '+mes[mesActual]+'.pdf')
+    })
+  
+}
 
   useEffect(() => {
     mostrarDPersonal()
     mostarServicoOpe()
     mostrardatosid()
+    valorCom()
+    
+   
   }, [])
   return (
     
     <div>
       <Nav></Nav>
-    <div class="contServ">
+    <div class="contServ" id='contServ'>
     <h1>Operario: {operario.nombre_completo}</h1>
     <h2>Aqui se encuentran todos los servicios realizados para el operario</h2>
     <div class="cajCabTot">
     {
       
     }
-  
+   <div class="cajCabTot">
+  <h4>Total a cobrar:{valorTotal}</h4>
   <div class='ver'>
-    <a href='/#' class="verm" >Descargar cuenta</a>
-  </div>
-    
+  <button  onClick={()=>exportPDF()}>descargar</button>
+
+
+ </div>
+    </div>
     </div>
   <h1>Información personal</h1>  
     <div class="cajCab1">
@@ -144,8 +171,8 @@ export const ReporteServicio = () => {
 
   <table >
     <tr >
-    <td> <label>Cedula</label></td>
-    <td><label>{operario.cedula}</label></td>
+    <td class='peq'> <label>Cedula</label></td>
+    <td class='gra'><label>{operario.cedula}</label></td>
     </tr>
     <tr>
     <td> <label>Nombre</label></td>

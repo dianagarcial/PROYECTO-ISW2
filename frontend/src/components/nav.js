@@ -21,7 +21,7 @@ function Nav (){
             <nav>
             <div class="nav-bar">
             <div class="imgr">                       
-            <img class="logos" src='https://i.ibb.co/J3D3BM9/logo.png'/>
+            <a href="/homeOperario"><img class="logos" src='https://i.ibb.co/J3D3BM9/logo.png'/></a>
             </div>
                 <div class="nav-nom">
                     
