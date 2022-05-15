@@ -1,6 +1,6 @@
 import '../Styles/login.css'
 import '../Styles/index.css'
-import Nav from '../components/nav';
+
 
 
 
@@ -10,7 +10,7 @@ export const Index = () => {
 
   return (
     <div>
-      <Nav></Nav>
+      
     <div class="fondoLog">
     <div class="combologi">
     <div class='plan'>

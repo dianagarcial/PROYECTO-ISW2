@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-
-import Nav from '../nav';
+import NavA from '../admin/nav';
 import '../../Styles/conServ.css'
 import '../../Styles/tablas.css'
 import '../../Styles/cajon.css'
@@ -100,7 +99,7 @@ function busEstados(estado) {
   return (
     
     <div>
-      <Nav></Nav>
+   <NavA></NavA>
     <div class="contServ">
     <h1>Reporte diario</h1>
     <h2>Los servicios realizados en las ultimas 24 horas estan aqui</h2>

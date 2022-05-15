@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import {convertToCurrency} from '../../funciones/convertir'
-
-import Nav from '../nav';
+import NavA from '../admin/nav';
 import '../../Styles/conServ.css'
 import '../../Styles/tablas.css'
 import '../../Styles/cajon.css'
@@ -73,7 +72,7 @@ export const DetOperario = () => {
   return (
     
     <div>
-      <Nav></Nav>
+       <NavA></NavA>
     <div class="contServ">
     <h1>Operario: {operario.nombre_completo}</h1>
     <h2>Aqui se encuentran todos los servicios realizados para el operario</h2>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // import { useAuth } from '../../context/AuthContext';
-import Nav from '../nav';
+import NavA from '../admin/nav';
 
 import '../../Styles/cajon.css'
 
@@ -47,7 +47,7 @@ export const Home = () => {
     
     
     <div>
-    <Nav></Nav>
+     <NavA></NavA>
    
     <div class="contenedor">
         <div class="Cajon">

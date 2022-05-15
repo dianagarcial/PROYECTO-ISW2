@@ -1,8 +1,6 @@
 import React, { useState, useEffect} from 'react';
 
-
-
-import Nav from '../nav';
+import NavA from '../admin/nav';
 import '../../Styles/conServ.css'
 import '../../Styles/tablas.css'
 import '../../Styles/cajon.css'
@@ -63,7 +61,7 @@ export const Aseguradora = () => {
   return (
     
     <div>
-      <Nav></Nav>
+      <NavA></NavA>
     <div class="contServ">
     <h1>Aseguradora: {nombreAseguradora}</h1>
     <h2>Aqui se encuentran todos los servicios realizados para esta aseguradora</h2>

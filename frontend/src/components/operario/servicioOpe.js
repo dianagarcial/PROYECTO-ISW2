@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // import { useAuth } from '../../context/AuthContext';
-import Nav from '../nav';
+import Nav from '../operario/nav';
 import '../../Styles/conServ.css'
 
 import '../../Styles/cajon.css'
@@ -17,7 +17,7 @@ export const VerServicio = () => {
   const [error, setError] = useState('');
   const [servicio, setServicio] = useState('');
   const [estado,setestado]=useState([])
-  const [estadoSel,setaestadoSel]=useState([])
+  const [estadoSel,setaestadoSel]=useState('N')
   const [estadoServicio,setestadoServicio]=useState('')
 
   const mostarServicoOpe= async()=>{
@@ -65,9 +65,9 @@ export const VerServicio = () => {
    
     const values = valores.substring(5);
     console.log(values)
-    
+    console.log(estadoSel)
     const token = sessionStorage.getItem('token')
-    const res=await Axios.put('/api/servicio/'+values+'/'+servicio,{
+    const res=await Axios.put('/api/servicio/'+values+'/'+estadoSel,{
       headers: {'token':token}
     })
     const ok =res.data.ok
@@ -82,7 +82,8 @@ export const VerServicio = () => {
     });
     //FALTA REDIRECCION
     console.log(estadoSel)
-    window.Location.href('/reportePendiente')
+    window.location.href = '/homeOperario'
+    
 
    // e.target.reset();//Se limpia el formulario
     

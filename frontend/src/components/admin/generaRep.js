@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // import { useAuth } from '../../context/AuthContext';
-import Nav from '../nav';
+import NavA from '../admin/nav';
 import '../../Styles/conServ.css'
 import '../../Styles/tablas.css'
 import '../../Styles/cajon.css'
@@ -41,7 +41,7 @@ export const GeneraReporte = () => {
   return (
     
     <div>
-      <Nav></Nav>
+       <NavA></NavA>
     <div class="contServ">
     <h1>Generar reportes</h1>
     <h2>En esta sección se pueden generar reportes segun las nececidades, seleccionando obligatoriamente el mes y generando el reporte deseado</h2>

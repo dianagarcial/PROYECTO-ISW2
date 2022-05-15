@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 //import { useAuth } from '../../context/AuthContext';
-import Nav from '../nav';
+import Nav from '../operario/nav';
 import '../../Styles/conServ.css'
 
 import '../../Styles/cajon.css'

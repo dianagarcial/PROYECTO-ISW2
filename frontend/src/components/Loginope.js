@@ -4,7 +4,7 @@ import {getEncryptEmail,decryptEmail} from '../funciones/encriptador'
 
 //import Spinner from '../spinner.svg';
 import '../Styles/login.css'
-import Nav from '../components/nav';
+
 import Axios  from 'axios';
 import Swal from 'sweetalert2';
 
@@ -74,7 +74,7 @@ export const LoginOpe = () => {
 
   return (
     <div>
-      <Nav></Nav>
+ 
     <div class="fondoLog">
     <div class="combologi">
     <div class="tilogin">

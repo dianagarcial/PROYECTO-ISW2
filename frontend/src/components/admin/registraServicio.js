@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 //import { useHistory, useState, useE} from 'react-router-dom';
 //import { useAuth } from '../../context/AuthContext';
-import Nav from '../nav';
+import NavA from '../admin/nav';
 import '../../Styles/conServ.css'
 import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
@@ -38,15 +38,15 @@ export const RegistraServicio = () => {
   
   
   const [operario,setCedula]=useState('')
-  // const [cedulas,setCedulas]=useState([])
+  const [cedulas,setCedulas]=useState([])
 
   
-  //const [operarios,setOperarios]=useState([]);
-  //const [nombreOpe,setNombreOpe]=useState('');
+  const [operarios,setOperarios]=useState([]);
+  const [nombreOpe,setNombreOpe]=useState('');
 
 
   useEffect(() => {
-    // obtenerOperarios();
+    obtenerOperarios();
     setestadoServicio('N');
     //busqCedula();
     valorRes();
@@ -68,22 +68,24 @@ export const RegistraServicio = () => {
 
 
   // }
-  // const obtenerOperarios=async () =>{
-  // const token=sessionStorage.getItem('token')
-  // const res=await Axios.get('/api/operario/listaOperarios',{
-  //   headers: {'x-token':token}
-  // })
+  const obtenerOperarios=async () =>{
+  const token=sessionStorage.getItem('token')
+  const res=await Axios.get('/api/operario/listaOperarios',{
+    headers: {'x-token':token}
+  })
 
-  // setOperarios(res.data)
-  // console.log(res.data)
+  setOperarios(res.data)
+  console.log(res.data)
 
-  // const aux= res.data.operarios;
-  // const nombresOpera= aux.map(function(item){
-  //   return item.nombreCompleto
-  // })
+  const aux= res.data.operarios;
+  console.log(aux)
+  const nombresOpera= aux.map(function(item){
+    return item.nombre_completo
+  })
 
-  // setNombreOpe(nombresOpera)
-  // console.log(nombresOpera)
+  setNombreOpe(nombresOpera)
+  console.log(nombresOpera)
+}
 
   // const busqCedula=async () =>{
   //  const token=sessionStorage.getItem('token')
@@ -94,22 +96,24 @@ export const RegistraServicio = () => {
   //  setCedulas(res.data)
   //  console.log(res.data)
 
-  // //  const aux= res.data.operarios;
-  // //  const nombresOpera= aux.map(function(item){
-  // //    return item.nombreCompleto
-  // //  })
+  //  const aux= res.data.operarios;
+  //  const nombresOpera= aux.map(function(item){
+     
+  //    setNombreOpe(nombresOpera)
+  // console.log(nombresOpera)
+  // return item.nombreCompleto
+  //  })
 
   // }
 
-  // setNombreOpe(nombresOpera)
-  // console.log(nombresOpera)
+  
 
   
 
 
 
 
-  // }
+  
   function valorRes(sel){
     if(sel==='Familiar'){
       console.log(sel)
@@ -250,7 +254,7 @@ export const RegistraServicio = () => {
   return (
     
     <div>
-      <Nav></Nav>
+       <NavA></NavA>
       <form onSubmit={crearServicio} >
       <div id='contenidopdf'>
       
@@ -383,6 +387,9 @@ export const RegistraServicio = () => {
         <tr >
         <td class="enu"> <label>Nombre*</label></td>
         <td><input class="cajonform" type="text" onChange={(e)=>setNombreAsegurado(e.target.value)}></input></td>
+        
+        
+        
         </tr>
        
           
@@ -422,7 +429,7 @@ export const RegistraServicio = () => {
       <table >
         <tr >
         <td class="enu"> <label>Nombre*</label></td>
-        {/* <td><select class="cajonform" type="text" onChange={(e)=>asignarOpe(e.target.value)}>
+        <td><select class="cajonform" type="text" >
         {
             nombreOpe.map(item=>(
               <option key={item}>{item}</option>
@@ -430,7 +437,7 @@ export const RegistraServicio = () => {
 
             ))
           }
-          </select></td> */}
+          </select></td>
         </tr>
       
           

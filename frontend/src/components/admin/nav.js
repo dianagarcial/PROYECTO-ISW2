@@ -1,10 +1,8 @@
 
-
-
 // import { useAuth } from '../context/AuthContext';
-import '../Styles/nav.css'
+import '../../Styles/nav.css'
 
-function Nav (){
+function NavA (){
 
 
 
@@ -21,7 +19,7 @@ function Nav (){
             <nav>
             <div class="nav-bar">
             <div class="imgr">                       
-            <a href="/homeOperario"><img class="logos" src='https://i.ibb.co/J3D3BM9/logo.png'/></a>
+            <a href="/home"><img class="logos" src='https://i.ibb.co/J3D3BM9/logo.png'/></a>
             </div>
                 <div class="nav-nom">
                     
@@ -34,4 +32,4 @@ function Nav (){
     </header> 
     );
 }
-export default Nav;
+export default NavA;

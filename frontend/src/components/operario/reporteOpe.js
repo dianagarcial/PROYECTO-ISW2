@@ -1,4 +1,4 @@
-import Nav from '../nav';
+import Nav from '../operario/nav';
 import '../../Styles/conServ.css'
 import React, { useState, useEffect } from 'react';
 import '../../Styles/cajon.css'
