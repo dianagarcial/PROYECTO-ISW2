@@ -10,12 +10,13 @@ import Swal from 'sweetalert2';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
+
 export const RegistraServicio = () => {
   // const { logout, currentUser } = useAuth();
   //const history = useHistory();
 
   
-
+  let arr=[]
   const [aseguradora,setaseguradora]=useState([])
   const [aseguradoraSect,setaseguradoraSect]=useState([])
   const [expediente,setExpediente]=useState('')
@@ -38,14 +39,15 @@ export const RegistraServicio = () => {
   
   
   const [operario,setCedula]=useState('')
-  const [cedulas,setCedulas]=useState([])
+  // const [cedulas,setCedulas]=useState([])
 
   
   const [operarios,setOperarios]=useState([]);
-  const [nombreOpe,setNombreOpe]=useState('');
+  //const [nombreOpe,setNombreOpe]=useState('');
 
 
   useEffect(() => {
+    // obtenerOperarios();
     obtenerOperarios();
     setestadoServicio('N');
     //busqCedula();
@@ -68,29 +70,22 @@ export const RegistraServicio = () => {
 
 
   // }
-  const obtenerOperarios=async () =>{
-  const token=sessionStorage.getItem('token')
-  const res=await Axios.get('/api/operario/listaOperarios',{
-    headers: {'x-token':token}
-  })
+  // const obtenerOperarios=async () =>{
+  // const token=sessionStorage.getItem('token')
+  // const res=await Axios.get('/api/operario/listaOperarios',{
+  //   headers: {'x-token':token}
+  // })
 
-  setOperarios(res.data)
-  console.log(res.data)
+  // setOperarios(res.data)
+  // console.log(res.data)
 
-  const aux= res.data.operarios;
-  
-  
-  
-  let arr=[]
-  console.log(aux)
-  aux.map(function(item){
-    if(item.estado==='A'){
-    arr.push(item.nombre_completo)}
-  })
+  // const aux= res.data.operarios;
+  // const nombresOpera= aux.map(function(item){
+  //   return item.nombreCompleto
+  // })
 
-  setNombreOpe(arr)
-  console.log(arr)
-}
+  // setNombreOpe(nombresOpera)
+  // console.log(nombresOpera)
 
   // const busqCedula=async () =>{
   //  const token=sessionStorage.getItem('token')
@@ -101,24 +96,22 @@ export const RegistraServicio = () => {
   //  setCedulas(res.data)
   //  console.log(res.data)
 
-  //  const aux= res.data.operarios;
-  //  const nombresOpera= aux.map(function(item){
-     
-  //    setNombreOpe(nombresOpera)
-  // console.log(nombresOpera)
-  // return item.nombreCompleto
-  //  })
+  // //  const aux= res.data.operarios;
+  // //  const nombresOpera= aux.map(function(item){
+  // //    return item.nombreCompleto
+  // //  })
 
   // }
 
-  
+  // setNombreOpe(nombresOpera)
+  // console.log(nombresOpera)
 
   
 
 
 
 
-  
+  // }
   function valorRes(sel){
     if(sel==='Familiar'){
       console.log(sel)
@@ -130,6 +123,33 @@ export const RegistraServicio = () => {
     }
   }
 
+  const obtenerOperarios=async () =>{
+    const token=sessionStorage.getItem('token')
+    const res=await Axios.get('/api/operario/listaOperarios',{
+      headers: {'x-token':token}
+    })
+  
+    setOperarios(res.data)
+    console.log(res.data)
+  
+    const aux= res.data.operarios;
+    
+    
+    console.log(aux)
+    aux.map(function(item){
+      if(item.estado==='A'){
+      arr.push(item.cedula)}
+    })
+  
+   
+    console.log(arr)
+    for(var i in arr)
+    { 
+        document.getElementById("selnom").innerHTML += "<option value='"+arr[i]+"'>"+arr[i]+"</option>"; 
+  
+    }
+    
+  }
   
 
 
@@ -259,7 +279,7 @@ export const RegistraServicio = () => {
   return (
     
     <div>
-       <NavA></NavA>
+      <NavA></NavA>
       <form onSubmit={crearServicio} >
       <div id='contenidopdf'>
       
@@ -392,9 +412,6 @@ export const RegistraServicio = () => {
         <tr >
         <td class="enu"> <label>Nombre*</label></td>
         <td><input class="cajonform" type="text" onChange={(e)=>setNombreAsegurado(e.target.value)}></input></td>
-        
-        
-        
         </tr>
        
           
@@ -434,7 +451,7 @@ export const RegistraServicio = () => {
       <table >
         <tr >
         <td class="enu"> <label>Nombre*</label></td>
-        {/* <td><select class="cajonform" type="text" >
+        {/* <td><select class="cajonform" type="text" onChange={(e)=>asignarOpe(e.target.value)}>
         {
             nombreOpe.map(item=>(
               <option key={item}>{item}</option>
@@ -455,9 +472,11 @@ export const RegistraServicio = () => {
       <table >
         <tr >
         <td class="enu"> <label>Cedula</label></td>
-        <td><input class="cajonform" type="number" name="tservicio" onChange={(e)=>setCedula(e.target.value)}></input></td>
+        <td><select class="cajonform" id='selnom' type="text" onChange={(e)=>setCedula(e.target.value)}></select></td>
         
         </tr>
+      
+        
       
           
       </table>
@@ -498,4 +517,5 @@ export const RegistraServicio = () => {
     
   )
 }
+
 
