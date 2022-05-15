@@ -429,7 +429,7 @@ export const RegistraServicio = () => {
       <table >
         <tr >
         <td class="enu"> <label>Nombre*</label></td>
-        <td><select class="cajonform" type="text" >
+        {/* <td><select class="cajonform" type="text" >
         {
             nombreOpe.map(item=>(
               <option key={item}>{item}</option>
@@ -437,7 +437,7 @@ export const RegistraServicio = () => {
 
             ))
           }
-          </select></td>
+          </select></td> */}
         </tr>
       
           
