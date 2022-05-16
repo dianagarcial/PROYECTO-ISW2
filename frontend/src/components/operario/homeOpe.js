@@ -71,6 +71,13 @@ export const HomeOperario = () => {
         
   }
 
+  const most= () =>{
+    if(estado==='A'){
+      document.getElementById('switch-label').setAttribute('checked', 'checked')
+    }
+
+  }
+
 
  
   const conServicio = async (e) => {
@@ -108,7 +115,7 @@ export const HomeOperario = () => {
   <h1 class="h1bot">Estado </h1>
   {verificarActivo(operario.estado)}
 
- 
+ {most()}
 
   <div class='ver'>
   <div class="switch-button">
