@@ -25,7 +25,7 @@ const getServiciosAsegura = async( req, res = response ) => {
 
     try {
         
-        const serviciosAseguradora = await Servicio.find( {aseguradoraNombre:nombreAseguradora},{aseguradoraNombre:1, expediente:1 , tipoServicio:1, fecha:1, valor:1,nombreAsegurado:1,placaAsegurado:1});
+        const serviciosAseguradora = await Servicio.find( {aseguradoraNombre:nombreAseguradora},{aseguradoraNombre:1, expediente:1 , tipoServicio:1, fecha:1, valor:1,nombreAsegurado:1,placaAsegurado:1,estadoServicio:1});
 
         //VALIDAR CUANDO ESTE VACIO
    
@@ -182,12 +182,11 @@ const getdetOperarioPendiente = async ( req, res = response ) => {
     }
 
 }
-
 const crearServicio = async ( req, res = response) => {
 
     const servicio = new Servicio ( req.body );
 
-    const {operario, expediente} = req.body;
+    const {operario} = req.body;
 
     
    
@@ -199,20 +198,14 @@ const crearServicio = async ( req, res = response) => {
 
         servicio.user = req.uid;
         
-        if(expediente){
-            return res.status(400).json({
-                ok: false,
-                msg: 'El Expediente ya existe'
-            });
-        }
 
         const servicioGuardado = await servicio.save();
 
-            res.json({
-                ok: true,
-                servicio: servicioGuardado
-            });
-
+        res.json({
+            ok: true,
+            servicio: servicioGuardado
+        });
+        
     } catch (error) {
 
         console.log(error)
@@ -224,6 +217,48 @@ const crearServicio = async ( req, res = response) => {
     }
 
 }
+
+// const crearServicio = async ( req, res = response) => {
+
+//     const servicio = new Servicio ( req.body );
+
+//     const {operario, expediente} = req.body;
+
+    
+   
+//     try {
+
+//         const getIdfromOperario = await Operario.findOne({ cedula:operario });
+   
+//         servicio.operario=getIdfromOperario._id;
+
+//         servicio.user = req.uid;
+        
+//         if(expediente){
+//             return res.status(400).json({
+//                 ok: false,
+//                 msg: 'El Expediente ya existe'
+//             });
+//         }
+
+//         const servicioGuardado = await servicio.save();
+
+//             res.json({
+//                 ok: true,
+//                 servicio: servicioGuardado
+//             });
+
+//     } catch (error) {
+
+//         console.log(error)
+//         res.status(500).json({
+//             ok: false,
+//             msg: 'Hable con el administrador'
+//         });
+        
+//     }
+
+// }
 
 const getSaldoOperario = async ( req, res = response ) => {
 

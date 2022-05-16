@@ -13,7 +13,7 @@ export const ReporteServicio = () => {
 
   const fecha = new Date();
     const mesActual = fecha.getMonth(); 
-    const mes=['enero','febrero','merzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre', 'diciembre']
+    const mes=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre', 'diciembre']
     
   const cont=0;
   const [operario, setOperario] = useState('');
@@ -42,7 +42,7 @@ export const ReporteServicio = () => {
         headers : {'x-token': token}
     })
     
-       console.log(respuesta.data.opeId)
+      console.log(respuesta.data.opeId)
       setOperario(respuesta.data.opeId)
       
      
@@ -101,6 +101,7 @@ export const ReporteServicio = () => {
     document.getElementById('valorsito').innerHTML=' '
   }else{
   document.getElementById('valorsito').innerHTML=convertToCurrency(acum)
+  document.getElementById('btnvc').innerHTML='Total a cobrar por el mes de '+mes[mesActual]+' :'
 }
  
   
@@ -166,11 +167,13 @@ export const ReporteServicio = () => {
     <h1>Operario: {operario.nombre_completo}</h1>
     <h2>Aqui se encuentran todos los servicios realizados para el operario</h2>
     
-   <div class="cajCabTot">
-  <button onClick={()=>busqdata(valorCobrar,susServicios)}>Conoce el valor a cobrar por el mes de {mes[mesActual]}</button>
+   <div class="cajDatosOpe">
+   <div class="cajDa">
+  <button class='presiona'id='btnvc' onClick={()=>busqdata(valorCobrar,susServicios)}>¡Presiona para conoce el valor a cobrar por el mes de {mes[mesActual]}!</button>
   <h4 id='valorsito'> </h4>
+  </div>
   <div class='ver'>
-  <button  onClick={()=>exportPDF()}>descargar</button>
+  <button class='verbtn'  onClick={()=>exportPDF()}>Descargar</button>
 
 
 
@@ -233,7 +236,7 @@ export const ReporteServicio = () => {
   <h1>Despliegue y detalle</h1>
   
   <div class="cajCab1">
-  <h1>David Sanchez</h1>
+  <h1>{operario.nombre_completo} </h1>
   </div>
   
 
@@ -257,6 +260,7 @@ export const ReporteServicio = () => {
                         <th>Expediente</th>
                         <th>Estado</th>
                         <th>Servicio</th>
+                        <th>Fecha</th>
                         <th>Valor</th>
                        
                         
@@ -269,7 +273,7 @@ export const ReporteServicio = () => {
                      <td class='tcentrar'>  {item.aseguradoraNombre}  </td>
                      <td class='tcentrar'>  {item.expediente}  </td>
                      <td class='tcentrar'>  {busEstados(item.estadoServicio)}  </td>
-                     <td class='tcentrar'>  {item.fecha}  </td>
+                     <td class='tcentrar'>  {moment(item.fecha).format('DD-MM-YYYY')}  </td>
                      <td class='tcentrar'>  {item.tipoServicio}  </td>
                      <td class='tcentrar'>  {convertToCurrency(item.valor)}  </td>
                    

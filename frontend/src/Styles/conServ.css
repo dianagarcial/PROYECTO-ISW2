@@ -16,9 +16,9 @@ align-items: center;
 color: #000000;
 }
 .imgaseg{
-    width: 60%;
+    width: 200px;
     margin: auto;
-    height: 20%;
+    height: 70%;
     margin-top: 2em;
     margin-bottom: 2em;
 
@@ -89,4 +89,16 @@ color: #7E7E7E;
 }
 .desaparece{
     display: none;
+}
+img.ikea {
+    height: 200px;
+    width: 40%;
+    margin: auto;
+    padding: 2em;
+}
+img.asi {
+    height: 200px;
+    width: 80%;
+    margin: auto;
+    padding: 2em;
 }

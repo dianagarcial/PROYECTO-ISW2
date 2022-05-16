@@ -496,3 +496,59 @@ form.est {
     width: 60%;
     display: flex;
 }
+.cajDatosOpe {
+    width: 92%;
+    height: 200%;
+    position: relative;
+    padding: 2em;
+    background: #FFFFFF;
+    box-sizing: border-box;
+    margin-bottom: 0%;
+    font-family: Open Sans;
+    font-style: normal;
+    margin: 4em;
+    background: #FFDE31;
+    border-radius: 15px;
+    color: #FFFFFF;
+    margin-bottom: 0cm;
+    display: flex;
+    justify-content: space-between;
+}
+
+button#btnvc {
+    cursor: pointer;
+    border: #0000;
+    background-color: transparent;
+    /* height: 50px; */
+    /* width: 200px; */
+    
+    border-radius: 20px;
+    padding: 1em;
+    font-size: 1.5em;
+    box-shadow: 0 6px 6px rgb(0 0 0 / 60%);
+}
+.cajDa {
+    display: flex;
+    align-content: center;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+}
+h4#valorsito {
+    font-size: 40px;
+    color: black;
+}
+.verbtn{
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    text-decoration-line: underline;
+    color: #7E7E7E;
+    background: transparent;
+    border: transparent;
+}

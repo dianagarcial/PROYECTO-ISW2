@@ -9,6 +9,7 @@ import Axios from 'axios';
 import Swal from 'sweetalert2';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+const moment = require('moment');
 
 
 export const RegistraServicio = () => {
@@ -44,7 +45,8 @@ export const RegistraServicio = () => {
   
   const [operarios,setOperarios]=useState([]);
   //const [nombreOpe,setNombreOpe]=useState('');
-
+  
+  let hoy= moment().format('YYYY-MM-DD');
 
   useEffect(() => {
     // obtenerOperarios();
@@ -53,6 +55,7 @@ export const RegistraServicio = () => {
     //busqCedula();
     valorRes();
     
+    setTipoSel('Familiar')
     setaseguradoraSect('Suramericana')
     
     setaseguradora(['Suramericana','Bolivar','A365','iKEA','GEA Colombia', 'Assiprex'])
@@ -182,6 +185,7 @@ export const RegistraServicio = () => {
     };   
 
     console.log(servicio)
+    
     if(expediente==='' ){
       Swal.fire({
         icon: 'error',
@@ -226,6 +230,22 @@ export const RegistraServicio = () => {
       Swal.fire({
         icon: 'error',
         title: 'Por favor, digite la direccion de origen del servicio',
+        showConfirmButton: false,
+        timer: 1500
+        
+      });
+    }else if(destino===''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor, digite la direccion de origen del servicio',
+        showConfirmButton: false,
+        timer: 1500
+        
+      });
+    }else if(operario===''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor, seleccione la cedula del operario',
         showConfirmButton: false,
         timer: 1500
         
@@ -303,6 +323,7 @@ export const RegistraServicio = () => {
         <tr >
         <td class="enu"> <label>Aseguradora*</label></td>
         <td><select class="cajonform" type="text" onChange={(e)=>setaseguradoraSect(e.target.value)}>
+        
           {
             aseguradora.map(item=>(
               <option key={item}>{item}</option>
@@ -368,7 +389,7 @@ export const RegistraServicio = () => {
         </tr>
         <tr >
         <td class="enu"> <label>Fecha*</label></td>
-        <td><input class="cajonform" type="date" onChange={(e)=>setFecha(e.target.value)}></input></td>
+        <td><input class="cajonform" type="date" min={hoy} onChange={(e)=>setFecha(e.target.value)}></input></td>
         </tr>
         <tr >
         <td class="enu"> <label>Hora*</label></td>
@@ -387,7 +408,7 @@ export const RegistraServicio = () => {
         <td><input class="cajonform" type="text" onChange={(e)=>setOrigen(e.target.value)}></input></td>
         </tr>
         <tr >
-        <td class="enu"> <label>Destino</label></td>
+        <td class="enu"> <label>Destino*</label></td>
         <td><input class="cajonform" type="text" onChange={(e)=>setDestino(e.target.value)}></input></td>
         </tr>
           
@@ -449,17 +470,12 @@ export const RegistraServicio = () => {
       
 
       <table >
-        <tr >
-        <td class="enu"> <label>Nombre*</label></td>
-        {/* <td><select class="cajonform" type="text" onChange={(e)=>asignarOpe(e.target.value)}>
-        {
-            nombreOpe.map(item=>(
-              <option key={item}>{item}</option>
-
-
-            ))
-          }
-          </select></td> */}
+      <tr >
+        <td class="enu"> <label>Cedula</label></td>
+        <td><select class="cajonform" id='selnom' type="text" onChange={(e)=>setCedula(e.target.value)}>
+          <option value="">Seleccione</option>
+          </select></td>
+        
         </tr>
       
           
@@ -469,17 +485,7 @@ export const RegistraServicio = () => {
       <div class="vertical">
       
 
-      <table >
-        <tr >
-        <td class="enu"> <label>Cedula</label></td>
-        <td><select class="cajonform" id='selnom' type="text" onChange={(e)=>setCedula(e.target.value)}></select></td>
-        
-        </tr>
-      
-        
-      
-          
-      </table>
+     
       </div>
       </div>
 

@@ -8,31 +8,39 @@ import '../../Styles/cajon.css'
 import '../../Styles/cajondatos.css'
 import Axios from 'axios';
 
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+const moment = require('moment');
+
 
 export const DetOperario = () => {
-  // const { logout, currentUser } = useAuth();
-
-  const moment = require('moment');
+  const fecha = new Date();
+    const mesActual = fecha.getMonth(); 
+    const mes=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre', 'diciembre']
+    
+  const cont=0;
   const [operario, setOperario] = useState('');
   const [servicio, setServicio] = useState('');
   const [valorCobrar, setValorCobrar] = useState('');
   const [susServicios, setSusservicios] = useState('');
+  const [serviPagado, setServipagado] = useState('');
   const[valorTotal,setValores]=useState('');
+  
   const primerDiaMes = moment().subtract('months').startOf('month').format('MM')
-  const fecha = new Date();
-  const mesActual = fecha.getMonth(); 
-  const mes=['enero','febrero','merzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre', 'diciembre']
+    console.log(primerDiaMes);
 
+    const ultimoDiaMes = moment().subtract('months').endOf('month').format('DD-MM-YYYY')
+    console.log(ultimoDiaMes);
+
+    // const range = moments().range(primerDiaMes, ultimoDiaMes);
   const mostrarDPersonal = async()=>{
     const valores = window.location.search;
-    const bus = valores.substring(5)
-    
-    console.log(bus)
+    const value = valores.substring(5)
 
    
       const token = sessionStorage.getItem('token')
 
-      const respuesta = await Axios.get('/api/operario/idOperario/'+bus,{
+      const respuesta = await Axios.get('/api/operario/idOperario/'+value,{
         headers : {'x-token': token}
     })
     
@@ -44,16 +52,13 @@ export const DetOperario = () => {
     
   
   }
+
   const mostrardatosid= async()=>{
    
-    const valores = window.location.search;
-    const bus = valores.substring(5)
-    
-    console.log(bus)
-
+    let valor;   
       const token = sessionStorage.getItem('token')
 
-      const respuesta = await Axios.get('/api/servicio/detOpe/'+bus,{
+      const respuesta = await Axios.get('/api/servicio/saldoOperario/',{
         headers : {'x-token': token} 
     })
     
@@ -64,14 +69,13 @@ export const DetOperario = () => {
 
     const busqdata = (cobro,servicio) => { 
     let acum=0;
-    
  
       cobro && cobro.length>0 && cobro.map((item)=>{
         const valores = window.location.search;
-        const bus = valores.substring(5)
+    const valueid = valores.substring(5)
                 
-        if(item._id===bus){   
-          
+        if(item._id===valueid){   
+            
           setSusservicios(item.servicios)
           console.log(item.servicios) 
           
@@ -100,28 +104,28 @@ export const DetOperario = () => {
     document.getElementById('valorsito').innerHTML=' '
   }else{
   document.getElementById('valorsito').innerHTML=convertToCurrency(acum)
+  document.getElementById('btnvc').innerHTML='Total a pagar por el mes de '+mes[mesActual]+' :'
 }
  
   
   }
-
-
-
+  
 
   //BUSCAR LOS OPERARIOS
   const mostarServicoOpe= async()=>{
     const valores = window.location.search;
-    const bus = valores.substring(5)
+    const value= valores.substring(5)
     
     
     const token = sessionStorage.getItem('token')
     // const valor= 'ObjectId('+values+')'
     
-    const respuesta = await Axios.get('/api/servicio/detOpe/' + bus ,{
+    const respuesta = await Axios.get('/api/servicio/detOpe/' + value ,{
       headers : {'x-token': token}
   })
   //console.log(respuesta.data.serOpe);
   setServicio(respuesta.data.serOpe);
+  console.log(respuesta.data.serOpe)
 
     
   }
@@ -135,25 +139,45 @@ export const DetOperario = () => {
     }
     
   }
+  const exportPDF=()=>{
+    const input =document.getElementById('contServ')
+    
+    html2canvas(input,{logging:true, letterRendering: 1,useCORS:true}).then(canvas =>{
+      const imgWidth=200;
+      const imgHeight=canvas.height*imgWidth/canvas.width;
+      const imgData =canvas.toDataURL('img/png');
+      const pdf= new jsPDF('p','mm','a4');
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save('EC'+operario.cedula+mes[mesActual]+'.pdf')
+    })
+  
+}
 
   useEffect(() => {
     mostrarDPersonal()
     mostarServicoOpe()
+    busqdata(valorCobrar,susServicios)
+ 
+
     mostrardatosid()
-    //busqdata(valorCobrar,susServicios)
+    
+   
   }, [])
   return (
     
     <div>
-       <NavA></NavA>
-    <div class="contServ">
+      <NavA></NavA>
+    <div class="contServ" id='contServ'>
     <h1>Operario: {operario.nombre_completo}</h1>
     <h2>Aqui se encuentran todos los servicios realizados para el operario</h2>
-    <div class="cajCabTot">
-    <button onClick={()=>busqdata(valorCobrar,susServicios)}>Conoce el valor a cobrar por el mes de {mes[mesActual]}</button>
-    <h4 id='valorsito'> </h4>
+    
+   <div class="cajDatosOpe">
+   <div class="cajDa">
+  <button class='presiona'id='btnvc' onClick={()=>busqdata(valorCobrar,susServicios)}>¡Presiona para conoce el valor a pagar por el mes de {mes[mesActual]}!</button>
+  <h4 id='valorsito'> </h4>
+  </div>
   <div class='ver'>
-  {/* <button  onClick={()=>exportPDF()}>descargar</button> */}
+  <button class='verbtn'  onClick={()=>exportPDF()}>Descargar cuenta</button>
 
 
 
@@ -161,7 +185,7 @@ export const DetOperario = () => {
     </div>
   <h1>Información personal</h1>  
     <div class="cajCab1">
-  <h1>{} </h1>
+  <h1>{operario.nombre_completo} </h1>
   <div class='ver'>
     <a href='/#' class="verm" >Editar</a>
   </div>
@@ -173,12 +197,12 @@ export const DetOperario = () => {
 
   <table >
     <tr >
-    <td> <label>Cedula</label></td>
-    <td><label>{operario.cedula}</label></td>
+    <td class='peq'> <label>Cedula</label></td>
+    <td class='gra'><label>{operario.cedula}</label></td>
     </tr>
     <tr>
     <td> <label>Nombre</label></td>
-    <td class='mas'> <label class='mas'>{operario.nombre_completo} </label></td>
+    <td> <label>{operario.nombre_completo}</label></td>
     </tr>
     <tr>
     <td> <label>Celular</label></td>
@@ -216,7 +240,7 @@ export const DetOperario = () => {
   <h1>Despliegue y detalle</h1>
   
   <div class="cajCab1">
-  <h1>Servicios</h1>
+  <h1>{operario.nombre_completo} </h1>
   </div>
   
 
@@ -240,25 +264,28 @@ export const DetOperario = () => {
                         <th>Expediente</th>
                         <th>Estado</th>
                         <th>Servicio</th>
+                        <th>Fecha</th>
                         <th>Valor</th>
                        
                         
 
                     </tr>
                     {servicio && servicio.length>0 && servicio.map((item)=>{
-                     let fechad =moment(item.fecha).format('MM') 
-                    
+                      let fechad =moment(item.fecha).format('MM') 
+                     if( fechad===primerDiaMes){
                      return  <tr class="tcentrar">
                      <td class='tcentrar'>  {item.aseguradoraNombre}  </td>
                      <td class='tcentrar'>  {item.expediente}  </td>
                      <td class='tcentrar'>  {busEstados(item.estadoServicio)}  </td>
+                     <td class='tcentrar'>  {moment(item.fecha).format('DD-MM-YYYY')}  </td>
                      <td class='tcentrar'>  {item.tipoServicio}  </td>
                      <td class='tcentrar'>  {convertToCurrency(item.valor)}  </td>
-                    
+                   
                      </tr>
-                     
+                  }
                    
                   })}
+
                 
                  </tbody>
                                 </table>

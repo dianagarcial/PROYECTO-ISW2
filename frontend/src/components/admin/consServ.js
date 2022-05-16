@@ -182,7 +182,7 @@ function busEstados(estado) {
       <h1 class="h1bot">SURAMERICANA</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/ZNsZF7M/image-3.pnghttps://i.ibb.co/ZNsZF7M/image-3.png" alt="imagen"/>
+      <img class="asi" src="https://i.ibb.co/ZNsZF7M/image-3.pnghttps://i.ibb.co/ZNsZF7M/image-3.png" alt="imagen"/>
       
       </div>
       </a>
@@ -194,7 +194,7 @@ function busEstados(estado) {
       <h1 class="h1bot">BOLÍVAR</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/S08tPF8/image-3-1.png" alt="imagen"/>
+      <img class="asi" src="https://i.ibb.co/S08tPF8/image-3-1.png" alt="imagen"/>
       
       </div>
       </a>
@@ -207,7 +207,7 @@ function busEstados(estado) {
       <h1 class="h1bot">A365</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/7n22t9r/image-3-2.png" alt="imagen"/>
+      <img class="asi" src="https://i.ibb.co/7n22t9r/image-3-2.png" alt="imagen"/>
       
       </div>
       </a>
@@ -217,10 +217,10 @@ function busEstados(estado) {
       <a href='aseguradora/?nombreAseguradora=iKEA' className='registro'>
       <div class="bot1-t">
       <div class="tit">
-      <h1 class="h1bot">iKEA</h1>
+      <h1 class="h1bot">iKE Asistencia</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png" alt="imagen"/>
+      <img class="ikea" src="https://i.ibb.co/Y3YzNZV/favicon-194x194-1.png" alt="imagen"/>
       
       </div>
       </a>
@@ -232,7 +232,7 @@ function busEstados(estado) {
       <h1 class="h1bot">GEA COLOMBIA</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png" alt="imagen"/>
+      <img class="asi" src="https://i.ibb.co/s5RQngS/LOGO-GEA-COLOMBIA-1-300x110-1.png" alt="imagen"/>
       
       </div>
       </a>
@@ -245,7 +245,7 @@ function busEstados(estado) {
       <h1 class="h1bot">ASSIPREX</h1>
       </div>
       
-      <img class="imgaseg" src="https://i.ibb.co/TbkH4R6/Recurso-1.png" alt="imagen"/>
+      <img class="asi" src="https://i.ibb.co/DY6TYbG/logo-assisprex.png" alt="imagen"/>
       
       </div>
       </a>
@@ -280,18 +280,19 @@ function busEstados(estado) {
                         <th>Nombre</th>
                         <th>Cedula</th>
                         <th>Telefono</th>
-                        <th>Saldo</th>
+        
                         <th >Detalles                   </th>
                         
                         
 
                     </tr>
                     {operario && operario.length>0 && operario.map((item)=>{
+                     
                      return  <tr class="tcentrar">
                      <td class='tcentrar'>  {item.nombre_completo}  </td>
                      <td class='tcentrar'>  {item.cedula}  </td>
                      <td class='tcentrar'>  {item.telefono}  </td>
-                     <td class='tcentrar'>  ${}  </td>
+             
                      <td class='tcentrar'><a className='logout-button' href={item._id ? "/detOPerario/?_id=" + item._id : ""}>Detalles</a>  </td>
                      </tr>
                  
