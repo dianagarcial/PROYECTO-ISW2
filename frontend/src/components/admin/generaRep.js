@@ -12,11 +12,14 @@ import Axios from 'axios';
 export const GeneraReporte = () => {
   // const { logout, currentUser } = useAuth();
   const history = useHistory();
+  let arr=[]
   
   const [error, setError] = useState('');
   const [aseguradoras,setaseguradoras]=useState([])
   const [aseguradoraSel,setAseguradoraSel]=useState([])
   const [mese,setMes]=useState([])
+  const [meseSel,setMesSel]=useState([])
+
   const [operarios,setOperarios]=useState([])
   const [operariosd,setOperariosd]=useState([])
   
@@ -47,24 +50,52 @@ export const GeneraReporte = () => {
     
   }
 
-  // const obtenerOperarios=async (e) =>{
-  // e.preventDefault();
-  //   const token=sessionStorage.getItem('token')
-  //   const res=await Axios.get('/api/operario/listaOperarios',{
-  //     headers: {'x-token':token}
-  //   })
+  const obtenerOperarios=async () =>{
+    const token=sessionStorage.getItem('token')
+    const res=await Axios.get('/api/operario/listaOperarios',{
+      headers: {'x-token':token}
+    })
   
-  //   setOperarios(res.data.operarios)
+    setOperarios(res.data)
+    console.log(res.data)
+  
+    const aux= res.data.operarios;
     
-  // }
+    
+    console.log(aux)
+    aux.map(function(item){
+      
+      arr.push(item.cedula)
+    })
+  
+   
+    console.log(arr)
+    for(var i in arr)
+    { 
+        document.getElementById("selnom").innerHTML += "<option value='"+arr[i]+"'>"+arr[i]+"</option>"; 
+  
+    }
+    
+  }
+
+  const obtener=async () =>{
+    console.log(aseguradoraSel)
+
+  }
+  
+
   
 
   useEffect(() => {
   setaseguradoras(['Suramericana','Bolivar','A365','iKEA','GEA Colombia', 'Assiprex'])
-  //   setMes(['enero','febrero','merzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre', 'diciembre'])
-  //  // obtenerOperarios();
-    
-  })
+  setMes(['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre', 'Diciembre'])
+  obtenerOperarios()
+ 
+
+  
+  },[])
+
+  
   return (
     
     <div>
@@ -88,7 +119,7 @@ export const GeneraReporte = () => {
   </div>
   <div class="cajCab2">
   <label class="replabel">Aseguradora</label>
-  <select class="busRep"name="select">
+  <select class="busRep"name="select" onChange={(e)=>setMesSel(e.target.value)}>
   {
             mese.map(item=>(
               <option key={item}>{item}</option>
@@ -98,17 +129,14 @@ export const GeneraReporte = () => {
   </div>
   <div class="cajCab2">
   <label class="replabel">Operario  </label>
-  <select class="busRep"name="select">
-  {
-            aseguradoras.map(item=>(
-              <option key={item}>{item}</option>
-            ))
-          }
+  <select class="busRep" id='selnom' type="text" onChange={(e)=>setOperariosd(e.target.value)}>
+         
           </select>
   </div>
   </div>
   <div class="btn-desc">
-  <button name="add" class="desRep">Generar reporte</button>
+  <button name="add" class="desRep" onClick={()=> obtener()}>Generar reporte</button>
+
   </div>
 </form>
 </div>

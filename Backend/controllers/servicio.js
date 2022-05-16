@@ -182,47 +182,11 @@ const getdetOperarioPendiente = async ( req, res = response ) => {
     }
 
 }
-const crearServicio = async ( req, res = response) => {
-
-    const servicio = new Servicio ( req.body );
-
-    const {operario} = req.body;
-
-    
-   
-    try {
-
-        const getIdfromOperario = await Operario.findOne({ cedula:operario });
-   
-        servicio.operario=getIdfromOperario._id;
-
-        servicio.user = req.uid;
-        
-
-        const servicioGuardado = await servicio.save();
-
-        res.json({
-            ok: true,
-            servicio: servicioGuardado
-        });
-        
-    } catch (error) {
-
-        console.log(error)
-        res.status(500).json({
-            ok: false,
-            msg: 'Hable con el administrador'
-        });
-        
-    }
-
-}
-
 // const crearServicio = async ( req, res = response) => {
 
 //     const servicio = new Servicio ( req.body );
 
-//     const {operario, expediente} = req.body;
+//     const {operario} = req.body;
 
     
    
@@ -234,20 +198,14 @@ const crearServicio = async ( req, res = response) => {
 
 //         servicio.user = req.uid;
         
-//         if(expediente){
-//             return res.status(400).json({
-//                 ok: false,
-//                 msg: 'El Expediente ya existe'
-//             });
-//         }
 
 //         const servicioGuardado = await servicio.save();
 
-//             res.json({
-//                 ok: true,
-//                 servicio: servicioGuardado
-//             });
-
+//         res.json({
+//             ok: true,
+//             servicio: servicioGuardado
+//         });
+        
 //     } catch (error) {
 
 //         console.log(error)
@@ -259,6 +217,48 @@ const crearServicio = async ( req, res = response) => {
 //     }
 
 // }
+
+const crearServicio = async ( req, res = response) => {
+
+    const servicio = new Servicio ( req.body );
+
+    const {operario, expediente} = req.body;
+
+    const expedienteId = await Servicio.findOne({ expediente });
+   
+    try {
+
+        const getIdfromOperario = await Operario.findOne({ cedula:operario });
+   
+        servicio.operario=getIdfromOperario._id;
+
+        servicio.user = req.uid;
+        
+        if(expedienteId) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'El Expediente ya existe'
+            });
+        }
+
+        const servicioGuardado = await servicio.save();
+
+            res.json({
+                ok: true,
+                servicio: servicioGuardado
+            });
+
+    } catch (error) {
+
+        console.log(error)
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+        
+    }
+
+}
 
 const getSaldoOperario = async ( req, res = response ) => {
 

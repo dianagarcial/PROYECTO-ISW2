@@ -41,11 +41,11 @@ export const HomeOperario = () => {
    // e.preventDefault();
     
     const value= sessionStorage.getItem('uid');
-    
+    const esta= verificarActivo()
    
    
     const token = sessionStorage.getItem('token')
-    const res=await Axios.put('/api/operario/'+value+'/'+estado,{
+    const res=await Axios.put('/api/operario/'+value+'/'+esta,{
       headers: {'token':token}
     })
     const ok =res.data.ok
@@ -54,20 +54,23 @@ export const HomeOperario = () => {
   }
 
   function verificarActivo(){
+    let input = document.getElementById('switch-label');
+let button = document.getElementById("serviciobtn");
+button.disabled = true;
+
+
+  if (input.checked) {     
+    return 'A';
+  }else {
+
+    return 'O';
+  
     
  
-    let input = document.getElementById('switch-label');
-    
-      if (input.checked) {
-        setEstado('A')
-        
-      } else {
-        setEstado('O')
-       
-      }
     
         
   }
+}
 
   const most= () =>{
     if(estado==='A'){
@@ -94,17 +97,8 @@ export const HomeOperario = () => {
 
   useEffect(() => {
     mostrarDPersonal()
-    let input = document.getElementById('switch-label');
+    actualizarEstado()
     
-      if (input.checked) {
-        setEstado('A')
-        actualizarEstado()
-        
-      } else {
-        setEstado('O')
-        actualizarEstado()
-       
-      }
     
 
 
@@ -121,7 +115,7 @@ export const HomeOperario = () => {
             
         </div>
         <div class="cajCabTot1">
-  <h1 class="h1bot">Estado </h1>
+  <h1 class="h1bot">Estado{estado} </h1>
   
 
  {most()}

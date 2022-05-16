@@ -185,6 +185,7 @@ export const RegistraServicio = () => {
     };   
 
     console.log(servicio)
+   
     
     if(expediente==='' ){
       Swal.fire({
@@ -253,14 +254,20 @@ export const RegistraServicio = () => {
     }else{
     //VALIDACIONES VACIOS 
     //ELSE 
-
     const token=sessionStorage.getItem('token')
     const res=await Axios.post('/api/servicio/newServicio',servicio,{
       headers: {'token':token}
     })
     const ok =res.data.ok
     console.log(ok)
-    
+    if(!ok){
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Servicio registrado exitosamente',
+        showConfirmButton: false,
+        timer: 1500});
+    }else{
     Swal.fire({
       icon: 'success',
       title: 'Servicio registrado exitosamente',
@@ -268,6 +275,7 @@ export const RegistraServicio = () => {
       timer: 1500
       
     });
+  }
 
    // e.target.reset();//Se limpia el formulario
     

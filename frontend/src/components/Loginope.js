@@ -32,8 +32,8 @@ export const LoginOpe = () => {
     const ok = response.data.ok;
     const msg = response.data.msg;
 
-
-    
+    console.log(response.data.ok);
+    console.log(response.data.msg);
 
     console.log(response);
 
