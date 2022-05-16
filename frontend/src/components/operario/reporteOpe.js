@@ -144,7 +144,7 @@ export const ReporteServicio = () => {
       const imgData =canvas.toDataURL('img/png');
       const pdf= new jsPDF('p','mm','a4');
       pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
-      pdf.save('Estado de cuenta '+mes[mesActual]+'.pdf')
+      pdf.save('EC'+mes[mesActual]+'.pdf')
     })
   
 }

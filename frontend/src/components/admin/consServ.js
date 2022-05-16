@@ -107,9 +107,7 @@ function busEstados(estado) {
 
   <div class="cajCab1">
   <h1>Datos aseguradora</h1>
-  <div class='ver'>
-    <a id="verdia" class="verm" href='/#' >Ver mas</a>
-  </div>
+ 
   </div>
 
     <div class="container-table100" id="tablaboton">
@@ -214,7 +212,7 @@ function busEstados(estado) {
       </div>
 
       <div class='plan'>
-      <a href='aseguradora/?nombreAseguradora=iKEA' className='registro'>
+      <a href='aseguradora/?nombreAseguradora=iKE Asistencia' className='registro'>
       <div class="bot1-t">
       <div class="tit">
       <h1 class="h1bot">iKE Asistencia</h1>
@@ -255,10 +253,8 @@ function busEstados(estado) {
       <h2>Los servicios realizados desplegados por operario</h2>
           </div>
       <div class="cajCab1">
-      <h1>Operario</h1>
-      <div class='ver'>
-    <a href='/#' class="verm" >Ver mas</a>
-  </div>
+      <h1>Operarios</h1>
+      
  
   </div>
 

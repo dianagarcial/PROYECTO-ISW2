@@ -58,7 +58,7 @@ export const RegistraServicio = () => {
     setTipoSel('Familiar')
     setaseguradoraSect('Suramericana')
     
-    setaseguradora(['Suramericana','Bolivar','A365','iKEA','GEA Colombia', 'Assiprex'])
+    setaseguradora(['Suramericana','Bolivar','A365','iKE Asistencia','GEA Colombia', 'Assiprex'])
     settipoServicio(['Familiar','Elegido'])
 
   }, [])

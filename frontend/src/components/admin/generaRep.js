@@ -15,6 +15,7 @@ export const GeneraReporte = () => {
   
   const [error, setError] = useState('');
   const [aseguradoras,setaseguradoras]=useState([])
+  const [aseguradoraSel,setAseguradoraSel]=useState([])
   const [mese,setMes]=useState([])
   const [operarios,setOperarios]=useState([])
   const [operariosd,setOperariosd]=useState([])
@@ -46,23 +47,23 @@ export const GeneraReporte = () => {
     
   }
 
-  const obtenerOperarios=async () =>{
+  // const obtenerOperarios=async (e) =>{
+  // e.preventDefault();
+  //   const token=sessionStorage.getItem('token')
+  //   const res=await Axios.get('/api/operario/listaOperarios',{
+  //     headers: {'x-token':token}
+  //   })
   
-    const token=sessionStorage.getItem('token')
-    const res=await Axios.get('/api/operario/listaOperarios',{
-      headers: {'x-token':token}
-    })
-  
-    setOperarios(res.data.operarios)
+  //   setOperarios(res.data.operarios)
     
-  }
+  // }
   
 
   useEffect(() => {
-    setaseguradoras(['Suramericana','Bolivar','A365','iKEA','GEA Colombia', 'Assiprex'])
-    setMes(['enero','febrero','merzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre', 'diciembre'])
-    obtenerOperarios();
-    console.log(operarios)
+  setaseguradoras(['Suramericana','Bolivar','A365','iKEA','GEA Colombia', 'Assiprex'])
+  //   setMes(['enero','febrero','merzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre', 'diciembre'])
+  //  // obtenerOperarios();
+    
   })
   return (
     
@@ -77,7 +78,7 @@ export const GeneraReporte = () => {
     <div class="contecaj">
   <div class="cajCab2">
   <label class="replabel">Mes*      </label>
-  <select class="busRep"name="select">
+  <select class="busRep"name="select" onChange={(e)=>setAseguradoraSel(e.target.value)}>
   {
             aseguradoras.map(item=>(
               <option key={item}>{item}</option>

@@ -53,21 +53,19 @@ export const HomeOperario = () => {
     
   }
 
-  function verificarActivo(estado){
+  function verificarActivo(){
     
-    actualizarEstado()
+ 
     let input = document.getElementById('switch-label');
-    let button = document.getElementById("serviciobtn");
-    // input.addEventListener("change", stateHandle);
-    // function stateHandle() {
-    //   if (input.checked) {
-    //     setEstado('A')
-    //     button.disabled = false; 
-    //   } else {
-    //     setEstado('O')
-    //     button.disabled = true;
-    //   }
-    //  }
+    
+      if (input.checked) {
+        setEstado('A')
+        
+      } else {
+        setEstado('O')
+       
+      }
+    
         
   }
 
@@ -96,6 +94,17 @@ export const HomeOperario = () => {
 
   useEffect(() => {
     mostrarDPersonal()
+    let input = document.getElementById('switch-label');
+    
+      if (input.checked) {
+        setEstado('A')
+        actualizarEstado()
+        
+      } else {
+        setEstado('O')
+        actualizarEstado()
+       
+      }
     
 
 
@@ -113,7 +122,7 @@ export const HomeOperario = () => {
         </div>
         <div class="cajCabTot1">
   <h1 class="h1bot">Estado </h1>
-  {verificarActivo(operario.estado)}
+  
 
  {most()}
 
