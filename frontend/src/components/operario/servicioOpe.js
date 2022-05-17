@@ -118,7 +118,7 @@ export const VerServicio = () => {
   <option value="F">Fallido</option>
   <option value="C">Completado</option>
 </select>
-<input class="desRep" type='submit' value='Aceptar' />
+<input class="aceptarev" type='submit' value='Aceptar' />
         
           </form>
     
@@ -172,10 +172,10 @@ export const VerServicio = () => {
     
 </div>
 <div class="cajCab1">
-          <div class="cabeBusq">
+          
            <h1>Detalles servicio</h1>
            
-           </div>
+      
            </div>
            <div class="cuadro4">
   <div class="division">

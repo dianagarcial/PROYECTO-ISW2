@@ -152,9 +152,9 @@ const loginOperario = async(req, res = response) => {
         const operario = await Operario.findOne({ nombre_usuario });
 
         if(!operario) {
-            return res.status(400).json({
+            return res.json({
                 ok: false,
-                msg: 'El usuario no existe con ese email'
+                msg: 'El email ingresado no se encuentra registrado'
             });
         }
 
@@ -162,9 +162,9 @@ const loginOperario = async(req, res = response) => {
         const validPassword = bcrypt.compareSync( contraseña, operario.contraseña );
 
         if ( !validPassword ) {
-            return res.status(400).json({
+            return res.json({
                 ok: false,
-                msg: 'Password incorrecto'
+                msg: 'Contraseña incorrecta'
             });
         }
 

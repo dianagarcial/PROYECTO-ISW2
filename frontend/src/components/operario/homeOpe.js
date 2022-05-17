@@ -55,8 +55,7 @@ export const HomeOperario = () => {
 
   function verificarActivo(){
     let input = document.getElementById('switch-label');
-let button = document.getElementById("serviciobtn");
-button.disabled = true;
+
 
 
   if (input.checked) {     
@@ -91,6 +90,9 @@ button.disabled = true;
   const generaRep=async (e) => {
     e.preventDefault();
     //BUSCAR EN LA BD
+    // if (estado=='O'){
+    //   alert('El usuario no se encuentra dispo')
+    // }else{
       history.push('/reportePendiente');
     
   }

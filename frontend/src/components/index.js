@@ -34,13 +34,13 @@ export const Index = () => {
         </div>
     <div class='planindex'>
 
-    <button className='registro' onClick={administrador} >
+    <button className='registroindex' onClick={administrador} >
     <div class="bot1-t">
       <div class="tit">
       <h1 class="h1bot">Administrador</h1>
       </div>
-      <img class="imgreg" src="https://i.ibb.co/QjTz8cW/servicio-al-cliente.png" alt="Writer-male" border="0"/>
-      <h2 class="h2bot">Asigna servicios a los operarios disponibles y consulta las cuentas a pagar a operarios y aseguradoras</h2>
+      <img class="imgregindex" src="https://i.ibb.co/QjTz8cW/servicio-al-cliente.png" alt="Writer-male" border="0"/>
+      
       </div>
       </button>
 
@@ -52,8 +52,8 @@ export const Index = () => {
       <div class="tit">
       <h1 class="h1bot">Operario</h1>
       </div>
-      <img class="imgreg" src="https://i.ibb.co/m6X3gbC/conductor-3.png" alt="Writer-male" border="0"/>
-      <h2 class="h2bot">Consulta los servicios asignados y los detalles de los realizados, ademas de tu cuenta por cobrar </h2>
+      <img class="imgregindex" src="https://i.ibb.co/BP96mgt/volante.png" alt="Writer-male" border="0"/>
+      
       </div>
       </button>
 

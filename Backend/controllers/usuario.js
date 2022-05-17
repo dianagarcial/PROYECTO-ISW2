@@ -53,7 +53,7 @@ const loginUsuario = async(req, res = response) => {
         if(!usuario) {
             return res.json({
                 ok: false,
-                msg: 'El usuario no existe con ese email'
+                msg: 'El email ingresado no se encuentra registrado'
             });
         }
 
@@ -63,7 +63,7 @@ const loginUsuario = async(req, res = response) => {
         if ( !validPassword ) {
             return res.json({
                 ok: false,
-                msg: 'Password incorrecto'
+                msg: 'Contraseña incorrecta'
             });
         }
 

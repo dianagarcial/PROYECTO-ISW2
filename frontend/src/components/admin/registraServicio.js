@@ -259,12 +259,13 @@ export const RegistraServicio = () => {
       headers: {'token':token}
     })
     const ok =res.data.ok
+    const msg=res.data.msg
     console.log(ok)
     if(!ok){
 
       Swal.fire({
         icon: 'error',
-        title: 'Servicio registrado exitosamente',
+        title: 'El expediente ya existe',
         showConfirmButton: false,
         timer: 1500});
     }else{
@@ -354,7 +355,7 @@ export const RegistraServicio = () => {
       <table >
         <tr>
         <td class="enu"> <label>Licencia Click*</label></td>
-        <td><input class="cajonform" type="text" onChange={(e)=>setlicenciaclick(e.target.value)}></input></td>
+        <td><input type='email'class="cajonform" onChange={(e)=>setlicenciaclick(e.target.value)}></input></td>
         </tr>
         <tr>
         <td class="enu"> <label>Contraseña*</label></td>
