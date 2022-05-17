@@ -186,9 +186,7 @@ export const DetOperario = () => {
   <h1>Información personal</h1>  
     <div class="cajCab1">
   <h1>{operario.nombre_completo} </h1>
-  <div class='ver'>
-    <a href='/#' class="verm" >Editar</a>
-  </div>
+  
   </div>
   <div class="cuadro4">
   <div class="division">

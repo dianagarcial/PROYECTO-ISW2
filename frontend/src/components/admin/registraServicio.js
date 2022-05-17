@@ -479,7 +479,7 @@ export const RegistraServicio = () => {
 
       <table >
       <tr >
-        <td class="enu"> <label>Cedula</label></td>
+        <td class="enu"> <label>Cedula*</label></td>
         <td><select class="cajonform" id='selnom' type="text" onChange={(e)=>setCedula(e.target.value)}>
           <option value="">Seleccione</option>
           </select></td>

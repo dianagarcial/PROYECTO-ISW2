@@ -83,7 +83,8 @@ export const Aseguradora = () => {
   
   document.getElementById('valorsito').innerHTML=convertToCurrency(acum)
   document.getElementById('btnvc').innerHTML='Total a pagar por el mes de '+mes[mesActual]+' :'
-
+  
+  
  
   
   }

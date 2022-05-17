@@ -552,3 +552,15 @@ h4#valorsito {
     background: transparent;
     border: transparent;
 }
+.act {
+    display: flex;
+    margin: 2em;
+    width: 20%;
+    justify-content: end;
+}
+button.actual {
+    width: 30%;
+    background: beige;
+    border: transparent;
+    border-radius: 10px;
+}

@@ -135,7 +135,7 @@ export const GeneraReporte = () => {
   </div>
   </div>
   <div class="btn-desc">
-  <button name="add" class="desRep" onClick={()=> obtener()}>Generar reporte</button>
+  <button name="add" class="desRep" disabled>Generar reporte</button>
 
   </div>
 </form>

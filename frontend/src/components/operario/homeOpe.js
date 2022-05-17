@@ -97,9 +97,9 @@ button.disabled = true;
 
   useEffect(() => {
     mostrarDPersonal()
-    actualizarEstado()
     
     
+    verificarActivo()
 
 
   }, [])
@@ -115,11 +115,12 @@ button.disabled = true;
             
         </div>
         <div class="cajCabTot1">
-  <h1 class="h1bot">Estado{estado} </h1>
+  <h1 class="h1bot">Estado</h1>
   
 
  {most()}
 
+    <div class='act'>
   <div class='ver'>
   <div class="switch-button">
  
@@ -127,6 +128,8 @@ button.disabled = true;
 
     <label for="switch-label" class="switch-button__label"></label>
 </div>
+  </div>
+  <button class='actual' onClick={()=>actualizarEstado()}>Actualizar</button>
   </div>
     
     </div>
