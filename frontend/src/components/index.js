@@ -47,7 +47,7 @@ export const Index = () => {
 
 
 
-      <button className='registro' onClick={administrador} >
+      <button className='registro' onClick={operario} >
       <div class="bot1-t">
       <div class="tit">
       <h1 class="h1bot">Operario</h1>

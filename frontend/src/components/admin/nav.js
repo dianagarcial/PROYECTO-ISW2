@@ -19,7 +19,7 @@ function NavA (){
             <nav>
             <div class="nav-bar">
             <div class="imgr">                       
-            <a href="/home"><img class="logos" src='https://i.ibb.co/J3D3BM9/logo.png'/></a>
+            <a href="/home"><img class="logos" src='https://i.ibb.co/0rcChvc/Property-1-Default.png'/></a>
             </div>
                 <div class="nav-nom">
                     
