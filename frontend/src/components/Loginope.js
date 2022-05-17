@@ -56,9 +56,9 @@ export const LoginOpe = () => {
 
       Swal.fire({
         icon: 'success',
-        title: 'Benvigut',
+        title: 'Bienvenido',
         showConfirmButton: false,
-        timer:1500
+        timer:2000
       });
 
       window.location.href='/homeOperario';
