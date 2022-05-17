@@ -22,47 +22,27 @@ export const LoginAdmi = () => {
   const handleEmail = e => setEmail(e.target.value);
   const handlePassword = e => setPassword(e.target.value);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   //setLoading(true);
-  //   try {
-  //     await login(email, password);
-  //     //setLoading(false);
 
-  //     if(email=='admin@gmail.com'){
-  //       history.push('/')
-  //     }else{
-  //       history.push('/homeOperario');
-  //     }
-      
-      
-  //   } catch (error) {
-  //     //setLoading(false);
-  //     setError('Credenciales incorrectas');
-  //     setTimeout(() => setError(''), 1500);
-  //   }
-  // }
   const iniciarSesion = async (e) => {
 
     e.preventDefault();
     
     const usuario = {email,password};
-    const response = await Axios.post('/api/usuario/', usuario);
+    const response = await Axios.post('/api/usuario', usuario);
+
     const ok = response.data.ok;
     const msg = response.data.msg;
-
-    console.log(response);
-
+    
     if(!ok){
 
       Swal.fire({
         icon: 'error',
         title: msg,
         showConfirmButton: false,
-        timer: 1500
+        timer: 2000
       });
 
-    } else {
+    }else {
 
       const token = response.data.token;
       const uid = response.data.uid;
@@ -79,7 +59,7 @@ export const LoginAdmi = () => {
 
       window.location.href='/home';
 
-    }    
+    }
 
   }
 
