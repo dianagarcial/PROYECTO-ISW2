@@ -21,7 +21,7 @@ function Nav (){
             <nav>
             <div class="nav-bar">
             <div class="imgr">                       
-            <a href="/"><img class="logos" src='https://i.ibb.co/J3D3BM9/logo.png'/></a>
+            <a href="/"><img class="logos" src='https://i.ibb.co/0rcChvc/Property-1-Default.png'/></a>
             </div>
                 
             </div>

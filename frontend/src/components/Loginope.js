@@ -7,6 +7,7 @@ import '../Styles/login.css'
 
 import Axios  from 'axios';
 import Swal from 'sweetalert2';
+import Nav from './nav'
 
 
 export const LoginOpe = () => {
@@ -74,7 +75,7 @@ export const LoginOpe = () => {
 
   return (
     <div>
- 
+      <Nav></Nav>
     <div class="fondoLog">
     <div class="combologi">
     <div class="tilogin">
