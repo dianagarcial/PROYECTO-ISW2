@@ -50,7 +50,26 @@ export const HomeOperario = () => {
     })
     const ok =res.data.ok
     //console.log(ok)
-    
+    if(!ok){
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error actualizado estado',
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+    } else {
+
+        Swal.fire({
+        icon: 'success',
+        title: 'Estado actualizado con exito',
+        showConfirmButton: false,
+        timer:2000
+      });
+
+      
+    }    
   }
 
   function verificarActivo(){
