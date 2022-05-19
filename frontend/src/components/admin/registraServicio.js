@@ -251,6 +251,30 @@ export const RegistraServicio = () => {
         timer: 1500
         
       });
+    }else if(nombreAsegurado===''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor, seleccione la cedula del operario',
+        showConfirmButton: false,
+        timer: 1500
+        
+      });
+    }else if(placaAsegurado===''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor, seleccione la cedula del operario',
+        showConfirmButton: false,
+        timer: 1500
+        
+      });
+    }else if(telefonoAsegurado===''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor, seleccione la cedula del operario',
+        showConfirmButton: false,
+        timer: 1500
+        
+      });
     }else{
     //VALIDACIONES VACIOS 
     //ELSE 
